@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC 
+"-//mybatis.org//DTD config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<!--设置mybaits框架使用log4j日志框架输出信息-->
+		<setting name="logImpl" value="LOG4J"/>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+
+	<!-- 为实体类取别名-->
+	<typeAliases>
+		<package name="com.guigu.pojo"/>
+	</typeAliases>
+
+
+	<!-- 配置sql映射文件生效-->
+	<mappers>
+		<!--批量加载映射文件  包名  设置为接口所在的包-->
+		<package name="com.guigu.mapper"/>
+	</mappers>
+</configuration>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- 自动扫描 controller包-->
+	<context:component-scan base-package="com.guigu.controller"></context:component-scan>
+
+	<!-- 注解驱动生效-->
+	<mvc:annotation-driven conversion-service="conversionServiceFactory"></mvc:annotation-driven>
+
+<!-- 释放 项目中的所有静态资源  js css 图片-->
+	<mvc:default-servlet-handler></mvc:default-servlet-handler>
+
+	<!-- 上传解析器-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="2097152"></property> <!--  2MB-->
+		<property name="defaultEncoding" value="UTF-8"></property>
+		<!-- 1TB=1024G  1GB=1024MB 1MB=1024kb    1kb=1024b -->
+	</bean>
+
+	<!--&lt;!&ndash; 视图解析器&ndash;&gt;
+	<bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>-->
+
+
+	<!-- 实例化日期转换工具类-->
+	<bean id="myDateConverter" class="com.guigu.utils.MyDateConverter">
+		<property name="patterns">
+			<array>
+				<value>yyyy-MM-dd</value>
+				<value>yyyy/MM/dd</value>
+				<value>yyyy-MM-dd HH:mm</value>
+				<value>yyyy-MM-dd HH:mm:ss</value>
+				<value>yyyy/MM/dd HH:mm:ss</value>
+				<value>yyyy-MM-dd'T'HH:mm</value>
+				<value>yyyy-MM-dd'T'HH:mm:ss</value>
+			</array>
+		</property>
+	</bean>
+
+	<!--自定义转换器 -->
+	<bean id="conversionServiceFactory" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<!-- 指定自定义转换器的全路径名称 -->
+				<ref bean="myDateConverter"></ref>
+			</set>
+		</property>
+	</bean>
+
+	<!-- 自定义的异常解析器 生效-->
+	<!--<bean id="myExceptionResolver" class="com.guigu.exception.MyExceptionResolver"></bean>-->
+</beans>

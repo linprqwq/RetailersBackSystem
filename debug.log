@@ -1,0 +1,12 @@
+2022-03-22 17:29:56  [ localhost-startStop-1:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2022-03-22 17:29:56  [ localhost-startStop-1:7 ] - [ DEBUG ]  Class not found: org.jboss.vfs.VFS
+2022-03-22 17:29:56  [ localhost-startStop-1:7 ] - [ DEBUG ]  JBoss 6 VFS API is not available in this environment.
+2022-03-22 17:29:56  [ localhost-startStop-1:8 ] - [ DEBUG ]  Class not found: org.jboss.vfs.VirtualFile
+2022-03-22 17:29:56  [ localhost-startStop-1:9 ] - [ DEBUG ]  VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2022-03-22 17:29:56  [ localhost-startStop-1:9 ] - [ DEBUG ]  Using VFS adapter org.apache.ibatis.io.DefaultVFS
+2022-03-22 20:22:35  [ localhost-startStop-1:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2022-03-22 20:22:35  [ localhost-startStop-1:6 ] - [ DEBUG ]  Class not found: org.jboss.vfs.VFS
+2022-03-22 20:22:35  [ localhost-startStop-1:7 ] - [ DEBUG ]  JBoss 6 VFS API is not available in this environment.
+2022-03-22 20:22:35  [ localhost-startStop-1:8 ] - [ DEBUG ]  Class not found: org.jboss.vfs.VirtualFile
+2022-03-22 20:22:35  [ localhost-startStop-1:8 ] - [ DEBUG ]  VFS implementation org.apache.ibatis.io.JBoss6VFS is not valid in this environment.
+2022-03-22 20:22:35  [ localhost-startStop-1:9 ] - [ DEBUG ]  Using VFS adapter org.apache.ibatis.io.DefaultVFS

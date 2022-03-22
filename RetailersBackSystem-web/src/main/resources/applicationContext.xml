@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+   <!-- 开启自动扫描机制  配合注解使用的-->
+   <context:component-scan base-package="com.guigu">
+      <!-- 不扫描Controller注解 ，生成的对象-->
+      <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+   </context:component-scan>
+
+
+   <!-- 初始化driud连接池-->
+   <!-- 初始化数据源对象；DruidDataSource -->
+   <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+      <!-- 与数据库建立连接的基本信息 -->
+      <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+      <property name="url"
+                value="jdbc:mysql://hnguigu02.mysql.rds.aliyuncs.com/vuedb02?characterEncoding=utf-8"></property>
+      <property name="username" value="user006"></property>
+      <property name="password" value="1qaz@WSX"></property>
+      <!-- 关于数据库连接池的基本信息 -->
+      <property name="maxActive" value="50"></property>
+      <property name="initialSize" value="5"></property>
+      <property name="minIdle" value="1"></property>
+      <property name="maxWait" value="60000"></property>
+   </bean>
+
+   <!-- 管理sqlsessionFactoryBean对象  可以创建sqlsession-->
+   <bean id="sqlSessionFactoryBean"    class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
+      <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+      <property name="dataSource" ref="dataSource"></property>
+      <!--添加分页插件-->
+      <property name="plugins">
+         <array>
+            <!-- mybatis-plus 分页用 拦截器-->
+            <bean class="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor"></bean>
+
+            <bean class="com.github.pagehelper.PageInterceptor">
+               <property name="properties">
+                  <value>
+                     helperDialect=mysql
+                  </value>
+               </property>
+            </bean>
+         </array>
+      </property>
+   </bean>
+
+   <!--配置mybatis接口的代理对象bean-->
+   <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+      <property name="basePackage" value="com.guigu.mapper"></property>
+      <!--通过basePackage  制定mybatis代码位置  生成代理对象，存入spring容器 -->
+   </bean>
+
+</beans>
