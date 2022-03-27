@@ -1,4 +1,4 @@
-package com.guigu;
+package com.guigu.pojo;
 
 
 import lombok.AllArgsConstructor;

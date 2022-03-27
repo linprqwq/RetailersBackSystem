@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace设置为  接口的：成包名+接口名字 -->
+<mapper namespace="com.guigu.mapper.UserinfoMapper">
+    <select id="userlogin" resultType="com.guigu.pojo.Userinfo">
+        SELECT * FROM userinfo WHERE loginname=#{userinfo.loginname} AND PASSWORD=#{userinfo.password}
+    </select>
+
+</mapper>

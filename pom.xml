@@ -12,7 +12,7 @@
     <module>RetailersBackSystem-pojo</module>
     <module>RetailersBackSystem-service</module>
     <module>RetailersBackSystem-utils</module>
-    <module>RetailersBackSystem-web</module>
+    <module>RetailersBackSystem-controller</module>
   </modules>
   <packaging>pom</packaging>
 

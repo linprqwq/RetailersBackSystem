@@ -1,4 +1,4 @@
-package com.guigu;
+package com.guigu.pojo;
 
 
 import lombok.AllArgsConstructor;
@@ -10,18 +10,18 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//订单表
-public class Order {
+//订单详情表
+public class Ordderdetails {
 
+    private Integer id;
     private Integer orderid;
     private Integer uid;
-    private Integer payment;
-    private Integer paymenttype;
-    private Date paymenttime;
-    private Date sendtime;
-    private Date endtime;
-    private Date colsetime;
+    private Integer proid;
+    private String proname;
+    private String proimage;
+    private Double prosprice;
+    private Integer quantity;
+    private Double totalpirce;
     private Date createtime;
     private Date updatetime;
-    private Integer status;
 }
