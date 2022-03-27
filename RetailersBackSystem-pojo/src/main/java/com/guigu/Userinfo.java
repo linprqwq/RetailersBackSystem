@@ -14,7 +14,7 @@ public class Userinfo {
     private Integer ID;
     private String username;
     private String loginname;
-    private String possword;
+    private String password;
     private String phone;
     private Double umoney;
     private String address;
