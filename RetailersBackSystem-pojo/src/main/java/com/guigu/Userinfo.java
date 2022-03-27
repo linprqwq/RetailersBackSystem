@@ -1,6 +1,8 @@
 package com.guigu;
 
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,10 +13,11 @@ import lombok.NoArgsConstructor;
 //用户表
 public class Userinfo {
 
+    @TableId(value = "id",type = IdType.AUTO)
     private Integer ID;
     private String username;
     private String loginname;
-    private String possword;
+    private String password;
     private String phone;
     private Double umoney;
     private String address;
