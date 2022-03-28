@@ -1,17 +1,30 @@
 package com.guigu.pojo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 // 购物车
 public class Cart {
-
+    @TableId(value = "cartid",type = IdType.AUTO)
+    //购物车id
     private Integer cartid;
+    //用户id
     private Integer uid;
-    private Integer pid;
+    //商品编号
+    private Integer cid;
+    //商品数量
     private Integer quantity;
+
+    @TableField(exist = false)
+    //商品查询
+    private List<Commodity> commodityList;
 }
