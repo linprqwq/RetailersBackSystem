@@ -1,7 +1,7 @@
 package com.guigu.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.guigu.pojo.Commodity;
+import com.guigu.pojo.Ordderdetails;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.guigu.pojo.Commodity;
  * @author 童总
  * @since 2022-03-28
  */
-public interface CommodityMapper extends BaseMapper<Commodity> {
+public interface OrdderdetailsMapper extends BaseMapper<Ordderdetails> {
 
 }

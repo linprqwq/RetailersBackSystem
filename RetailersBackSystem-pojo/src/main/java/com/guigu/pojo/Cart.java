@@ -14,16 +14,26 @@ import java.util.List;
 @NoArgsConstructor
 // 购物车
 public class Cart {
-    @TableId(value = "cartid",type = IdType.AUTO)
-    //购物车id
+    /**
+     * 购物车id
+     */
+    @TableId(value = "cartid", type = IdType.AUTO)
     private Integer cartid;
-    //用户id
-    private Integer uid;
-    //商品编号
-    private Integer cid;
-    //商品数量
-    private Integer quantity;
 
+    /**
+     * 用户id
+     */
+    private Integer uid;
+
+    /**
+     * 商品编号
+     */
+    private Integer cid;
+
+    /**
+     * 商品数量
+     */
+    private Integer quantity;
     @TableField(exist = false)
     //商品查询
     private Commodity commodity;

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guigu.mapper.SysEmployeesMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.guigu.pojo.SysEmployees">
+        <id column="ID" property="id" />
+        <result column="emp_name" property="empName" />
+        <result column="emp_loginname" property="empLoginname" />
+        <result column="emp_password" property="empPassword" />
+        <result column="emp_phone" property="empPhone" />
+        <result column="emp_money" property="empMoney" />
+        <result column="emp_address" property="empAddress" />
+        <result column="emp_img" property="empImg" />
+        <result column="emp_state" property="empState" />
+    </resultMap>
+
+</mapper>
