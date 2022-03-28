@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -47,13 +47,13 @@ public class SPay implements Serializable {
     private String register;
 
     @TableField("REGISTER_TIME")
-    private LocalDateTime registerTime;
+    private Date registerTime;
 
     @TableField("CHECKER")
     private String checker;
 
     @TableField("CHECK_TIME")
-    private LocalDateTime checkTime;
+    private Date checkTime;
 
     @TableField("CHECK_TAG")
     private String checkTag;
