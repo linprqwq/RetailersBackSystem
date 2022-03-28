@@ -24,4 +24,5 @@ public class Order {
     private Date createtime;
     private Date updatetime;
     private Integer status;
+    private Integer sid;
 }
