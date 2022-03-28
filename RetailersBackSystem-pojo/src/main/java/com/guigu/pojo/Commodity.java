@@ -18,9 +18,10 @@ public class Commodity {
     private String prosubtitle;
     private String prozimg;
     private String proimage;
-    private Double prodetails;
+    private String prodetails;
     private Double prosprice;
-    private Integer quantity;
-    private Date status;
+    private Double quantity;
+    private Integer status;
     private Date createtime;
+    private Date updatetime;
 }
