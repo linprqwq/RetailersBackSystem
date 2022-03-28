@@ -13,6 +13,7 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
     UserinfoMapper userinfoMapper;
 
     @Override
+    //用户登录
     public Userinfo userlogin(Userinfo userinfo) {
         return userinfoMapper.userlogin(userinfo);
     }

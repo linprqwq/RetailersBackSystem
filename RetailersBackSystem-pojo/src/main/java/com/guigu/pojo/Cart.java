@@ -26,5 +26,5 @@ public class Cart {
 
     @TableField(exist = false)
     //商品查询
-    private List<Commodity> commodityList;
+    private Commodity commodity;
 }

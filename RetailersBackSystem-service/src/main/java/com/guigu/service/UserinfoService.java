@@ -8,5 +8,6 @@ import org.springframework.stereotype.Service;
 
 
 public interface UserinfoService extends IService<Userinfo> {
+    //用户登录
     Userinfo userlogin(Userinfo userinfo);
 }

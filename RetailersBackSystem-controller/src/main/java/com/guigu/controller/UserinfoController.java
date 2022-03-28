@@ -20,6 +20,7 @@ public class UserinfoController {
 
     @RequestMapping("/login.action")
     @CrossOrigin
+    //用户登录
     public int login(Userinfo userinfo){
         int i=0;
         Userinfo userinfo1=userinfoService.userlogin(userinfo);
