@@ -9,14 +9,10 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
- * <p>
- * 
- * </p>
- *
- * @author 童总
- * @since 2022-03-29
+ * 采购申请表
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -44,7 +40,7 @@ public class PurchaseInfo implements Serializable {
     /**
      * 采购时间
      */
-    private LocalDate ptime;
+    private Date ptime;
 
     /**
      * 总数量

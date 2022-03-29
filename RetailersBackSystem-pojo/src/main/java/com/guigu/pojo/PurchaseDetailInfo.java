@@ -10,12 +10,7 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 
 /**
- * <p>
- * 
- * </p>
- *
- * @author 童总
- * @since 2022-03-29
+ * 采购详情表
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

@@ -11,12 +11,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * <p>
- * 
- * </p>
- *
- * @author 童总
- * @since 2022-03-29
+ * 退货申请表
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

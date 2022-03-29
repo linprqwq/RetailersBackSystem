@@ -8,12 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * <p>
- * 
- * </p>
- *
- * @author 童总
- * @since 2022-03-29
+ * 浏览记录表
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
