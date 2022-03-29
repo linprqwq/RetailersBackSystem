@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 童总
@@ -23,7 +23,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class SysEmployees implements Serializable {
+public class  SysEmployees implements Serializable {
 
     private static final long serialVersionUID=1L;
 
