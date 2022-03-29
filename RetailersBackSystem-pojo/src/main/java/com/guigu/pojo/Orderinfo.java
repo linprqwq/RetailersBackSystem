@@ -20,7 +20,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 //订单表
-public class Order {
+public class Orderinfo {
 
     /**
      * 订单id

@@ -2,9 +2,9 @@ package com.guigu.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.guigu.mapper.OrderMapper;
-import com.guigu.pojo.Order;
-import com.guigu.service.OrderService;
+import com.guigu.mapper.OrderinfoMapper;
+import com.guigu.pojo.Orderinfo;
+import com.guigu.service.OrderinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +19,13 @@ import java.util.List;
  * @since 2022-03-28
  */
 @Service
-public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
+public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo> implements OrderinfoService {
 
     @Autowired
-    OrderMapper orderMapper;
+    OrderinfoMapper orderMapper;
 
     @Override
-    public List<Order> queryuserorder(Order order) {
+    public List<Orderinfo> queryuserorder(Orderinfo order) {
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.eq("uid",order.getUid());
         return orderMapper.selectList(queryWrapper);

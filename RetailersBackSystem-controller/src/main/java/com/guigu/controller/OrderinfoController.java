@@ -1,10 +1,10 @@
 package com.guigu.controller;
 
 
-import com.guigu.pojo.Order;
-import com.guigu.service.OrderService;
+import com.guigu.pojo.Orderinfo;
+import com.guigu.service.OrderinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,13 +20,14 @@ import java.util.List;
  * @since 2022-03-28
  */
 @RestController
-public class OrderController {
+public class OrderinfoController {
 
     @Autowired
-    OrderService orderService;
+    OrderinfoService orderService;
 
-    @PostMapping("queryuserorder.action")
-    public List<Order> queryuserorder(Order order){
+    @RequestMapping("queryuserorder.action")
+    @CrossOrigin
+    public List<Orderinfo> queryuserorder(Orderinfo order){
 
         return orderService.queryuserorder(order);
     }
