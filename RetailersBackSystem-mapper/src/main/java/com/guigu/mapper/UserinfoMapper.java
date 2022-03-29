@@ -5,5 +5,6 @@ import com.guigu.pojo.Userinfo;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserinfoMapper extends BaseMapper<Userinfo> {
+    //用户登录
     Userinfo userlogin(@Param("userinfo") Userinfo userinfo);
 }

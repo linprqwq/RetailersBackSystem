@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guigu.mapper.OrdderdetailsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.guigu.pojo.Ordderdetails">
+        <id column="id" property="id" />
+        <result column="orderid" property="orderid" />
+        <result column="uid" property="uid" />
+        <result column="proid" property="proid" />
+        <result column="proname" property="proname" />
+        <result column="proimage" property="proimage" />
+        <result column="prosprice" property="prosprice" />
+        <result column="quantity" property="quantity" />
+        <result column="totalpirce" property="totalpirce" />
+        <result column="createtime" property="createtime" />
+        <result column="updatetime" property="updatetime" />
+    </resultMap>
+
+</mapper>

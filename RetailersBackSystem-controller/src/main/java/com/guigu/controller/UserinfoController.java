@@ -9,20 +9,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.transform.Source;
 
 @RestController
 
 public class UserinfoController {
+
     @Autowired
     UserinfoService userinfoService;
 
     @RequestMapping("/login.action")
     @CrossOrigin
-    public int login(Userinfo userinfo, HttpServletRequest request){
+    //用户登录
+    public int login(Userinfo userinfo){
         int i=0;
         Userinfo userinfo1=userinfoService.userlogin(userinfo);
-        HttpSession session=request.getSession();
-        session.setAttribute("userinfo1",userinfo1);
         if(userinfo1!=null){
             i=1;
         }
