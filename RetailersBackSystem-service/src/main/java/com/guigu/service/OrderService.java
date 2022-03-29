@@ -3,6 +3,8 @@ package com.guigu.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guigu.pojo.Order;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,5 @@ import com.guigu.pojo.Order;
  */
 public interface OrderService extends IService<Order> {
 
+    List<Order> queryuserorder(Order order);
 }
