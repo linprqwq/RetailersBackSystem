@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.xml.transform.Source;
+import java.util.Map;
 
 @RestController
 
@@ -28,5 +29,15 @@ public class UserinfoController {
             i=1;
         }
         return i;
+    }
+    @RequestMapping("/selsid.action")
+    @CrossOrigin
+    public Userinfo selsid(int id){
+        return userinfoService.getById(id);
+    }
+    @RequestMapping("/updatesh.action")
+    @CrossOrigin
+    public Map updatesh(Userinfo userinfo){
+        return userinfoService.update(userinfo);
     }
 }
