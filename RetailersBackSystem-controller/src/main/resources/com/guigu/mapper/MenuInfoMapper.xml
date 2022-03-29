@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace设置为  接口的：成包名+接口名字 -->
+<mapper namespace="com.guigu.mapper.MenuInfoMapper">
+
+    <select id="querymenusbypidandrid" parameterType="int" resultType="sysMenus">
+            select m.*,mr.mid as MENUID,mr.rid as ROLEID from sys_menus m
+            left join menu_role mr on m.ID = mr.mid
+             where m.PARENT_ID = #{menuId} and mr.rid=#{rid}
+    </select>
+</mapper>

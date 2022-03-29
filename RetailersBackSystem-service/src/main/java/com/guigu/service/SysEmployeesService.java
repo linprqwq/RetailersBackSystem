@@ -1,6 +1,7 @@
 package com.guigu.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+
 import com.guigu.pojo.SysEmployees;
 
 /**
@@ -12,5 +13,6 @@ import com.guigu.pojo.SysEmployees;
  * @since 2022-03-28
  */
 public interface SysEmployeesService extends IService<SysEmployees> {
+
 
 }
