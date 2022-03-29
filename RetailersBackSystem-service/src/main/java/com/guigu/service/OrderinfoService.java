@@ -1,9 +1,8 @@
 package com.guigu.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guigu.pojo.Orderinfo;
-
-import java.util.List;
 
 /**
  * <p>
@@ -15,5 +14,5 @@ import java.util.List;
  */
 public interface OrderinfoService extends IService<Orderinfo> {
 
-    List<Orderinfo> queryuserorder(Orderinfo order);
+    Page<Orderinfo> queryuserorder(Orderinfo order, int Pageno, int pagesize);
 }
