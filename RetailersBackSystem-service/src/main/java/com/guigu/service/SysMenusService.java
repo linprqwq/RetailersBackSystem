@@ -3,6 +3,8 @@ package com.guigu.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guigu.pojo.SysMenus;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,5 @@ import com.guigu.pojo.SysMenus;
  */
 public interface SysMenusService extends IService<SysMenus> {
 
+    List<SysMenus> querymenusleft(Integer roleId);
 }

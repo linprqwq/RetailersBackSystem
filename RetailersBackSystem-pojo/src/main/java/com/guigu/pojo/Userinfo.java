@@ -79,5 +79,5 @@ public class Userinfo {
     /**
      * 注册供应商状态
      */
-    private String gtsState;
+    private String gysState;
 }
