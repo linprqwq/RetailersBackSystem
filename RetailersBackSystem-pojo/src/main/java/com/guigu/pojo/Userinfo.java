@@ -72,4 +72,12 @@ public class Userinfo {
      * 商户地址（关联省市表）
      */
     private String shaddress;
+    /**
+     * 注册商户状态
+     */
+    private String shState;
+    /**
+     * 注册供应商状态
+     */
+    private String gtsState;
 }

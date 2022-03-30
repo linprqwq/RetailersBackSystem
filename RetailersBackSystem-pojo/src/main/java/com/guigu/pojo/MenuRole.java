@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("emp_role")
-public class EmpRole {
-    private Integer eid;
+@TableName("menu_role")
+public class MenuRole {
+    private Integer mid;
     private Integer rid;
 }
