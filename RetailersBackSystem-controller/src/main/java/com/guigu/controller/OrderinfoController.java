@@ -1,15 +1,11 @@
 package com.guigu.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guigu.pojo.Orderinfo;
 import com.guigu.service.OrderinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -27,9 +23,9 @@ public class OrderinfoController {
 
     @RequestMapping("queryuserorder.action")
     @CrossOrigin
-    public List<Orderinfo> queryuserorder(Orderinfo order){
-
-        return orderService.queryuserorder(order);
+    public Page<Orderinfo> queryuserorder(Orderinfo order, @RequestParam(value = "pageno",defaultValue = "1")int pageno,
+                                          @RequestParam(value = "pagesize",defaultValue = "5")int pagesize){
+        return orderService.queryuserorder(order,pageno,pagesize);
     }
 
 }

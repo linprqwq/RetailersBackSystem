@@ -8,43 +8,24 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-
-/**
- * <p>
- *
- * </p>
- *
- * @author 童总
- * @since 2022-03-28
- */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class  SysEmployees implements Serializable {
 
-    private static final long serialVersionUID=1L;
+//供应商停供商品表
+public class Goodsupplied {
 
     @TableId(value = "ID", type = IdType.AUTO)
     private Integer id;
+    //用户id
+    private Integer pId;
+    //商品id
+    private String gId;
+    //供应货物价格
+    private Double supplierPrice;
 
-    private String empName;
-
-    private String empLoginname;
-
-    private String empPassword;
-
-    private Integer empPhone;
-
-    private Integer empMoney;
-
-    private String empAddress;
-
-    private String empImg;
-
-    private Integer empState;
 
 
 }

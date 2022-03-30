@@ -2,7 +2,9 @@ package com.guigu.pojo;
 
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -46,35 +48,41 @@ public class Orderinfo {
     /**
      * 支付时间
      */
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
     private Date paymenttime;
 
     /**
      * 发货时间
      */
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
     private Date sendtime;
 
     /**
      * 订单完成时间
      */
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
     private Date endtime;
 
     /**
      * 交易关闭时间
      */
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
     private Date colsetime;
 
     /**
      * 创建时间
      */
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
     private Date createtime;
 
     /**
      * 更新时间
      */
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
     private Date updatetime;
 
     /**
-     * 订单状态:1.已取消 - 2.未付款  3.已付款 4.待取货
+     * 订单状态:1.已取消 - 2.未付款-3.待取货-4.已提货
      */
     private Integer status;
 
@@ -82,4 +90,10 @@ public class Orderinfo {
      * 商户id
      */
     private Integer sid;
+
+    /**
+     * 订单详情
+     */
+    @TableField(exist = false)
+    private Ordderdetails ordderdetails;
 }
