@@ -18,4 +18,7 @@
         <result column="updatetime" property="updatetime" />
     </resultMap>
 
+    <select id="QueryAllCommodity" resultType="Commodity">
+        SELECT * FROM commodity
+    </select>
 </mapper>

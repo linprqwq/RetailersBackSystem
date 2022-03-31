@@ -21,24 +21,17 @@ public class UserinfoController {
     @RequestMapping("/login.action")
     @CrossOrigin
     //用户登录
-    public int login(Userinfo userinfo) {
-        int i = 0;
-        Userinfo userinfo1 = userinfoService.userlogin(userinfo);
-        if (userinfo1 != null) {
-            i = 1;
-        }
-        return i;
+    public Userinfo login(Userinfo userinfo){
+       return userinfoService.userlogin(userinfo);
     }
-
     @RequestMapping("/selsid.action")
     @CrossOrigin
-    public Userinfo selsid(int id) {
+    public Userinfo selsid(int id){
         return userinfoService.getById(id);
     }
-
     @RequestMapping("/updatesh.action")
     @CrossOrigin
-    public Map updatesh(Userinfo userinfo) {
+    public Map updatesh(Userinfo userinfo){
         return userinfoService.update(userinfo);
     }
     @RequestMapping("/queryallUser.action")

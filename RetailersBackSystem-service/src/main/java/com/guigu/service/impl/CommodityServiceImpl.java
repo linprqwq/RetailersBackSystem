@@ -8,6 +8,8 @@ import com.guigu.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity> implements CommodityService {
@@ -18,5 +20,9 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     public Commodity querycommodityid( Integer id) {
 
         return commodityMapper.selectById(id);
+    }
+    //查询所有商品
+    public List<Commodity> QueryAllCommodity(){
+        return commodityMapper.QueryAllCommodity();
     }
 }
