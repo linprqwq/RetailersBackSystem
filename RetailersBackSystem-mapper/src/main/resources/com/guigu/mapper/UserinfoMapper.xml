@@ -4,8 +4,31 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace设置为  接口的：成包名+接口名字 -->
 <mapper namespace="com.guigu.mapper.UserinfoMapper">
+    <resultMap id="Userinfoqwq" type="com.guigu.pojo.Userinfo">
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="loginname" property="loginname"></result>
+        <result column="password" property="password"></result>
+        <result column="phone" property="phone"></result>
+        <result column="umoney" property="umoney"></result>
+        <result column="address" property="address"></result>
+        <result column="img" property="img"></result>
+        <result column="identity" property="identity"></result>
+        <result column="ustate" property="ustate"></result>
+        <result column="shaddress" property="shaddress"></result>
+        <association property="carts" javaType="Cart">
+                <id column="cartid" property="cartid"></id>
+            <result column="uid" property="uid"></result>
+            <result column="pid" property="pid"></result>
+            <result column="quantity" property="quantity"></result>
+        </association>
+    </resultMap>
+
     <select id="userlogin" resultType="com.guigu.pojo.Userinfo">
         SELECT * FROM userinfo WHERE loginname=#{userinfo.loginname} AND PASSWORD=#{userinfo.password}
     </select>
 
+    <select id="CartCount" parameterType="Integer" resultType="Integer">
+        SELECT COUNT(*) FROM cart c INNER JOIN userinfo u ON c.uid=u.id WHERE u.id=#{id}
+    </select>
 </mapper>

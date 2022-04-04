@@ -7,4 +7,7 @@ import org.apache.ibatis.annotations.Param;
 public interface UserinfoMapper extends BaseMapper<Userinfo> {
     //用户登录
     Userinfo userlogin(@Param("userinfo") Userinfo userinfo);
+
+    //个人购物车商品数量
+    Integer CartCount(Integer id);
 }

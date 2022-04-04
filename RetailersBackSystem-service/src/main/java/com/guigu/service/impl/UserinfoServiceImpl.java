@@ -53,10 +53,6 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         if(StringUtils.isNotBlank(userinfo.getUsername())){
             queryWrapper.like("username",userinfo.getUsername());
         }
-        if(StringUtils.isNotBlank(userinfo.getShState())){
-            queryWrapper.ne("sh_state",null);
-            queryWrapper.ne("sh_state","");
-        }
         Page<Userinfo> page1 = this.page(page,queryWrapper);
         PageVo<Userinfo> pageVo = new PageVo<Userinfo>();
         pageVo.setTotal(page1.getTotal());
@@ -66,58 +62,30 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
 
     @Override
     public Map updstate(Userinfo userinfo) {
-        boolean num = this.updateById(userinfo);
-        Map map =new HashMap();
-        map.put("code","0");
-        map.put("msg","审核失败");
-        if(num){
-            map.put("code","1");
-            map.put("msg","审核成功");
-        }
-        return map;
+        return null;
     }
 
     @Override
     public Map updstatebtg(Userinfo userinfo) {
-        boolean num = this.updateById(userinfo);
-        Map map =new HashMap();
-        map.put("code","0");
-        map.put("msg","审核未通过失败");
-        if(num){
-            map.put("code","1");
-            map.put("msg","审核未通过");
-        }
-        return map;
+        return null;
     }
 
     @Override
     public PageVo<Userinfo> querybyconduser2(Userinfo userinfo, Integer pageno, Integer pagesize) {
-        Page<Userinfo> page = new Page<Userinfo>(pageno,pagesize);
-        //条件查询
-        QueryWrapper<Userinfo> queryWrapper =new QueryWrapper<Userinfo>();
-        queryWrapper.eq("sh_state","0");
-        Page<Userinfo> page1 = this.page(page,queryWrapper);
-        PageVo<Userinfo> pageVo = new PageVo<Userinfo>();
-        pageVo.setTotal(page1.getTotal());
-        pageVo.setRows(page1.getRecords());
-        return pageVo;
+        return null;
     }
 
     @Override
     public PageVo<Userinfo> queryallGysJl(Userinfo userinfo, Integer pageno, Integer pagesize) {
-        Page<Userinfo> page = new Page<Userinfo>(pageno,pagesize);
-        //条件查询
-        QueryWrapper<Userinfo> queryWrapper =new QueryWrapper<Userinfo>();
-        if(StringUtils.isNotBlank(userinfo.getUsername())){
-            queryWrapper.like("username",userinfo.getUsername());
-        }
-        queryWrapper.ne("sh_state",null).or().ne("sh_state","");
-        Page<Userinfo> page1 = this.page(page,queryWrapper);
-        PageVo<Userinfo> pageVo = new PageVo<Userinfo>();
-        pageVo.setTotal(page1.getTotal());
-        pageVo.setRows(page1.getRecords());
-        return pageVo;
+        return null;
     }
 
-
+    @Override
+    public Integer CartCount(Integer id) {
+        int i = userinfoMapper.CartCount(id);
+        if(i==0){
+            return i;
+        }
+        return i;
+    }
 }

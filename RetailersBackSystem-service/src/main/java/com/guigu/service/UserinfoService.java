@@ -25,4 +25,8 @@ public interface UserinfoService extends IService<Userinfo> {
     PageVo<Userinfo> querybyconduser2(Userinfo userinfo, Integer pageno, Integer pagesize);
 
     PageVo<Userinfo> queryallGysJl(Userinfo userinfo, Integer pageno, Integer pagesize);
+//    public PageVo<Userinfo> querybyconduser(Userinfo userinfo,int pageno , int pagesize);
+
+    //个人购物车商品数量
+    Integer CartCount(Integer id);
 }
