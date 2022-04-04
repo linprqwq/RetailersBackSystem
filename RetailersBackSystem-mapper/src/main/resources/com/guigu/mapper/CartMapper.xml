@@ -10,4 +10,9 @@
         <result column="quantity" property="quantity" />
     </resultMap>
 
+    <select id="selectusergwc" resultType="cart">
+        select * from cart where cid in  <foreach collection="list" item="id" open="(" close=")" separator=",">
+        #{id}
+    </foreach>  and uid=#{cart.uid}
+    </select>
 </mapper>
