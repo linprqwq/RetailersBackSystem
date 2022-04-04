@@ -1,8 +1,2 @@
-2022-04-04 16:02:12  [ localhost-startStop-1:229 ] - [ DEBUG ]  Checking to see if class com.guigu.mapper.SupplierGoodsCategoryMapper matches criteria [is assignable to Object]
-2022-04-04 16:02:12  [ localhost-startStop-1:230 ] - [ DEBUG ]  Checking to see if class com.guigu.mapper.SysEmployeesMapper matches criteria [is assignable to Object]
-2022-04-04 16:02:12  [ localhost-startStop-1:230 ] - [ DEBUG ]  Checking to see if class com.guigu.mapper.SysMenusMapper matches criteria [is assignable to Object]
-2022-04-04 16:02:12  [ localhost-startStop-1:230 ] - [ DEBUG ]  Checking to see if class com.guigu.mapper.SysRolesMapper matches criteria [is assignable to Object]
-2022-04-04 16:02:12  [ localhost-startStop-1:230 ] - [ DEBUG ]  Checking to see if class com.guigu.mapper.UserinfoMapper matches criteria [is assignable to Object]
-2022-04-04 16:02:12  [ localhost-startStop-1:399 ] - [ WARN ]  Warn: Could not find @TableId in Class: com.guigu.pojo.Category.
-2022-04-04 16:02:13  [ localhost-startStop-1:833 ] - [ WARN ]  Warn: Could not find @TableId in Class: com.guigu.pojo.EmpRole.
-2022-04-04 16:02:13  [ localhost-startStop-1:915 ] - [ WARN ]  Warn: Could not find @TableId in Class: com.guigu.pojo.MenuRole.
+2022-04-04 16:32:32  [ http-bio-9090-exec-3:18222 ] - [ DEBUG ]  <==      Total: 0
+2022-04-04 16:32:32  [ http-bio-9090-exec-3:18222 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@c8c2a52]

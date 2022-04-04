@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -23,9 +24,18 @@ import java.util.List;
 @RequestMapping("/goodsSupplied/")
 public class GoodsSuppliedController {
 
+    //自动注入
     @Autowired
     GoodsuppliedService goodsuppliedService;
 
+
+    //添加商品到供应商维护商品表
+    @PutMapping("supplierSupplyOfGoods.action")
+    public Map add(@RequestBody Goodsupplied goodsupplied){
+
+        return null;
+       //return goodsuppliedService.add(goodsupplied);
+    }
 
     //根据当前用户，查询供应商目前可以添加到供应商维护商品表里面的商品
         @GetMapping("/selelctcomodity.action")

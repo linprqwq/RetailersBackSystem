@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -68,8 +69,8 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
         queryWrapper=new QueryWrapper<Goodsupplied>();
         for(Commodity c:commodityList){
                 queryWrapper.eq("g_id",c.getId());
-        //根据商品id,查询数据是否存在，说明没有供应商品
-            if(supplierGoodsCategoryMapper.selectList(queryWrapper)!=null){
+        //根据供应商品表id,查询数据是否存在，说明没有供应商品
+            if(goodsuppliedMapper.selectList(queryWrapper)!=null){
                     //没有数据添加到集合中
                 records.add(c);
             }
@@ -91,9 +92,22 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
     //去添加商品到供应商
     @Override
     public Map add(Goodsupplied goodsupplied) {
+            Map<String,Object> map=new HashMap<>();
+            //设置默认属性值
+            //设置配置
+            goodsupplied.setIsConfig(0);
+            //设置为等待审核
+            goodsupplied.setIsCheck(0);
+            //去进行添加
+            if(goodsuppliedMapper.insert(goodsupplied)>0){
+                    map.put("msg","申请提交审核成功，等待审核");
+                    map.put("x",true);
+            }else {
+                map.put("msg","操作失败");
+                map.put("x",false);
+            }
 
-
-        return null;
+        return map;
     }
 
     //去查询所有提供的商品
