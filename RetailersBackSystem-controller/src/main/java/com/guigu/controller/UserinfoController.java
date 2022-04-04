@@ -69,4 +69,12 @@ public class UserinfoController {
     public Map updstatebtg(@RequestBody Userinfo userinfo) {
         return userinfoService.updstatebtg(userinfo);
     }
+
+
+    //统计用户购物车数量
+    @RequestMapping("/cartcount.action")
+    @CrossOrigin
+    public int CartCount(Integer id) {
+        return userinfoService.CartCount(id);
+    }
 }

@@ -8,6 +8,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
+
 /**
  * <p>
  *
@@ -84,4 +87,8 @@ public class Userinfo {
      * 注册供应商状态
      */
     private String gysState;
+
+
+    @TableField(exist = false)
+    private List<Cart> carts;
 }
