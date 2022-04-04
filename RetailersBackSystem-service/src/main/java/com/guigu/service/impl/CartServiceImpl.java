@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.guigu.mapper.CartMapper;
 import com.guigu.mapper.CommodityMapper;
+import com.guigu.mapper.UserinfoMapper;
 import com.guigu.pojo.Cart;
 import com.guigu.pojo.Commodity;
+import com.guigu.pojo.Userinfo;
 import com.guigu.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,8 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
     CartMapper cartMapper;
     @Autowired
     CommodityMapper commodityMapper;
+    @Autowired
+    UserinfoMapper userinfoMapper;
     @Override
     //我的购物车查询
     public List<Cart> querygwcid(Integer id) {
@@ -66,5 +70,54 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
             map.put("msg","加入购物车成功");
         }
         return map;
+    }
+
+    @Override
+    //购物车加减
+    public Map<String, String> gwcssjj(Cart cart,boolean pdjj) {
+        Map<String,String> map = new HashMap<>();
+        map.put("code","0");
+        map.put("msg","失败");
+        Cart cart1 =     cartMapper.selectById(cart.getCartid());
+
+        if (pdjj==false){
+           int a = cart1.getQuantity()+1;
+           cart1.setQuantity(a);
+            cartMapper.updateById(cart1);
+
+        }
+        if (pdjj&&cart1.getQuantity()==1){
+            QueryWrapper queryWrapper = new QueryWrapper();
+            queryWrapper.eq("cartid",cart1.getCartid());
+           cartMapper.delete(queryWrapper);
+        }
+        if (pdjj){
+            int a = cart1.getQuantity()-1;
+            cart1.setQuantity(a);
+            cartMapper.updateById(cart1);
+        }
+        map.put("code","1");
+        map.put("msg","成功");
+
+        return map;
+    }
+
+    @Override
+    public List<Cart> queryusergwc(int[] list, Cart cart) {
+
+        //id放到querywrapper里面
+       QueryWrapper queryWrapper = new QueryWrapper();
+       queryWrapper.eq("uid",cart.getUid());
+        //循环查询添加到list里
+
+      List<Cart> list1 =   cartMapper.selectusergwc(list,cart);
+
+        //根据id查询商品表商品
+        for (Object emp:list1) {
+            //把商品数据添加到实体类里的commodity里
+            ((Cart)emp).setCommodity(commodityMapper.selectById(((Cart) emp).getCid()));
+        }
+
+        return list1;
     }
 }

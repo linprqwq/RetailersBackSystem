@@ -1,6 +1,7 @@
 package com.guigu.controller;
 
 import com.guigu.pojo.Cart;
+import com.guigu.pojo.Userinfo;
 import com.guigu.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,5 +30,18 @@ public class CartController {
     public Map<String,String> addspingcart(Cart cart){
         System.out.println(cart);
         return cartService.addspingcart(cart);
+    }
+
+    @PostMapping("gwcssjj.action")
+    @CrossOrigin
+    public Map<String,String> gwcssjj(Cart cart,boolean pdjj){
+
+        return cartService.gwcssjj(cart,pdjj);
+    }
+
+    @PostMapping("queryusergwc")
+    @CrossOrigin
+    public List<Cart> queryusergwc(int list [], Cart cart){
+        return cartService.queryusergwc(list,cart);
     }
 }
