@@ -37,4 +37,6 @@ public class Cart {
     @TableField(exist = false)
     //商品查询
     private Commodity commodity;
+    @TableField(exist = false)
+    boolean ck=false;
 }

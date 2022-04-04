@@ -24,7 +24,7 @@ public class Commodity {
     /**
      * 商品类型编号
      */
-    private Integer cateid;
+    private Integer shopType;
 
     /**
      * 商品名
