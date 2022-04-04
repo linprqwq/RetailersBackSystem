@@ -2,7 +2,9 @@ package com.guigu.pojo;
 
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 //用户表
+@TableName("userinfo")
 public class Userinfo {
 
     @TableId(value = "ID", type = IdType.AUTO)
@@ -56,7 +59,8 @@ public class Userinfo {
     /**
      * 用户头像
      */
-    private String img;
+    @TableField("img")
+    private String imgpath;
 
     /**
      * 身份:1.普通用户 2.商户3.供应商

@@ -16,5 +16,13 @@ public interface UserinfoService extends IService<Userinfo> {
     public Map update(Userinfo userinfo);
 
     PageVo<Userinfo> querybyconduser(Userinfo userinfo, Integer pageno, Integer pagesize);
-//    public PageVo<Userinfo> querybyconduser(Userinfo userinfo,int pageno , int pagesize);
+
+
+    Map updstate(Userinfo userinfo);
+
+    Map updstatebtg(Userinfo userinfo);
+
+    PageVo<Userinfo> querybyconduser2(Userinfo userinfo, Integer pageno, Integer pagesize);
+
+    PageVo<Userinfo> queryallGysJl(Userinfo userinfo, Integer pageno, Integer pagesize);
 }

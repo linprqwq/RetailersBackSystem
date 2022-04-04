@@ -24,21 +24,49 @@ public class UserinfoController {
     public Userinfo login(Userinfo userinfo){
        return userinfoService.userlogin(userinfo);
     }
+
     @RequestMapping("/selsid.action")
     @CrossOrigin
-    public Userinfo selsid(int id){
+    public Userinfo selsid(int id) {
         return userinfoService.getById(id);
     }
+
     @RequestMapping("/updatesh.action")
     @CrossOrigin
-    public Map updatesh(Userinfo userinfo){
+    public Map updatesh(Userinfo userinfo) {
         return userinfoService.update(userinfo);
     }
+
     @RequestMapping("/queryallUser.action")
     @CrossOrigin
-    public PageVo<Userinfo> updatesh(Userinfo userinfo,
-                                     @RequestParam(value = "pageno",defaultValue = "1") Integer pageno,
-                                     @RequestParam(value = "pagesize",defaultValue = "5")Integer pagesize) {
-        return userinfoService.querybyconduser(userinfo,pageno,pagesize);
+    public PageVo<Userinfo> queryallUser(Userinfo userinfo,
+                                     @RequestParam(value = "pageno", defaultValue = "1") Integer pageno,
+                                     @RequestParam(value = "pagesize", defaultValue = "5") Integer pagesize) {
+        return userinfoService.querybyconduser(userinfo, pageno, pagesize);
+    }
+    @RequestMapping("/queryallUser2.action")
+    @CrossOrigin
+    public PageVo<Userinfo> queryallUser2(Userinfo userinfo,
+                                     @RequestParam(value = "pageno", defaultValue = "1") Integer pageno,
+                                     @RequestParam(value = "pagesize", defaultValue = "5") Integer pagesize) {
+        return userinfoService.querybyconduser2(userinfo, pageno, pagesize);
+    }
+    @RequestMapping("/queryallGysJl.action")
+    @CrossOrigin
+    public PageVo<Userinfo> queryallGysJl(Userinfo userinfo,
+                                     @RequestParam(value = "pageno", defaultValue = "1") Integer pageno,
+                                     @RequestParam(value = "pagesize", defaultValue = "5") Integer pagesize) {
+        return userinfoService.queryallGysJl(userinfo, pageno, pagesize);
+    }
+    @PutMapping("/updstatetg.action")
+    @CrossOrigin
+    public Map updstate(@RequestBody Userinfo userinfo) {
+        System.out.println(userinfo);
+        return userinfoService.updstate(userinfo);
+    }
+    @PutMapping("/updstatebtg.action")
+    @CrossOrigin
+    public Map updstatebtg(@RequestBody Userinfo userinfo) {
+        return userinfoService.updstatebtg(userinfo);
     }
 }
