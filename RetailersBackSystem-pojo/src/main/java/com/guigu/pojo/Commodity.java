@@ -22,7 +22,7 @@ public class Commodity {
     private Integer id;
 
     /**
-     * 商品类型编号
+     //商品类型id
      */
     private Integer shopType;
 
