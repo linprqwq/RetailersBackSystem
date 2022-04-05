@@ -32,10 +32,10 @@ public class SysMenus {
     /*子级菜单*/
     @TableField(exist = false)
     List<SysMenus> childMenu;
+
     @TableField(exist = false)
-    boolean ischecked;
-    @TableField(exist = false)
-    private boolean ischeck;
+    private Boolean ischeck=false;
+
     @TableField(exist = false)
     private EmpRole empRole;
 }

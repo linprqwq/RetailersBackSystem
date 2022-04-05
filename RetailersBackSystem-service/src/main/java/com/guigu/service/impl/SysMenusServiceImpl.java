@@ -10,8 +10,7 @@ import com.guigu.service.SysMenusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * <p>
@@ -33,38 +32,57 @@ public class SysMenusServiceImpl extends ServiceImpl<SysMenusMapper, SysMenus> i
         QueryWrapper<MenuRole> sysMenuRoleWrapper = new QueryWrapper<MenuRole>();
         sysMenuRoleWrapper.eq("rid", roleId);
         sysMenuRoleList = menuRolerMapper.selectList(sysMenuRoleWrapper);
-
+        System.out.println("该角色有的菜单"+sysMenuRoleList);
         List<SysMenus> list = new ArrayList<SysMenus>();
-
         QueryWrapper<SysMenus> queryWrapper = new QueryWrapper<SysMenus>();
         queryWrapper.eq("PARENT_ID", 0);
-
         list = this.list(queryWrapper); //获取所有一级的
+        //循环一级菜单
         for (SysMenus sysMenus : list) {
+            //检查是否有子菜单
             queryWrapper = new QueryWrapper<SysMenus>();
             queryWrapper.eq("PARENT_ID", sysMenus.getId());
             List<SysMenus> list2 = this.list(queryWrapper); //获取所有二级的
             sysMenus.setChildMenu(list2);
-
-            for (SysMenus menus : list2) {
-                queryWrapper = new QueryWrapper<SysMenus>();
-                queryWrapper.eq("PARENT_ID", menus.getId());
-                List<SysMenus> list3 = this.list(queryWrapper); //获取所有三级的
-                menus.setChildMenu(list3);
-                //三级是否要选中
-                for (SysMenus sysMenus1 : list3) {
-                    for (MenuRole menuRole : sysMenuRoleList) {
-                        if (sysMenus1.getId() == menuRole.getMid()) {
-                            sysMenus1.setIscheck(true);
-                            break;
+            if(list2.size()>0){
+                //有子菜单，循环二级菜单
+                for(SysMenus sysMenus2 : list2){
+                    //检查是否有子菜单
+                    queryWrapper = new QueryWrapper<SysMenus>();
+                    queryWrapper.eq("PARENT_ID", sysMenus2.getId());
+                    List<SysMenus> list3 = this.list(queryWrapper); //获取所有三级的
+                    sysMenus2.setChildMenu(list3);
+                    if(list3.size()>0){
+                        //有子菜单，循环三级菜单
+                        for(SysMenus sysMenus3 : list3){
+                            for (MenuRole menuRole : sysMenuRoleList) {
+                                if (sysMenus3.getId() == menuRole.getMid()) {
+                                    sysMenus3.setIscheck(true);
+                                    break;
+                                }
+                            }
+                        }
+                    }else {
+                        //没有子菜单，说明是二级菜单
+                        for (MenuRole menuRole : sysMenuRoleList) {
+                            if (sysMenus2.getId() == menuRole.getMid()) {
+                                sysMenus2.setIscheck(true);
+                                break;
+                            }
                         }
                     }
                 }
+            }else{
+                //没有子菜单，说明是一级菜单
+                for (MenuRole menuRole : sysMenuRoleList) {
+                    if (sysMenus.getId() == menuRole.getMid()) {
+                        sysMenus.setIscheck(true);
+                        break;
+                    }
+                }
             }
-            //上面代码  把菜单表所有 1,2,3级全部取出来
-            //将三级有权限的  设置true
-            //你刚才只取到自己角色有权限的菜单数据 所有只有2个 1级
         }
+        System.out.println("结果"+list);
         return list;
     }
 }
