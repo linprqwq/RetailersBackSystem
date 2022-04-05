@@ -58,15 +58,48 @@ public class UserinfoController {
                                      @RequestParam(value = "pagesize", defaultValue = "5") Integer pagesize) {
         return userinfoService.queryallGysJl(userinfo, pageno, pagesize);
     }
+
+    /**
+     * 供应商注册状态通过
+     * @param userinfo
+     * @return
+     */
     @PutMapping("/updstatetg.action")
     @CrossOrigin
     public Map updstate(@RequestBody Userinfo userinfo) {
         System.out.println(userinfo);
         return userinfoService.updstate(userinfo);
     }
+    /**
+     * 供应商注册状态未通过
+     * @param userinfo
+     * @return
+     */
     @PutMapping("/updstatebtg.action")
     @CrossOrigin
     public Map updstatebtg(@RequestBody Userinfo userinfo) {
+        return userinfoService.updstatebtg(userinfo);
+    }
+    /**
+     * 商户注册状态通过
+     * @param userinfo
+     * @return
+     */
+    @PutMapping("/updshstatetg.action")
+    @CrossOrigin
+    public Map updshstatetg(@RequestBody Userinfo userinfo) {
+        System.out.println(userinfo);
+        return userinfoService.updstate(userinfo);
+    }
+
+    /**
+     * 商户注册状态不通过
+     * @param userinfo
+     * @return
+     */
+    @PutMapping("/updshstatebtg.action")
+    @CrossOrigin
+    public Map updshstatebtg(@RequestBody Userinfo userinfo) {
         return userinfoService.updstatebtg(userinfo);
     }
 
