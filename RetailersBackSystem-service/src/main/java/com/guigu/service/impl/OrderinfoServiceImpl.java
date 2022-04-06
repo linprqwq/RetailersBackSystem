@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.guigu.mapper.OrdderdetailsMapper;
 import com.guigu.mapper.OrderinfoMapper;
+import com.guigu.pojo.Ordderdetails;
 import com.guigu.pojo.Orderinfo;
 
 import com.guigu.service.OrderinfoService;
@@ -35,7 +36,7 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
     public Page<Orderinfo> queryuserorder(Orderinfo order, int pageno, int pagesize) {
         QueryWrapper queryWrapper = new QueryWrapper();
 
-            if (order.getStatus()!=null){
+            if (order.getStatus()>=1){
                 queryWrapper.eq("status",order.getStatus());
             }
         queryWrapper.eq("uid",order.getUid());
@@ -44,7 +45,8 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
             //把订单详情数据添加到订单表实体类里
             QueryWrapper queryWrapper1 = new QueryWrapper();
             queryWrapper1.eq("orderid",orderinfo.getOrderid());
-            orderinfo.setOrdderdetails(ordderdetailsMapper.selectOne(queryWrapper1));
+            Ordderdetails ordderdetails = ordderdetailsMapper.selectOne(queryWrapper1);
+            orderinfo.setOrdderdetails(ordderdetails);
         }
       return page;
     }
