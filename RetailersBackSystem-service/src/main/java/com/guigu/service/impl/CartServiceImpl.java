@@ -106,8 +106,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
        queryWrapper.eq("uid",cart.getUid());
         //循环查询添加到list里
 
-      List<Cart> list1 =   cartMapper.selectusergwc(list,cart);
-
+        List<Cart> list1 =   cartMapper.selectusergwc(list,cart);
         //根据id查询商品表商品
         for (Object emp:list1) {
             //把商品数据添加到实体类里的commodity里

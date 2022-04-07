@@ -126,6 +126,7 @@ public class UserinfoController {
     public int CartCount(Integer id) {
         return userinfoService.CartCount(id);
     }
+
     @RequestMapping("/queryallusername.action")
     @CrossOrigin
     public List<Userinfo> queryallusername() {
