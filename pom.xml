@@ -197,12 +197,7 @@
       <artifactId>pagehelper</artifactId>
       <version>5.1.10</version>
     </dependency>
-      <dependency>
-          <groupId>com.guigu</groupId>
-          <artifactId>RetailersBackSystem-pojo</artifactId>
-          <version>1.0-SNAPSHOT</version>
-          <scope>compile</scope>
-      </dependency>
+
 
   </dependencies>
 
