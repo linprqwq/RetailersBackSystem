@@ -5,7 +5,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.guigu.pojo.PageVo;
 import com.guigu.pojo.Userinfo;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 
 import java.util.Map;
 
@@ -16,6 +19,11 @@ public interface UserinfoService extends IService<Userinfo> {
     public Map update(Userinfo userinfo);
 
     PageVo<Userinfo> querybyconduser(Userinfo userinfo, Integer pageno, Integer pagesize);
+
+
+    //去申请成为供销商
+        Map apply_supplier(Userinfo userinfo, Integer[] supplierGoodsCategoryIds,
+                           MultipartFile img, String apppath);
 
 
     Map updstate(Userinfo userinfo);

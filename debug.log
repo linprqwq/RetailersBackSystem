@@ -1,9 +1,14 @@
-2022-04-04 19:24:17  [ localhost-startStop-1:182 ] - [ DEBUG ]  Checking to see if class com.guigu.mapper.SPayMapper matches criteria [is assignable to Object]
-2022-04-04 19:24:17  [ localhost-startStop-1:182 ] - [ DEBUG ]  Checking to see if class com.guigu.mapper.SupplierGoodsCategoryMapper matches criteria [is assignable to Object]
-2022-04-04 19:24:17  [ localhost-startStop-1:182 ] - [ DEBUG ]  Checking to see if class com.guigu.mapper.SysEmployeesMapper matches criteria [is assignable to Object]
-2022-04-04 19:24:17  [ localhost-startStop-1:182 ] - [ DEBUG ]  Checking to see if class com.guigu.mapper.SysMenusMapper matches criteria [is assignable to Object]
-2022-04-04 19:24:17  [ localhost-startStop-1:182 ] - [ DEBUG ]  Checking to see if class com.guigu.mapper.SysRolesMapper matches criteria [is assignable to Object]
-2022-04-04 19:24:17  [ localhost-startStop-1:182 ] - [ DEBUG ]  Checking to see if class com.guigu.mapper.UserinfoMapper matches criteria [is assignable to Object]
-2022-04-04 19:24:17  [ localhost-startStop-1:260 ] - [ WARN ]  Warn: Could not find @TableId in Class: com.guigu.pojo.Category.
-2022-04-04 19:24:18  [ localhost-startStop-1:730 ] - [ WARN ]  Warn: Could not find @TableId in Class: com.guigu.pojo.MenuRole.
-2022-04-04 19:24:18  [ localhost-startStop-1:915 ] - [ WARN ]  Warn: Could not find @TableId in Class: com.guigu.pojo.EmpRole.
+2022-04-06 17:26:46  [ http-bio-9090-exec-1:3827068 ] - [ DEBUG ]  Creating a new SqlSession
+2022-04-06 17:26:46  [ http-bio-9090-exec-1:3827069 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6cde6035] was not registered for synchronization because synchronization is not active
+2022-04-06 17:26:46  [ http-bio-9090-exec-1:3827070 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@78fdb041] will not be managed by Spring
+2022-04-06 17:26:46  [ http-bio-9090-exec-1:3827070 ] - [ DEBUG ]  ==>  Preparing: SELECT id,name,is_delete FROM shop_type_info_copy WHERE (is_delete = ?) 
+2022-04-06 17:26:46  [ http-bio-9090-exec-1:3827071 ] - [ DEBUG ]  ==> Parameters: 0(Integer)
+2022-04-06 17:26:46  [ http-bio-9090-exec-1:3827135 ] - [ DEBUG ]  <==      Total: 8
+2022-04-06 17:26:46  [ http-bio-9090-exec-1:3827136 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6cde6035]
+2022-04-06 17:27:28  [ http-bio-9090-exec-1:3868549 ] - [ DEBUG ]  Creating a new SqlSession
+2022-04-06 17:27:28  [ http-bio-9090-exec-1:3868549 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3505857] was not registered for synchronization because synchronization is not active
+2022-04-06 17:27:28  [ http-bio-9090-exec-1:3868551 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@78fdb041] will not be managed by Spring
+2022-04-06 17:27:28  [ http-bio-9090-exec-1:3868552 ] - [ DEBUG ]  ==>  Preparing: SELECT id,name,is_delete FROM shop_type_info_copy WHERE (is_delete = ?) 
+2022-04-06 17:27:28  [ http-bio-9090-exec-1:3868552 ] - [ DEBUG ]  ==> Parameters: 0(Integer)
+2022-04-06 17:27:28  [ http-bio-9090-exec-1:3868606 ] - [ DEBUG ]  <==      Total: 8
+2022-04-06 17:27:28  [ http-bio-9090-exec-1:3868607 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3505857]

@@ -25,7 +25,7 @@ public class SupplierGoodsCategory {
     private Integer pId;
 
     //分类id
-    private String sortId;
+    private Integer sortId;
 
 
 }

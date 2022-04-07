@@ -88,7 +88,14 @@ public class Userinfo {
      */
     private String gysState;
 
+    private String businessImg;//营业执照
+
 
     @TableField(exist = false)
     private List<Cart> carts;
+
+
+    //供应商维护商品分类集合
+    @TableField(exist = false)
+    private List<SupplierGoodsCategory> supplierGoodsCategoryList;
 }

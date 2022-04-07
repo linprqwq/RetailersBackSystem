@@ -5,6 +5,7 @@ import com.guigu.pojo.Userinfo;
 import com.guigu.service.UserinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -101,6 +102,19 @@ public class UserinfoController {
     @CrossOrigin
     public Map updshstatebtg(@RequestBody Userinfo userinfo) {
         return userinfoService.updstatebtg(userinfo);
+    }
+
+
+    //申请成为供应商
+    @PostMapping("apply_supplier.action")
+    @CrossOrigin
+    public  Map apply_supplier(Userinfo userinfo, Integer[]  supplierGoodsCategoryIds,
+                               MultipartFile img,HttpServletRequest request){
+
+        System.out.println("数据"+"user");
+        System.out.println("数组"+supplierGoodsCategoryIds);
+        System.out.println("图片"+img);
+        return userinfoService.apply_supplier(userinfo,supplierGoodsCategoryIds,img,request.getServletContext().getRealPath("/upload"));
     }
 
 
