@@ -10,6 +10,8 @@ public interface OrderinfoService extends IService<Orderinfo> {
 
     Page<Orderinfo> queryuserorder(Orderinfo order, int Pageno, int pagesize);
 
+    Map<String, String> delorderbyid(Orderinfo orderinfo);
+
     Page<Orderinfo> queryshorder(Orderinfo order, int pageno, int pagesize);
 
     Page<Orderinfo> queryshdshorder(Orderinfo order, int pageno, int pagesize);

@@ -12,7 +12,6 @@ import com.guigu.service.OrderinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,7 +22,7 @@ import java.util.Map;
  * </p>
  *
  * @author 童总
- * @since 2022-03-++
+ * @since 2022-03-28
  */
 @Service
 public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo> implements OrderinfoService {
@@ -44,15 +43,32 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
                 queryWrapper.eq("status",order.getStatus());
             }
         queryWrapper.eq("uid",order.getUid());
+            queryWrapper.eq("state",1);
         Page<Orderinfo> page = this.page(new Page<Orderinfo>(pageno, pagesize), queryWrapper);
         for (Orderinfo orderinfo : page.getRecords()) {
             //把订单详情数据添加到订单表实体类里
             QueryWrapper queryWrapper1 = new QueryWrapper();
             queryWrapper1.eq("orderid",orderinfo.getOrderid());
-            Ordderdetails ordderdetails = ordderdetailsMapper.selectOne(queryWrapper1);
-            orderinfo.setOrdderdetails(ordderdetails);
+            orderinfo.setOrdderdetails(ordderdetailsMapper.selectList(queryWrapper1));
         }
       return page;
+    }
+
+    //订单删除
+    @Override
+    public Map<String, String> delorderbyid(Orderinfo orderinfo) {
+        Map<String,String> map = new HashMap<>();
+        map.put("code","0");
+        map.put("msg","订单删除失败");
+            orderinfo.setState(0);
+            int a = orderMapper.updateById(orderinfo);
+
+            if (a>=1){
+                map.put("code","1");
+                map.put("msg","订单删除成功");
+            }
+
+        return map;
     }
 
     @Override
