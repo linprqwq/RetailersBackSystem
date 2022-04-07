@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.xml.transform.Source;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -123,5 +124,10 @@ public class UserinfoController {
     @CrossOrigin
     public int CartCount(Integer id) {
         return userinfoService.CartCount(id);
+    }
+    @RequestMapping("/queryallusername.action")
+    @CrossOrigin
+    public List<Userinfo> queryallusername() {
+        return userinfoService.list();
     }
 }

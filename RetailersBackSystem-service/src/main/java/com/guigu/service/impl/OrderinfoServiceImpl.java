@@ -12,6 +12,10 @@ import com.guigu.service.OrderinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * <p>
@@ -50,4 +54,42 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
         }
       return page;
     }
+
+    @Override
+    public Page<Orderinfo> queryshorder(Orderinfo order, int pageno, int pagesize) {
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.orderByDesc("orderid");
+        queryWrapper.eq("sid",order.getSid());
+        queryWrapper.in("status",3,4,5);
+
+        Page<Orderinfo> page = this.page(new Page<Orderinfo>(pageno, pagesize), queryWrapper);
+        return page;
+    }
+
+    @Override
+    public Page<Orderinfo> queryshdshorder(Orderinfo order, int pageno, int pagesize) {
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.orderByDesc("orderid");
+        queryWrapper.eq("sid",order.getSid());
+        queryWrapper.eq("status",order.getStatus());
+
+        Page<Orderinfo> page = this.page(new Page<Orderinfo>(pageno, pagesize), queryWrapper);
+        return page;
+
+    }
+
+    @Override
+    public Map uptorderdsh(Orderinfo orderinfo) {
+        boolean num = this.updateById(orderinfo);
+        Map map =new HashMap();
+        map.put("code","0");
+        map.put("msg","操作失败");
+        if(num){
+            map.put("code","1");
+            map.put("msg","操作成功");
+        }
+        return map;
+    }
+
+
 }
