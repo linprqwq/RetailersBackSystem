@@ -87,7 +87,7 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         //去将注册供应商状态改为等待审核
         userinfo.setGysState("0");
         //去判断是否上传了图片
-        if (img.getSize() > 0) {
+        if (img!=null && img.getSize() > 0) {
             //上传图片
           //  String apppath = ;
             File file = new File(apppath);
@@ -105,10 +105,8 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
             }
 
             //去将路径设置到对象
-            userinfo.setGysState("upload/" + fileName);
-
+            userinfo.setImgpath("upload/" + fileName);
         }
-
         //去进行修改
         boolean b = this.updateById(userinfo);
         if (b) {
@@ -119,7 +117,6 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
                     map.put("x",false);
         }
         return map;
-
 
     }
 

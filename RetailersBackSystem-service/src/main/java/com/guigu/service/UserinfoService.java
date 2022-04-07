@@ -22,7 +22,7 @@ public interface UserinfoService extends IService<Userinfo> {
 
 
     //去申请成为供销商
-        Map apply_supplier(Userinfo userinfo, Integer[] supplierGoodsCategoryIds,
+            Map apply_supplier(Userinfo userinfo, Integer[] supplierGoodsCategoryIds,
                            MultipartFile img, String apppath);
 
 

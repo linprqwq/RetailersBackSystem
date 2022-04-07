@@ -106,6 +106,7 @@ public class UserinfoController {
     }
 
 
+
     //申请成为供应商
     @PostMapping("apply_supplier.action")
     @CrossOrigin
