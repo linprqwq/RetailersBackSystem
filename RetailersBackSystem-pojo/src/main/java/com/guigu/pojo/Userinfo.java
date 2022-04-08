@@ -82,11 +82,11 @@ public class Userinfo {
     /**
      * 注册商户状态
      */
-    private String shState;
+    private Integer shState;
     /**
      * 注册供应商状态
      */
-    private String gysState;
+    private Integer gysState;
 
 
     @TableField(exist = false)

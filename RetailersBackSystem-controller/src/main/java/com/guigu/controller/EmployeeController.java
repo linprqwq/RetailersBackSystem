@@ -7,10 +7,7 @@ import com.guigu.pojo.Userinfo;
 import com.guigu.service.EmploService;
 import com.guigu.service.UserinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,12 +19,13 @@ public class EmployeeController {
 
     @RequestMapping("/sysemplogin.action")
     @CrossOrigin
-    public SysEmployees sysemplogin(SysEmployees sysEmployees){
+    public SysEmployees sysemplogin(SysEmployees sysEmployees,HttpServletRequest request){
         QueryWrapper<SysEmployees> queryWrapper=new QueryWrapper<>();
         queryWrapper.eq("emp_loginname",sysEmployees.getEmpLoginname());
         queryWrapper.eq("emp_password",sysEmployees.getEmpPassword());
         SysEmployees sysEmployees1=emploService.getOne(queryWrapper);
         if(sysEmployees1!=null){
+            request.getSession().setAttribute("emp",sysEmployees1);
             return sysEmployees1;
         }
         else{
@@ -41,6 +39,12 @@ public class EmployeeController {
                                                @RequestParam(value = "pageno",defaultValue = "1") Integer pageno,
                                                @RequestParam(value = "pagesize",defaultValue = "5")Integer pagesize){
         return emploService.querysysemp(sysEmployees,pageno,pagesize);
+
+    }
+    @GetMapping("/queryempbyid.action/{id}")
+    @CrossOrigin
+    public SysEmployees queryempbyid(@PathVariable Integer id){
+        return emploService.getById(id);
 
     }
 }

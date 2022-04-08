@@ -29,4 +29,15 @@ public interface UserinfoService extends IService<Userinfo> {
 
     //个人购物车商品数量
     Integer CartCount(Integer id);
+
+    PageVo<Userinfo> queryallShJl(Userinfo userinfo, Integer pageno, Integer pagesize);
+
+    boolean addgoods(Userinfo userinfo);
+
+
+    Map delUser(Integer id);
+
+    boolean updateusers(Userinfo userinfo);
+
+    Userinfo queryusersbyid(String path, int id);
 }
