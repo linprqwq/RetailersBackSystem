@@ -3,6 +3,8 @@ package com.guigu.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guigu.pojo.Ordderdetails;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,5 @@ import com.guigu.pojo.Ordderdetails;
  */
 public interface OrdderdetailsService extends IService<Ordderdetails> {
 
+    List<Ordderdetails> queryshorderdetails(Ordderdetails ordderdetails);
 }

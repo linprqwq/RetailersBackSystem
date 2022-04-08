@@ -150,9 +150,27 @@ public class UserinfoController {
     }
 
 
+
+    //申请成为供应商
+    @PostMapping("apply_supplier.action")
+    public  Map apply_supplier(Userinfo userinfo, Integer[]  supplierGoodsCategoryIds,
+                               MultipartFile img,HttpServletRequest request){
+
+        System.out.println("数据"+"user");
+        System.out.println("数组"+supplierGoodsCategoryIds);
+        System.out.println("图片"+img);
+        return userinfoService.apply_supplier(userinfo,supplierGoodsCategoryIds,img,request.getServletContext().getRealPath("/upload"));
+    }
+
+
     //统计用户购物车数量
     @RequestMapping("/cartcount.action")
     public int CartCount(Integer id) {
         return userinfoService.CartCount(id);
+    }
+
+    @RequestMapping("/queryallusername.action")
+    public List<Userinfo> queryallusername() {
+        return userinfoService.list();
     }
 }

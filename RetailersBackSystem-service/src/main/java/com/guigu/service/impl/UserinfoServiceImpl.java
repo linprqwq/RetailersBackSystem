@@ -3,8 +3,11 @@ package com.guigu.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.guigu.mapper.GoodsuppliedMapper;
+import com.guigu.mapper.SupplierGoodsCategoryMapper;
 import com.guigu.mapper.UserinfoMapper;
 import com.guigu.pojo.PageVo;
+import com.guigu.pojo.SupplierGoodsCategory;
 import com.guigu.pojo.SysEmployees;
 import com.guigu.pojo.Userinfo;
 import com.guigu.service.UserinfoService;
@@ -12,8 +15,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collection;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +28,14 @@ import java.util.Map;
 public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> implements UserinfoService{
     @Autowired
     UserinfoMapper userinfoMapper;
+
+    //供应商分类表
+    @Autowired
+    SupplierGoodsCategoryMapper supplierGoodsCategoryMapper;
+
+    //供应商表
+    @Autowired
+    GoodsuppliedMapper goodsuppliedMapper;
 
     @Override
     //用户登录
@@ -62,6 +76,56 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         return pageVo;
     }
 
+    //去申请成为供销商
+    @Override
+    public Map apply_supplier(Userinfo userinfo, Integer[] supplierGoodsCategoryIds,
+                              MultipartFile img,String apppath) {
+        Map map = new HashMap();
+        //去为供应商分类表里去添加数据
+        for (Integer i : supplierGoodsCategoryIds) {
+            SupplierGoodsCategory tem_obj = new SupplierGoodsCategory();
+            tem_obj.setPId(userinfo.getId());
+            tem_obj.setSortId(String.valueOf(i));
+            supplierGoodsCategoryMapper.insert(tem_obj);
+        }
+        //去补全属性
+        //去将注册供应商状态改为等待审核
+        userinfo.setGysState(0);
+        //去判断是否上传了图片
+        if (img!=null && img.getSize() > 0) {
+            //上传图片
+          //  String apppath = ;
+            File file = new File(apppath);
+            if (!file.exists()) {
+                //不存在就去创建
+                file.mkdirs();
+            }
+            //去获取文件名称
+            String fileName = img.getOriginalFilename();
+            //去保存文件到路径
+            try {
+                img.transferTo(new File(apppath, fileName));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //去将路径设置到对象
+            userinfo.setImgpath("upload/" + fileName);
+        }
+        //去进行修改
+        boolean b = this.updateById(userinfo);
+        if (b) {
+            map.put("msg","发出申请，等待审核结果");
+                    map.put("x",true);
+        } else {
+            map.put("msg","操作失败");
+                    map.put("x",false);
+        }
+        return map;
+
+    }
+
+    //审核供应商
     @Override
     public Map updstate(Userinfo userinfo) {
         boolean num = this.updateById(userinfo);
@@ -75,6 +139,7 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         return map;
     }
 
+    //审核供应商
     @Override
     public Map updstatebtg(Userinfo userinfo) {
         boolean num = this.updateById(userinfo);
