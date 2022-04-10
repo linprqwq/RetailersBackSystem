@@ -85,7 +85,7 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         for (Integer i : supplierGoodsCategoryIds) {
             SupplierGoodsCategory tem_obj = new SupplierGoodsCategory();
             tem_obj.setPId(userinfo.getId());
-            tem_obj.setSortId(String.valueOf(i));
+            tem_obj.setSortId(i);
             supplierGoodsCategoryMapper.insert(tem_obj);
         }
         //去补全属性
