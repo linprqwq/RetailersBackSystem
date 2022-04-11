@@ -22,8 +22,6 @@ public class CommodityController {
         return commodityService.querycommodityid(id);
     }
 
-
-
     @RequestMapping("queryAllcom.action")
     @CrossOrigin
     //查询所有

@@ -160,7 +160,7 @@ public class UserinfoController {
         System.out.println("数据"+"user");
         System.out.println("数组"+supplierGoodsCategoryIds);
         System.out.println("图片"+img);
-        return userinfoService.apply_supplier(userinfo,supplierGoodsCategoryIds,img,request.getServletContext().getRealPath("/upload"));
+        return userinfoService.apply_supplier(userinfo,supplierGoodsCategoryIds,img,request.getServletContext().getRealPath("/img/"));
     }
 
 
