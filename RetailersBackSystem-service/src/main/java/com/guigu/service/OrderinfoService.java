@@ -17,4 +17,6 @@ public interface OrderinfoService extends IService<Orderinfo> {
     Page<Orderinfo> queryshdshorder(Orderinfo order, int pageno, int pagesize);
 
     Map uptorderdsh(Orderinfo orderinfo);
+
+    Map<String, String> cofirmorder(Orderinfo orderinfo);
 }

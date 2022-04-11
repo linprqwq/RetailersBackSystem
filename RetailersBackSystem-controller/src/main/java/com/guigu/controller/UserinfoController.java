@@ -174,4 +174,11 @@ public class UserinfoController {
     public List<Userinfo> queryallusername() {
         return userinfoService.list();
     }
+
+    @RequestMapping("usreinforecharge.action")
+    @CrossOrigin
+    public Map<String,String> usreinforecharge(Userinfo userinfo){
+
+        return userinfoService.userinforecharge(userinfo);
+    }
 }

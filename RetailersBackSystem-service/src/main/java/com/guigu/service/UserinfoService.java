@@ -48,4 +48,6 @@ public interface UserinfoService extends IService<Userinfo> {
     boolean updateusers(Userinfo userinfo);
 
     Userinfo queryusersbyid(String path, int id);
+
+    Map<String, String> userinforecharge(Userinfo userinfo);
 }

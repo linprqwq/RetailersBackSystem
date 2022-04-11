@@ -20,4 +20,6 @@ public interface CartService extends IService<Cart> {
     List<Cart> queryusergwc(int[] list, Cart cart);
     //提交订单
     Map<String, String> usertijiaodd(int[] list, Cart cart);
+
+    Map<String, String> addgwc(int[] arr, Cart cart);
 }

@@ -3,13 +3,11 @@ package com.guigu.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.guigu.mapper.CustomerbalancelogMapper;
 import com.guigu.mapper.GoodsuppliedMapper;
 import com.guigu.mapper.SupplierGoodsCategoryMapper;
 import com.guigu.mapper.UserinfoMapper;
-import com.guigu.pojo.PageVo;
-import com.guigu.pojo.SupplierGoodsCategory;
-import com.guigu.pojo.SysEmployees;
-import com.guigu.pojo.Userinfo;
+import com.guigu.pojo.*;
 import com.guigu.service.UserinfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Collection;
+import java.util.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> implements UserinfoService{
@@ -36,6 +31,9 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
     //供应商表
     @Autowired
     GoodsuppliedMapper goodsuppliedMapper;
+
+    @Autowired
+    CustomerbalancelogMapper customerbalancelogMapper;
 
     @Override
     //用户登录
@@ -264,4 +262,33 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         return userinfo;
     }
 
+
+    //充值
+    @Override
+    public Map<String, String> userinforecharge(Userinfo userinfo) {
+        Map map = new HashMap();
+        map.put("code", "0");
+        map.put("msg", "充值失败");
+
+        //用户充值
+        Userinfo userinfo1 = userinfoMapper.selectById(userinfo.getId());
+        userinfo1.setUmoney(userinfo1.getUmoney()+userinfo.getUmoney());
+        userinfoMapper.updateById(userinfo1);
+
+        //用户余额变动表添加数据
+        Customerbalancelog customerbalancelog = new Customerbalancelog();
+        customerbalancelog.setUid(userinfo1.getId());
+        customerbalancelog.setAmount(userinfo.getUmoney());
+        customerbalancelog.setSource(3);
+        customerbalancelog.setCtime(new Date());
+
+        System.out.println(customerbalancelog);
+
+        int insert = customerbalancelogMapper.insert(customerbalancelog);
+        if (insert>=1){
+            map.put("code", "1");
+            map.put("msg", "充值成功");
+        }
+        return map;
+    }
 }

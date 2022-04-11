@@ -12,6 +12,7 @@ import com.guigu.service.OrderinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -104,6 +105,21 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
             map.put("code","1");
             map.put("msg","操作成功");
         }
+        return map;
+    }
+
+    @Override
+    public Map<String, String> cofirmorder(Orderinfo orderinfo) {
+        Map map =new HashMap();
+        map.put("code","0");
+        map.put("msg","失败");
+        orderinfo.setStatus(5);
+        orderinfo.setColsetime(new Date());
+       int a= orderMapper.updateById(orderinfo);
+       if (a>=1){
+           map.put("code","1");
+           map.put("msg","确认成功");
+       }
         return map;
     }
 
