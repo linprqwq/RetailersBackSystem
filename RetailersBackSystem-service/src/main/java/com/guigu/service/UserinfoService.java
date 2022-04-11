@@ -40,7 +40,7 @@ public interface UserinfoService extends IService<Userinfo> {
 
     PageVo<Userinfo> queryallShJl(Userinfo userinfo, Integer pageno, Integer pagesize);
 
-    boolean addgoods(Userinfo userinfo);
+//    boolean addgoods(Userinfo userinfo);
 
 
     Map delUser(Integer id);
@@ -48,4 +48,8 @@ public interface UserinfoService extends IService<Userinfo> {
     boolean updateusers(Userinfo userinfo);
 
     Userinfo queryusersbyid(String path, int id);
+
+    Map updstateuser(Userinfo userinfo);
+
+    boolean registerUser(Userinfo userinfo);
 }

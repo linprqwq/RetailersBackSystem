@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> implements UserinfoService{
+public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> implements UserinfoService {
     @Autowired
     UserinfoMapper userinfoMapper;
 
@@ -40,36 +40,36 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
     @Override
     //用户登录
     public Userinfo userlogin(Userinfo userinfo) {
-        Userinfo userinfo1=userinfoMapper.userlogin(userinfo);
-        if(userinfo1==null){
+        Userinfo userinfo1 = userinfoMapper.userlogin(userinfo);
+        if (userinfo1 == null) {
             return null;
         }
-        System.out.println(userinfo1+"/*/*/*/**/*//*/*//*/*/*/");
+        System.out.println(userinfo1 + "/*/*/*/**/*//*/*//*/*/*/");
         return userinfo1;
     }
 
     @Override
     public Map update(Userinfo userinfo) {
         boolean num = this.updateById(userinfo);
-        Map map =new HashMap();
-        map.put("code","0");
-        map.put("msg","修改失败");
-        if(num){
-            map.put("code","1");
-            map.put("msg","修改成功");
+        Map map = new HashMap();
+        map.put("code", "0");
+        map.put("msg", "修改失败");
+        if (num) {
+            map.put("code", "1");
+            map.put("msg", "修改成功");
         }
         return map;
     }
 
     @Override
     public PageVo<Userinfo> querybyconduser(Userinfo userinfo, Integer pageno, Integer pagesize) {
-        Page<Userinfo> page = new Page<Userinfo>(pageno,pagesize);
+        Page<Userinfo> page = new Page<Userinfo>(pageno, pagesize);
         //条件查询
-        QueryWrapper<Userinfo> queryWrapper =new QueryWrapper<Userinfo>();
-        if(StringUtils.isNotBlank(userinfo.getUsername())){
-            queryWrapper.like("username",userinfo.getUsername());
+        QueryWrapper<Userinfo> queryWrapper = new QueryWrapper<Userinfo>();
+        if (StringUtils.isNotBlank(userinfo.getUsername())) {
+            queryWrapper.like("username", userinfo.getUsername());
         }
-        Page<Userinfo> page1 = this.page(page,queryWrapper);
+        Page<Userinfo> page1 = this.page(page, queryWrapper);
         PageVo<Userinfo> pageVo = new PageVo<Userinfo>();
         pageVo.setTotal(page1.getTotal());
         pageVo.setRows(page1.getRecords());
@@ -79,7 +79,7 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
     //去申请成为供销商
     @Override
     public Map apply_supplier(Userinfo userinfo, Integer[] supplierGoodsCategoryIds,
-                              MultipartFile img,String apppath) {
+                              MultipartFile img, String apppath) {
         Map map = new HashMap();
         //去为供应商分类表里去添加数据
         for (Integer i : supplierGoodsCategoryIds) {
@@ -92,9 +92,9 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         //去将注册供应商状态改为等待审核
         userinfo.setGysState(0);
         //去判断是否上传了图片
-        if (img!=null && img.getSize() > 0) {
+        if (img != null && img.getSize() > 0) {
             //上传图片
-          //  String apppath = ;
+            //  String apppath = ;
             File file = new File(apppath);
             if (!file.exists()) {
                 //不存在就去创建
@@ -115,11 +115,11 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         //去进行修改
         boolean b = this.updateById(userinfo);
         if (b) {
-            map.put("msg","发出申请，等待审核结果");
-                    map.put("x",true);
+            map.put("msg", "发出申请，等待审核结果");
+            map.put("x", true);
         } else {
-            map.put("msg","操作失败");
-                    map.put("x",false);
+            map.put("msg", "操作失败");
+            map.put("x", false);
         }
         return map;
 
@@ -129,12 +129,12 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
     @Override
     public Map updstate(Userinfo userinfo) {
         boolean num = this.updateById(userinfo);
-        Map map =new HashMap();
-        map.put("code","0");
-        map.put("msg","审核失败");
-        if(num){
-            map.put("code","1");
-            map.put("msg","审核成功");
+        Map map = new HashMap();
+        map.put("code", "0");
+        map.put("msg", "审核失败");
+        if (num) {
+            map.put("code", "1");
+            map.put("msg", "审核成功");
         }
         return map;
     }
@@ -143,31 +143,31 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
     @Override
     public Map updstatebtg(Userinfo userinfo) {
         boolean num = this.updateById(userinfo);
-        Map map =new HashMap();
-        map.put("code","0");
-        map.put("msg","审核未通过失败");
-        if(num){
-            map.put("code","1");
-            map.put("msg","审核未通过");
+        Map map = new HashMap();
+        map.put("code", "0");
+        map.put("msg", "审核未通过失败");
+        if (num) {
+            map.put("code", "1");
+            map.put("msg", "审核未通过");
         }
         return map;
     }
 
     @Override
     public PageVo<Userinfo> querybyconduser2(Userinfo userinfo, Integer pageno, Integer pagesize) {
-        Page<Userinfo> page = new Page<Userinfo>(pageno,pagesize);
+        Page<Userinfo> page = new Page<Userinfo>(pageno, pagesize);
         //条件查询
-        QueryWrapper<Userinfo> queryWrapper =new QueryWrapper<Userinfo>();
-        if(StringUtils.isNotBlank(userinfo.getUsername())){
-            queryWrapper.like("username",userinfo.getUsername());
+        QueryWrapper<Userinfo> queryWrapper = new QueryWrapper<Userinfo>();
+        if (StringUtils.isNotBlank(userinfo.getUsername())) {
+            queryWrapper.like("username", userinfo.getUsername());
         }
-        if(userinfo.getShState()!=null){
-            queryWrapper.like("sh_state",userinfo.getShState());
+        if (userinfo.getShState() != null) {
+            queryWrapper.like("sh_state", userinfo.getShState());
         }
-        if(userinfo.getGysState()!=null){
-            queryWrapper.like("gys_state",userinfo.getGysState());
+        if (userinfo.getGysState() != null) {
+            queryWrapper.like("gys_state", userinfo.getGysState());
         }
-        Page<Userinfo> page1 = this.page(page,queryWrapper);
+        Page<Userinfo> page1 = this.page(page, queryWrapper);
         PageVo<Userinfo> pageVo = new PageVo<Userinfo>();
         pageVo.setTotal(page1.getTotal());
         pageVo.setRows(page1.getRecords());
@@ -176,17 +176,17 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
 
     @Override
     public PageVo<Userinfo> queryallGysJl(Userinfo userinfo, Integer pageno, Integer pagesize) {
-        Page<Userinfo> page = new Page<Userinfo>(pageno,pagesize);
+        Page<Userinfo> page = new Page<Userinfo>(pageno, pagesize);
         //条件查询
-        QueryWrapper<Userinfo> queryWrapper =new QueryWrapper<Userinfo>();
-        if(StringUtils.isNotBlank(userinfo.getUsername())){
-            queryWrapper.like("username",userinfo.getUsername());
+        QueryWrapper<Userinfo> queryWrapper = new QueryWrapper<Userinfo>();
+        if (StringUtils.isNotBlank(userinfo.getUsername())) {
+            queryWrapper.like("username", userinfo.getUsername());
         }
-        if(userinfo.getGysState()!=null){
-            queryWrapper.like("gys_state",userinfo.getGysState());
+        if (userinfo.getGysState() != null) {
+            queryWrapper.like("gys_state", userinfo.getGysState());
         }
         queryWrapper.isNotNull("gys_state");
-        Page<Userinfo> page1 = this.page(page,queryWrapper);
+        Page<Userinfo> page1 = this.page(page, queryWrapper);
         PageVo<Userinfo> pageVo = new PageVo<Userinfo>();
         pageVo.setTotal(page1.getTotal());
         pageVo.setRows(page1.getRecords());
@@ -196,7 +196,7 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
     @Override
     public Integer CartCount(Integer id) {
         int i = userinfoMapper.CartCount(id);
-        if(i==0){
+        if (i == 0) {
             return i;
         }
         return i;
@@ -204,51 +204,51 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
 
     @Override
     public PageVo<Userinfo> queryallShJl(Userinfo userinfo, Integer pageno, Integer pagesize) {
-        Page<Userinfo> page = new Page<Userinfo>(pageno,pagesize);
+        Page<Userinfo> page = new Page<Userinfo>(pageno, pagesize);
         //条件查询
-        QueryWrapper<Userinfo> queryWrapper =new QueryWrapper<Userinfo>();
-        if(StringUtils.isNotBlank(userinfo.getUsername())){
-            queryWrapper.like("username",userinfo.getUsername());
+        QueryWrapper<Userinfo> queryWrapper = new QueryWrapper<Userinfo>();
+        if (StringUtils.isNotBlank(userinfo.getUsername())) {
+            queryWrapper.like("username", userinfo.getUsername());
         }
-        if(userinfo.getShState()!=null){
-            queryWrapper.eq("sh_state",userinfo.getShState());
+        if (userinfo.getShState() != null) {
+            queryWrapper.eq("sh_state", userinfo.getShState());
         }
         queryWrapper.isNotNull("sh_state");
-        Page<Userinfo> page1 = this.page(page,queryWrapper);
+        Page<Userinfo> page1 = this.page(page, queryWrapper);
         PageVo<Userinfo> pageVo = new PageVo<Userinfo>();
         pageVo.setTotal(page1.getTotal());
         pageVo.setRows(page1.getRecords());
         return pageVo;
     }
 
-    @Override
-    public boolean addgoods(Userinfo userinfo) {
-        boolean result = false;
-        //添加商品
-        //将商品id加入图片类中
-
-        //添加商品图片信息
-        result= this.save(userinfo);
-
-        return result;
-    }
+//    @Override
+//    public boolean addgoods(Userinfo userinfo) {
+//        boolean result = false;
+//        //添加商品
+//        //将商品id加入图片类中
+//
+//        //添加商品图片信息
+//        result= this.save(userinfo);
+//
+//        return result;
+//    }
 
     @Override
     public Map delUser(Integer id) {
         boolean num = this.removeById(id);
-        Map map =new HashMap();
-        map.put("code","0");
-        map.put("msg","删除失败");
-        if(num){
-            map.put("code","1");
-            map.put("msg","删除成功");
+        Map map = new HashMap();
+        map.put("code", "0");
+        map.put("msg", "删除失败");
+        if (num) {
+            map.put("code", "1");
+            map.put("msg", "删除成功");
         }
         return map;
     }
 
     @Override
     public boolean updateusers(Userinfo userinfo) {
-        boolean result =false;
+        boolean result = false;
 
         //修改商品信息
         result = this.updateById(userinfo);
@@ -264,4 +264,29 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         return userinfo;
     }
 
+    @Override
+    public Map updstateuser(Userinfo userinfo) {
+        boolean num = this.updateById(userinfo);
+        Map map = new HashMap();
+        map.put("code", "0");
+        map.put("msg", "冻结失败");
+        if (num) {
+            map.put("code", "1");
+            map.put("msg", "冻结成功");
+        }
+        return map;
+    }
+
+    @Override
+    public boolean registerUser(Userinfo userinfo) {
+        QueryWrapper<Userinfo> queryWrapper = new QueryWrapper<Userinfo>();
+        queryWrapper.eq("loginname", userinfo.getLoginname());
+        Userinfo userinfo1 = this.getOne(queryWrapper);
+        if (userinfo1 == null) {
+            userinfo.setIdentity(1);
+            return this.save(userinfo);
+        }else{
+            return false;
+        }
+    }
 }

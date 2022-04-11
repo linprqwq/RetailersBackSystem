@@ -1,5 +1,6 @@
 package com.guigu.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.guigu.pojo.PageVo;
 import com.guigu.pojo.Userinfo;
 import com.guigu.service.UserinfoService;
@@ -30,6 +31,10 @@ public class UserinfoController {
 
     @RequestMapping("/selsid.action")
     public Userinfo selsid(int id) {
+        return userinfoService.getById(id);
+    }
+    @RequestMapping("/queryUserGysone.action")
+    public Userinfo queryUserGysone(Integer id) {
         return userinfoService.getById(id);
     }
 
@@ -63,8 +68,23 @@ public class UserinfoController {
                                      @RequestParam(value = "pagesize", defaultValue = "5") Integer pagesize) {
         return userinfoService.queryallShJl(userinfo, pageno, pagesize);
     }
-    @RequestMapping("/addUser.action")
-    public boolean addUser(Userinfo userinfo, MultipartFile[] file, HttpServletRequest request) throws IOException {
+//    @RequestMapping("/addUser.action")
+//    public boolean addUser(Userinfo userinfo, MultipartFile[] file, HttpServletRequest request) throws IOException {
+//
+//        for (int i = 0; i < file.length; i++) {
+//            String path = request.getServletContext().getRealPath("/img"); //路径名
+//            String name = file[i].getOriginalFilename();  //文件名
+//            File savefile = new File(path,name);
+//            file[i].transferTo(savefile);
+//            //组装图片实体类对象
+//
+//            userinfo.setImgpath("/img/"+name);
+//        }
+//
+//        return  userinfoService.addgoods(userinfo);
+//    }
+    @RequestMapping("/registerUser.action")
+    public boolean registerUser(Userinfo userinfo, MultipartFile[] file, HttpServletRequest request) throws IOException {
 
         for (int i = 0; i < file.length; i++) {
             String path = request.getServletContext().getRealPath("/img"); //路径名
@@ -76,7 +96,7 @@ public class UserinfoController {
             userinfo.setImgpath("/img/"+name);
         }
 
-        return  userinfoService.addgoods(userinfo);
+        return userinfoService.registerUser(userinfo);
     }
     @DeleteMapping("/delUser.action/{id}")
     public Map delUser(@PathVariable Integer id) {
@@ -104,6 +124,11 @@ public class UserinfoController {
         }
 
         return  userinfoService.updateusers(userinfo);
+    }
+    @PutMapping("/updstateuser.action")
+    public Map updstateuser(@RequestBody Userinfo userinfo) {
+
+        return  userinfoService.updstateuser(userinfo);
     }
     @RequestMapping("queryUsersbyid.action/{id}")
     public Userinfo querybyid(@PathVariable int id,HttpServletRequest request) throws IOException {
