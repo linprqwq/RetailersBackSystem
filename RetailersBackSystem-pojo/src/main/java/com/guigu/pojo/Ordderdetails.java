@@ -82,4 +82,9 @@ public class Ordderdetails {
      */
     @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
     private Date updatetime;
+
+    /**
+     * 退款 0.未进行退款 2.待退款 3.退款完成
+     */
+    private Integer refund;
 }
