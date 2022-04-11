@@ -9,4 +9,7 @@ public interface RegisterService extends IService<Userinfo> {
 
     //检查登录账号是否重复
     Integer CheckLoginName(String loginnameqwq);
+
+    //注册
+    Integer RegisterUser(Userinfo userinfo);
 }

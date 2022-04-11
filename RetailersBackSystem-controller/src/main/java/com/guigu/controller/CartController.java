@@ -55,4 +55,16 @@ public class CartController {
     public Map<String,String> usertijiaodd(int list [],Cart cart){
         return cartService.usertijiaodd(list,cart);
     }
+
+    @PostMapping("addgwc.action")
+    @CrossOrigin
+    public Map<String,String> addgwc(int arr [],Cart cart){
+        for (int i : arr) {
+            System.out.println(i);
+        }
+        System.out.println(cart);
+        return cartService.addgwc(arr,cart);
+    }
+
+
 }

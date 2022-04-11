@@ -52,4 +52,6 @@ public interface UserinfoService extends IService<Userinfo> {
     Map updstateuser(Userinfo userinfo);
 
     boolean registerUser(Userinfo userinfo);
+
+    Map<String, String> userinforecharge(Userinfo userinfo);
 }

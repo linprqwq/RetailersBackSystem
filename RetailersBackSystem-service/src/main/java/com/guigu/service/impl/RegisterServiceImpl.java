@@ -31,4 +31,16 @@ public class RegisterServiceImpl extends ServiceImpl<RegisterMapper, Userinfo> i
         }
         return i;
     }
+
+    @Override
+    public Integer RegisterUser(Userinfo userinfo) {
+        int i=0;
+        if(registerMapper.RegisterUser(userinfo)!=null){
+            i=1;
+            return i;
+        }
+        return i;
+    }
+
+
 }

@@ -103,4 +103,14 @@ public class Orderinfo {
      */
     @TableField(exist = false)
     private List<Ordderdetails> ordderdetails;
+
+    /**
+     * 订单总价
+     */
+    private  Integer zprice;
+
+    /**
+     * 评价
+     */
+    private Integer evaluate;
 }

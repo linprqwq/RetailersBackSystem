@@ -23,6 +23,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
     CommodityMapper commodityMapper;
     @Autowired
     UserinfoMapper userinfoMapper;
+
     @Override
     //我的购物车查询
     public List<Cart> querygwcid(Integer id) {
@@ -146,6 +147,36 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
 
 
 
+        return map;
+    }
+
+    @Override
+    public Map<String, String> addgwc(int[] arr, Cart cart) {
+
+            Map<String,String> map = new HashMap<>();
+
+
+        for (int i : arr) {
+
+            QueryWrapper queryWrapper = new QueryWrapper();
+            queryWrapper.eq("uid",cart.getUid());
+            queryWrapper.eq("cid",i);
+            Cart cart1 = cartMapper.selectOne(queryWrapper);
+            if (cart1!=null){
+                cart1.setQuantity(cart1.getQuantity()+1);
+                cartMapper.updateById(cart1);
+                map.put("code","0");
+                map.put("msg","购物车已有当前商品");
+            }else{
+                cart.setCid(i);
+                cart.setQuantity(1);
+                int a =  cartMapper.insert(cart);
+                if (a>=1){
+                    map.put("code","1");
+                    map.put("msg","加入购物车成功");
+                }
+            }
+        }
         return map;
     }
 }

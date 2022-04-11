@@ -57,5 +57,12 @@ public class OrderinfoController {
     public Map uptorderdsh(Orderinfo orderinfo){
         return orderService.uptorderdsh(orderinfo);
     }
+
+    //确认收货
+    @PostMapping("cofirmorder.action")
+    @CrossOrigin
+    public Map<String,String> cofirmorder(Orderinfo orderinfo){
+        return orderService.cofirmorder(orderinfo);
+    }
 }
 

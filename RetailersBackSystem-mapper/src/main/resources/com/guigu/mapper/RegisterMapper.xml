@@ -11,4 +11,8 @@
     <select id="CheckLoginName" parameterType="String" resultType="Integer">
         SELECT * FROM userinfo WHERE loginname=#{loginname}
     </select>
+
+    <insert id="RegisterUser" parameterType="Userinfo">
+        INSERT INTO userinfo VALUE(NULL,#{username},#{loginname},#{password},#{phone},DEFAULT,NULL,#{imgpath},1,0,NULL,NULL,NULL,NULL)
+    </insert>
 </mapper>
