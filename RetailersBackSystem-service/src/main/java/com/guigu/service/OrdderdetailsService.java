@@ -1,9 +1,11 @@
 package com.guigu.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.guigu.pojo.Commthinfo;
 import com.guigu.pojo.Ordderdetails;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -16,4 +18,8 @@ import java.util.List;
 public interface OrdderdetailsService extends IService<Ordderdetails> {
 
     List<Ordderdetails> queryshorderdetails(Ordderdetails ordderdetails);
+
+    Ordderdetails queryordd(Ordderdetails ordderdetails);
+
+    Map<String,String> addgoods(Commthinfo commthinfo);
 }

@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -60,7 +60,7 @@ public class Commthinfo implements Serializable {
     /**
      * 退货时间
      */
-    private LocalDateTime thtime;
+    private Date thtime;
 
     /**
      * 退款金额
@@ -85,6 +85,9 @@ public class Commthinfo implements Serializable {
      * 删除 0.正常 1.删除
      */
     private Integer state;
-
+    /**
+     * 商户id
+     */
+    private Integer sid;
 
 }
