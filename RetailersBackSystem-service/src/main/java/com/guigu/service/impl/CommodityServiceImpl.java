@@ -25,4 +25,14 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     public List<Commodity> QueryAllCommodity(){
         return commodityMapper.QueryAllCommodity();
     }
+
+    @Override
+    public List<Commodity> QueryAllCommodityHS() {
+        return commodityMapper.QueryAllCommodityHS();
+    }
+
+    @Override
+    public List<Commodity> QueryAllCommodityRL() {
+        return commodityMapper.QueryAllCommodityRL();
+    }
 }

@@ -24,8 +24,24 @@ public class CommodityController {
 
     @RequestMapping("queryAllcom.action")
     @CrossOrigin
-    //查询所有
+    //查询所有水果
     public List<Commodity>QueryAllCommodity(){
         return commodityService.QueryAllCommodity();
+    }
+
+
+    @RequestMapping("queryAllcomhs.action")
+    @CrossOrigin
+    //查询所有海鲜
+    public List<Commodity>QueryAllCommodityHS(){
+        return commodityService.QueryAllCommodityHS();
+    }
+
+
+    @RequestMapping("queryAllcomrl.action")
+    @CrossOrigin
+    //查询所有海鲜
+    public List<Commodity>QueryAllCommodityRL(){
+        return commodityService.QueryAllCommodityRL();
     }
 }
