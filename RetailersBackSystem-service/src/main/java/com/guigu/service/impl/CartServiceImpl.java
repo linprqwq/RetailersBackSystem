@@ -3,9 +3,7 @@ package com.guigu.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.guigu.mapper.CartMapper;
-import com.guigu.mapper.CommodityMapper;
-import com.guigu.mapper.UserinfoMapper;
+import com.guigu.mapper.*;
 import com.guigu.pojo.*;
 import com.guigu.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +21,10 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
     CommodityMapper commodityMapper;
     @Autowired
     UserinfoMapper userinfoMapper;
+    @Autowired
+    OrderinfoMapper orderinfoMapper;
+    @Autowired
+    OrdderdetailsMapper ordderdetailsMapper;
 
     @Override
     //我的购物车查询
@@ -118,38 +120,64 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
     }
     //提交订单
     @Override
-    public Map<String, String> usertijiaodd(int[] list, Cart cart) {
+    public Map<String, String> usertijiaodd(int[] list,Orderinfo orderinfo) {
 
 
         Map<String,String> map = new HashMap<>();
         map.put("code","0");
         map.put("msg","下单失败");
-        //订单表添加数据
-        Orderinfo orderinfo1 = new Orderinfo();
+        System.out.println(orderinfo);
+        //创建时间
+        orderinfo.setCreatetime(new Date());
+        //待评价
+        orderinfo.setEvaluate(2);
+        //显示
+        orderinfo.setState(1);
+        //商户id
 
 
-        //先添加订单表拿到订单表id添加到订单详情表里
-        Ordderdetails ordderdetails1 =new Ordderdetails();
+        //添加订单表
+      orderinfoMapper.insert(orderinfo);
 
-        List<Cart> list1 =   cartMapper.selectusergwc(list,cart);
+      //订单详情表
+        for (int i : list) {
+            Ordderdetails ordderdetails = new Ordderdetails();
+            //订单详情表里 订单表id
+            ordderdetails.setOrderid(orderinfo.getOrderid());
+            //订单详情表用户id
+            ordderdetails.setUid(orderinfo.getUid());
+            //订单详情表商品编号
+            ordderdetails.setProid(i);
+            //订单详情表商品名称
+            Commodity commodity = commodityMapper.selectById(i);
+            ordderdetails.setProname(commodity.getProname());
+            //订单详情表图片地址
+            ordderdetails.setProimage(commodity.getProimage());
+            //订单详情表商品单价
+            ordderdetails.setProsprice(commodity.getProsprice());
+            //订单详情表商品数量
+         Cart cart =    cartMapper.selectcartone(i,orderinfo.getUid());
+            ordderdetails.setQuantity(cart.getQuantity());
+            //订单详情表创建时间
+            ordderdetails.setCreatetime(new Date());
+            //退款状态
+            ordderdetails.setRefund(0);
 
-        //根据id查询商品表商品
-        for (Cart emp:list1) {
-            //把商品数据添加到实体类里的commodity里
-            emp.setCommodity(commodityMapper.selectById(emp.getCid()));
+          int a =   ordderdetailsMapper.insert(ordderdetails);
+          if (a>=1){
+              //删除购物车表里购买的商品
+              boolean b = cartMapper.scbyid(i,orderinfo.getUid());
+              if (b){
+                  map.put("code","1");
+                  map.put("msg","下单成功");
+              }
+          }
         }
-        //用户id
-        orderinfo1.setUid(cart.getUid());
-       Date date = new Date();
-        orderinfo1.setPaymenttime(date);
-        orderinfo1.setCreatetime(date);
-
-
-
 
         return map;
     }
 
+    //添加购物车
     @Override
     public Map<String, String> addgwc(int[] arr, Cart cart) {
 

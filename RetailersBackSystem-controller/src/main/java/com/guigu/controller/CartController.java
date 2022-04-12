@@ -52,10 +52,11 @@ public class CartController {
     @PostMapping("usertijiaodd.action")
     @CrossOrigin
     //提交订单
-    public Map<String,String> usertijiaodd(int list [],Cart cart){
-        return cartService.usertijiaodd(list,cart);
+    public Map<String,String> usertijiaodd(int list [],Orderinfo orderinfo){
+        return cartService.usertijiaodd(list,orderinfo);
     }
 
+    //添加购物车
     @PostMapping("addgwc.action")
     @CrossOrigin
     public Map<String,String> addgwc(int arr [],Cart cart){

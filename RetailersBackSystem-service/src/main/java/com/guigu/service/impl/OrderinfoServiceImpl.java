@@ -123,5 +123,19 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
         return map;
     }
 
+    @Override
+    public Map<String, String> qxddorder(Orderinfo orderinfo) {
+        Map map =new HashMap();
+        map.put("code","0");
+        map.put("msg","取消失败");
+        int i = orderMapper.updateById(orderinfo);
+        if (i>=1){
+            map.put("code","1");
+            map.put("msg","取消成功");
+        }
+
+        return map;
+    }
+
 
 }
