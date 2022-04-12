@@ -1,5 +1,6 @@
 package com.guigu.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guigu.pojo.Commodity;
 import com.guigu.pojo.Goodsupplied;
@@ -13,9 +14,14 @@ import java.util.Map;
 public interface GoodsuppliedService extends IService<Goodsupplied> {
 
 
-    //根据当前的用户，去查询供应商目前可以添加的供应商维护商品平商品表的商品
+    //根据用户，去查询供应商目前可以添加的供应商维护商品平商品表的商品
     List<Commodity>  selelctcomodity(Commodity commodity,Integer  id );
 
+    //分页操作
+    Page<Goodsupplied> queryAllSupplier(Goodsupplied goodsupplied,Integer pageno,Integer pagesize);
+
+    //修改供应商里面的信息
+    Map  xgsupplier(Goodsupplied goodsupplied);
 
     //根据id去查询商品维护表里面的对象
     Goodsupplied querybyid(Integer supplyOrderId);

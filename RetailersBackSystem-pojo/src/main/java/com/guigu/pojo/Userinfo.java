@@ -82,13 +82,20 @@ public class Userinfo {
     /**
      * 注册商户状态
      */
-    private String shState;
+    private Integer shState;
     /**
      * 注册供应商状态
      */
-    private String gysState;
+    private Integer gysState;
+
+    private String businessImg;//营业执照
 
 
     @TableField(exist = false)
     private List<Cart> carts;
+
+
+    //供应商维护商品分类集合
+    @TableField(exist = false)
+    private List<SupplierGoodsCategory> supplierGoodsCategoryList;
 }

@@ -1,6 +1,7 @@
 package com.guigu.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.util.StringUtil;
 import com.guigu.mapper.*;
@@ -39,23 +40,25 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
     //查询可供应的商品
     @Override
     public List<Commodity> selelctcomodity(Commodity commodity,Integer id) {
-       //去定义商品集合
-            List<Commodity> records=new ArrayList<>();
+
+        //去定义商品表集合
+        List<Commodity> records=new ArrayList();
         //去根据用户id,查询供应商维护商品分类表里面的数据
         QueryWrapper queryWrapper=new QueryWrapper<SupplierGoodsCategory>();
+
         queryWrapper.eq("p_id",id);
-        //获取供应分类表里面的数据
+        //去查询应分类表里面的数据
             List<SupplierGoodsCategory> supplierGoodsCategoryList=
                   supplierGoodsCategoryMapper.selectList(queryWrapper);
         //查询商品表里面的数据 根据分类筛选商品
-            queryWrapper=new QueryWrapper<Commodity>();
+            queryWrapper =new QueryWrapper<Commodity>();
             //循环设置条件
             for (int i=0;i<supplierGoodsCategoryList.size();i++){
             queryWrapper.eq("shop_type",supplierGoodsCategoryList.get(i).getSortId());
                 //检查是否循环到最后一个元素
-                if(i+1==supplierGoodsCategoryList.size()){
+                if(i+1!=supplierGoodsCategoryList.size()){
                         //不是最后一个元素  添加or
-                        queryWrapper.or();
+                    queryWrapper.or();
                 }
             }
             //条件查询
@@ -68,14 +71,53 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
         //将筛选出来的商品 循环查询 ，检查供应商商品表里面是否存在商品，如果不存在，就要将该商品取出来
         queryWrapper=new QueryWrapper<Goodsupplied>();
         for(Commodity c:commodityList){
+            //商品表里面的数据
+                queryWrapper =new QueryWrapper<Commodity>();
                 queryWrapper.eq("g_id",c.getId());
-        //根据供应商品表id,查询数据是否存在，说明没有供应商品
-            if(goodsuppliedMapper.selectList(queryWrapper)!=null){
+        //根据商品表id,查询数据的条数，说明没有供应商品
+            if( goodsuppliedMapper.selectList(queryWrapper).size()<1){
                     //没有数据添加到集合中
                 records.add(c);
             }
         }
         return records;
+    }
+
+
+    //分页
+    @Override
+    public Page<Goodsupplied> queryAllSupplier(Goodsupplied goodsupplied, Integer pageno, Integer pagesize) {
+
+        QueryWrapper<Goodsupplied> queryWrapper= new QueryWrapper<Goodsupplied>();
+
+        //条件查询
+        //审核状态
+            if(goodsupplied.getIsCheck()!=null){
+                    queryWrapper.eq("is_check",goodsupplied.getIsCheck());
+            }
+        //删除状态
+        if(goodsupplied.getIsDelete()!=null){
+                    queryWrapper.eq("is_delete",goodsupplied.getIsDelete());
+        }
+
+        Page<Goodsupplied> page=this.page(new Page<Goodsupplied>(pageno,pagesize),queryWrapper);
+
+        //循环集合  添加对象
+        for(Goodsupplied supplied:page.getRecords()){
+                //设置供应商对象
+            //添加用户
+            supplied.getUserinfo();
+            //添加商品
+            supplied.getCommodity();
+        }
+
+        return  page;
+    }
+
+    //去修改供应商状态
+    @Override
+    public Map xgsupplier(Goodsupplied goodsupplied) {
+        return null;
     }
 
     //去根据供应商里面的id查询商品和供应商
@@ -88,7 +130,6 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
         return supplied;
     }
 
-
     //去添加商品到供应商
     @Override
     public Map add(Goodsupplied goodsupplied) {
@@ -98,6 +139,8 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
             goodsupplied.setIsConfig(0);
             //设置为等待审核
             goodsupplied.setIsCheck(0);
+            //设置为正常供应的商品
+            goodsupplied.setIsDelete(0);
             //去进行添加
             if(goodsuppliedMapper.insert(goodsupplied)>0){
                     map.put("msg","申请提交审核成功，等待审核");
@@ -106,7 +149,6 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
                 map.put("msg","操作失败");
                 map.put("x",false);
             }
-
         return map;
     }
 

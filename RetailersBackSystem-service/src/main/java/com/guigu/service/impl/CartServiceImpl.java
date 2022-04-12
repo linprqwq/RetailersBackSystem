@@ -6,17 +6,13 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.guigu.mapper.CartMapper;
 import com.guigu.mapper.CommodityMapper;
 import com.guigu.mapper.UserinfoMapper;
-import com.guigu.pojo.Cart;
-import com.guigu.pojo.Commodity;
-import com.guigu.pojo.Userinfo;
+import com.guigu.pojo.*;
 import com.guigu.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.xml.crypto.Data;
+import java.util.*;
 
 @Service
 public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements CartService {
@@ -27,6 +23,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
     CommodityMapper commodityMapper;
     @Autowired
     UserinfoMapper userinfoMapper;
+
     @Override
     //我的购物车查询
     public List<Cart> querygwcid(Integer id) {
@@ -101,7 +98,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
 
         return map;
     }
-
+    //提交订单查询商品信息
     @Override
     public List<Cart> queryusergwc(int[] list, Cart cart) {
 
@@ -110,8 +107,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
        queryWrapper.eq("uid",cart.getUid());
         //循环查询添加到list里
 
-      List<Cart> list1 =   cartMapper.selectusergwc(list,cart);
-
+        List<Cart> list1 =   cartMapper.selectusergwc(list,cart);
         //根据id查询商品表商品
         for (Object emp:list1) {
             //把商品数据添加到实体类里的commodity里
@@ -119,5 +115,68 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
         }
 
         return list1;
+    }
+    //提交订单
+    @Override
+    public Map<String, String> usertijiaodd(int[] list, Cart cart) {
+
+
+        Map<String,String> map = new HashMap<>();
+        map.put("code","0");
+        map.put("msg","下单失败");
+        //订单表添加数据
+        Orderinfo orderinfo1 = new Orderinfo();
+
+
+        //先添加订单表拿到订单表id添加到订单详情表里
+        Ordderdetails ordderdetails1 =new Ordderdetails();
+
+        List<Cart> list1 =   cartMapper.selectusergwc(list,cart);
+
+        //根据id查询商品表商品
+        for (Cart emp:list1) {
+            //把商品数据添加到实体类里的commodity里
+            emp.setCommodity(commodityMapper.selectById(emp.getCid()));
+        }
+        //用户id
+        orderinfo1.setUid(cart.getUid());
+       Date date = new Date();
+        orderinfo1.setPaymenttime(date);
+        orderinfo1.setCreatetime(date);
+
+
+
+
+        return map;
+    }
+
+    @Override
+    public Map<String, String> addgwc(int[] arr, Cart cart) {
+
+            Map<String,String> map = new HashMap<>();
+
+
+        for (int i : arr) {
+
+            QueryWrapper queryWrapper = new QueryWrapper();
+            queryWrapper.eq("uid",cart.getUid());
+            queryWrapper.eq("cid",i);
+            Cart cart1 = cartMapper.selectOne(queryWrapper);
+            if (cart1!=null){
+                cart1.setQuantity(cart1.getQuantity()+1);
+                cartMapper.updateById(cart1);
+                map.put("code","0");
+                map.put("msg","购物车已有当前商品");
+            }else{
+                cart.setCid(i);
+                cart.setQuantity(1);
+                int a =  cartMapper.insert(cart);
+                if (a>=1){
+                    map.put("code","1");
+                    map.put("msg","加入购物车成功");
+                }
+            }
+        }
+        return map;
     }
 }

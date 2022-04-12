@@ -25,7 +25,7 @@
     </resultMap>
 
     <select id="userlogin" resultType="com.guigu.pojo.Userinfo">
-        SELECT * FROM userinfo WHERE loginname=#{userinfo.loginname} AND PASSWORD=#{userinfo.password}
+        SELECT * FROM userinfo WHERE loginname=#{userinfo.loginname} AND PASSWORD=#{userinfo.password} AND ustate=0
     </select>
 
     <select id="CartCount" parameterType="Integer" resultType="Integer">

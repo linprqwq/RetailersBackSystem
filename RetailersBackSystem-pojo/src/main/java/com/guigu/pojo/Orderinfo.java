@@ -10,6 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
+
 /**
  * <p>
  *
@@ -91,9 +93,24 @@ public class Orderinfo {
      */
     private Integer sid;
 
+
+    /**
+     * 订单显示: -1显示 -0隐藏
+     */
+    private Integer state;
     /**
      * 订单详情
      */
     @TableField(exist = false)
-    private Ordderdetails ordderdetails;
+    private List<Ordderdetails> ordderdetails;
+
+    /**
+     * 订单总价
+     */
+    private  Integer zprice;
+
+    /**
+     * 评价
+     */
+    private Integer evaluate;
 }
