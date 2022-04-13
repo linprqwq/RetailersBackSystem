@@ -71,5 +71,11 @@ public class OrderinfoController {
     public Map<String,String> qxddorder(Orderinfo orderinfo,boolean boolea){
         return orderService.qxddorder(orderinfo,boolea);
     }
+
+    @PostMapping("fkorder.action")
+    @CrossOrigin
+    public Map<String,String> fkorder(Orderinfo orderinfo){
+        return orderService.fkorder(orderinfo);
+    }
 }
 
