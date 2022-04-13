@@ -3,11 +3,15 @@ package com.guigu.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.guigu.mapper.CustomerbalancelogMapper;
 import com.guigu.mapper.OrdderdetailsMapper;
 import com.guigu.mapper.OrderinfoMapper;
+import com.guigu.mapper.UserinfoMapper;
+import com.guigu.pojo.Customerbalancelog;
 import com.guigu.pojo.Ordderdetails;
 import com.guigu.pojo.Orderinfo;
 
+import com.guigu.pojo.Userinfo;
 import com.guigu.service.OrderinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +37,10 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
 
     @Autowired
     OrdderdetailsMapper ordderdetailsMapper;
+    @Autowired
+    UserinfoMapper userinfoMapper;
+    @Autowired
+    CustomerbalancelogMapper customerbalancelogMapper;
 
 
     //订单表查询
@@ -124,16 +132,35 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
     }
 
     @Override
-    public Map<String, String> qxddorder(Orderinfo orderinfo) {
+    public Map<String, String> qxddorder(Orderinfo orderinfo,boolean boolea) {
         Map map =new HashMap();
         map.put("code","0");
         map.put("msg","取消失败");
-        int i = orderMapper.updateById(orderinfo);
-        if (i>=1){
+        if (boolea){
+            int i = orderMapper.updateById(orderinfo);
+            if (i>=1){
+                map.put("code","1");
+                map.put("msg","取消成功");
+            }
+        }else{
+            //查询当前订单
+            Orderinfo orderinfo1 = orderMapper.selectById(orderinfo.getOrderid());
+            //查询当前订单用户
+            Userinfo userinfo = userinfoMapper.selectById(orderinfo1.getUid());
+            //用户余额添加
+            userinfo.setUmoney(userinfo.getUmoney()+orderinfo1.getZprice());
+            //用户表修改
+            userinfoMapper.updateById(userinfo);
+            //用户余额变动
+            Customerbalancelog customerbalancelog  =new Customerbalancelog();
+            customerbalancelog.setUid(userinfo.getId());
+            customerbalancelog.setCtime(new Date());
+            customerbalancelog.setAmount(orderinfo1.getZprice());
+            customerbalancelog.setSource(4);
+            customerbalancelogMapper.insert(customerbalancelog);
             map.put("code","1");
             map.put("msg","取消成功");
         }
-
         return map;
     }
 

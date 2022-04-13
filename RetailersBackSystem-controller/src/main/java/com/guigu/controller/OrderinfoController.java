@@ -65,11 +65,11 @@ public class OrderinfoController {
         return orderService.cofirmorder(orderinfo);
     }
 
-    //未付款时取消订单
+    //已付款未付款时取消订单
     @PostMapping("qxddorder,action")
     @CrossOrigin
-    public Map<String,String> qxddorder(Orderinfo orderinfo){
-        return orderService.qxddorder(orderinfo);
+    public Map<String,String> qxddorder(Orderinfo orderinfo,boolean boolea){
+        return orderService.qxddorder(orderinfo,boolea);
     }
 }
 
