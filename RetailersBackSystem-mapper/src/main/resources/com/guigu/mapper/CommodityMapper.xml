@@ -19,15 +19,15 @@
     </resultMap>
 <!--查询水果类-->
     <select id="QueryAllCommodity" resultType="Commodity">
-        SELECT * FROM commodity co LEFT JOIN shop_type_info_copy sh ON co.id=sh.id WHERE co.`shop_type`=1
+        SELECT * FROM commodity co LEFT JOIN shop_type_info_copy sh ON co.id=sh.id WHERE co.`shop_type`=1 AND STATUS=1
     </select>
     <!--查询海鲜类-->
     <select id="QueryAllCommodityHS" resultType="Commodity">
-        SELECT * FROM commodity co LEFT JOIN shop_type_info_copy sh ON co.id=sh.id WHERE co.`shop_type`=5
+        SELECT * FROM commodity co LEFT JOIN shop_type_info_copy sh ON co.id=sh.id WHERE co.`shop_type`=5 AND STATUS=1
     </select>
 
     <!--查询海鲜类-->
     <select id="QueryAllCommodityRL" resultType="Commodity">
-        SELECT * FROM commodity co LEFT JOIN shop_type_info_copy sh ON co.id=sh.id WHERE co.`shop_type`=6
+        SELECT * FROM commodity co LEFT JOIN shop_type_info_copy sh ON co.id=sh.id WHERE co.`shop_type`=6 AND STATUS=1
     </select>
 </mapper>

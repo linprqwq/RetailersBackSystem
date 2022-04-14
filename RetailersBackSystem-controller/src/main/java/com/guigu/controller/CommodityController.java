@@ -1,11 +1,14 @@
 package com.guigu.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guigu.pojo.Commodity;
 import com.guigu.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -14,7 +17,7 @@ public class CommodityController {
     @Autowired
     CommodityService commodityService;
 
-    @RequestMapping("/queryspid.action")
+
 
     //分页查询
     @GetMapping("/querysp.action")
@@ -27,13 +30,15 @@ public class CommodityController {
         return  commodityService.queryAllshop(commodity,pageno,pagesize);
     }
 
-    @GetMapping("queryspid.action")
+    @RequestMapping("/queryspid.action")
     @CrossOrigin
     //查询商品id
     public Commodity querycommodityid(Integer id){
         System.out.println(id);
         return commodityService.querycommodityid(id);
     }
+
+
     @GetMapping("queryCommids.action")
     @CrossOrigin
     //查询商品id
