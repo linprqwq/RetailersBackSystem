@@ -1,6 +1,7 @@
 package com.guigu.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guigu.pojo.Commodity;
 import com.guigu.service.CommodityService;
@@ -43,12 +44,25 @@ public class CommodityController {
         return  commodityService.queryAllshop(commodity,pageno,pagesize);
     }
 
-    @GetMapping("queryspid.action")
+    @RequestMapping("/queryspid.action")
     @CrossOrigin
     //查询商品id
     public Commodity querycommodityid(Integer id){
         System.out.println(id);
         return commodityService.querycommodityid(id);
+    }
+
+
+    @GetMapping("queryCommids.action")
+    @CrossOrigin
+    //查询商品id
+    public List<Commodity> queryCommids(String cids){
+        String[] ids = cids.split(",");
+        QueryWrapper<Commodity> queryWrapper = new QueryWrapper<Commodity>();
+        List<Commodity> list1=new ArrayList<Commodity>();
+        queryWrapper.in("id",ids);
+        list1 = commodityService.list(queryWrapper);
+        return list1;
     }
 
     @RequestMapping("queryAllcom.action")
@@ -57,6 +71,14 @@ public class CommodityController {
     public List<Commodity>QueryAllCommodity(){
 
         return commodityService.QueryAllCommodity();
+    }
+    @PostMapping("queryAllCommodity.action")
+    @CrossOrigin
+    //查询所有
+    public Page<Commodity> QueryAllCommoditybycond(Commodity commodity,
+                                                   @RequestParam(value = "pageno", defaultValue = "1") Integer pageno,
+                                                   @RequestParam(value = "pagesize", defaultValue = "5") Integer pagesize){
+        return commodityService.page(new Page<Commodity>(pageno,pagesize));
     }
 
 
