@@ -6,8 +6,6 @@ import com.guigu.pojo.Commodity;
 import com.guigu.pojo.Goodsupplied;
 import com.guigu.service.GoodsuppliedService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,15 +29,14 @@ public class GoodsSuppliedController {
     GoodsuppliedService goodsuppliedService;
 
 
-
-    //供应商商品表的分页查询
-    @GetMapping("queryALlPage.action")
-    public Page<Goodsupplied>  queryALlPage(Goodsupplied goodsupplied,
-                                        @RequestParam(value="pageno",defaultValue ="1")Integer pageno,
-                                        @RequestParam(value ="pagesize",defaultValue ="5")Integer pagesize ){
-
-        return goodsuppliedService.queryAllSupplier(goodsupplied,pageno,pagesize);
+    @RequestMapping("/queryAllSupplier.action")
+    public Page<Goodsupplied> queryallUser(Goodsupplied goodsupplied,
+                                           @RequestParam(value = "pageno", defaultValue = "1") Integer pageno,
+                                           @RequestParam(value = "pagesize", defaultValue = "5") Integer pagesize) {
+        return goodsuppliedService.queryAllSupplier(goodsupplied, pageno, pagesize);
     }
+
+
 
     //提供商品添加商品到供应商商品表
     @PutMapping("addsupplierSupplyOfGoods.action")

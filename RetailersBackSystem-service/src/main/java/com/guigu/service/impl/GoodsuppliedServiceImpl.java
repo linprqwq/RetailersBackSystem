@@ -73,7 +73,7 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
         for(Commodity c:commodityList){
             //商品表里面的数据
                 queryWrapper =new QueryWrapper<Commodity>();
-                queryWrapper.eq("g_id",c.getId());
+                queryWrapper.eq("g_id",c.getId());  //如果供应商有了这个数据  就跳过了
         //根据商品表id,查询数据的条数，说明没有供应商品
             if( goodsuppliedMapper.selectList(queryWrapper).size()<1){
                     //没有数据添加到集合中

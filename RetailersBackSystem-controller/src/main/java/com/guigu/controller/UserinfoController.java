@@ -23,12 +23,21 @@ public class UserinfoController {
     @Autowired
     UserinfoService userinfoService;
 
+    //修改供应商信息
+        //修改供应商信息(可以修改用户名、供应商商品分类数据、营业执照)
+    @PostMapping("updateSupplier.action")
+    public Map updateSupplier(Integer id,String username,Integer[] ids,MultipartFile img,HttpServletRequest request){
+        return userinfoService.updatesupplier(id,username,ids,img,request.getServletContext().getRealPath("/img/"));
+    }
+
     @RequestMapping("/login.action")
     //用户登录
     public Userinfo login(Userinfo userinfo){
        return userinfoService.userlogin(userinfo);
     }
 
+
+    //去根据用户id去查询
     @RequestMapping("/selsid.action")
     public Userinfo selsid(int id) {
         return userinfoService.getById(id);
