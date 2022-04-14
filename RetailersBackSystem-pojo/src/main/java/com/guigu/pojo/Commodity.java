@@ -60,7 +60,7 @@ public class Commodity {
     /**
      * 商品库存数量
      */
-    private Double quantity;
+    private Integer quantity;
 
     /**
      * 商品状态 1.在售 2.下架
