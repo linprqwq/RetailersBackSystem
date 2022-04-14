@@ -25,14 +25,11 @@ import java.util.Map;
 @RestController
 @RequestMapping("/goodsSupplied/")
 public class GoodsSuppliedController {
-
     //自动注入
     @Autowired
     GoodsuppliedService goodsuppliedService;
 
-
-
-    //供应商商品表的分页查询
+    //供应商商品供应表的分页查询
     @GetMapping("queryALlPage.action")
     public Page<Goodsupplied>  queryALlPage(Goodsupplied goodsupplied,
                                         @RequestParam(value="pageno",defaultValue ="1")Integer pageno,
@@ -65,7 +62,11 @@ public class GoodsSuppliedController {
     public List<Goodsupplied> queryallsupplied(){
         return goodsuppliedService.queryallgoodsupp();
     }
-
+    //审核供应商维护商品
+    @PostMapping("checkGoodsupplied.action")
+    public Map checkGoodsupplied(@RequestBody Goodsupplied goodsupplied){
+        return  goodsuppliedService.checkGoodsupplied(goodsupplied);
+    }
 
 }
 

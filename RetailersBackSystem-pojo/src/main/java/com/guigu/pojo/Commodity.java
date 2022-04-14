@@ -2,6 +2,7 @@ package com.guigu.pojo;
 
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -78,4 +79,12 @@ public class Commodity {
     @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
     private Date updatetime;
 
+    @TableField(exist = false)
+    private Integer num=1;
+
+    @TableField(exist = false)
+    private SupplierGoodsCategory supplierGoodsCategory;//商品类型对象
+    public Commodity(Integer id){
+        this.id=this.id;
+    }
 }

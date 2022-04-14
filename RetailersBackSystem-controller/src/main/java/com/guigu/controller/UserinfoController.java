@@ -33,6 +33,13 @@ public class UserinfoController {
     public Userinfo selsid(int id) {
         return userinfoService.getById(id);
     }
+    @RequestMapping("/userGysoption.action")
+    public List<Userinfo> userGysoption() {
+        QueryWrapper queryWrapper=new QueryWrapper<Userinfo>();
+        queryWrapper.eq("identity",3);
+        queryWrapper.eq("gys_state",1);
+        return userinfoService.list(queryWrapper);
+    }
     @RequestMapping("/queryUserGysone.action")
     public Userinfo queryUserGysone(Integer id) {
         return userinfoService.getById(id);
