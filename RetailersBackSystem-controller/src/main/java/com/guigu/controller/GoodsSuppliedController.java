@@ -25,6 +25,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/goodsSupplied/")
 public class GoodsSuppliedController {
+
     //自动注入
     @Autowired
     GoodsuppliedService goodsuppliedService;
@@ -37,6 +38,8 @@ public class GoodsSuppliedController {
 
         return goodsuppliedService.queryAllSupplier(goodsupplied,pageno,pagesize);
     }
+
+
 
     //提供商品添加商品到供应商商品表
     @PutMapping("addsupplierSupplyOfGoods.action")

@@ -64,5 +64,18 @@ public class OrderinfoController {
     public Map<String,String> cofirmorder(Orderinfo orderinfo){
         return orderService.cofirmorder(orderinfo);
     }
+
+    //已付款未付款时取消订单
+    @PostMapping("qxddorder,action")
+    @CrossOrigin
+    public Map<String,String> qxddorder(Orderinfo orderinfo,boolean boolea){
+        return orderService.qxddorder(orderinfo,boolea);
+    }
+
+    @PostMapping("fkorder.action")
+    @CrossOrigin
+    public Map<String,String> fkorder(Orderinfo orderinfo){
+        return orderService.fkorder(orderinfo);
+    }
 }
 

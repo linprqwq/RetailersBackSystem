@@ -17,4 +17,8 @@ import java.util.List;
 public interface CartMapper extends BaseMapper<Cart> {
 
     List<Cart> selectusergwc(@Param("list") int[] list, @Param("cart") Cart cart);
+
+    Cart selectcartone(@Param("i")int i,@Param("uid") Integer uid);
+
+    boolean scbyid(@Param("i")int i, @Param("uid")Integer uid);
 }

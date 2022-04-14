@@ -15,4 +15,8 @@ import java.util.List;
  */
 public interface CommodityMapper extends BaseMapper<Commodity> {
         List<Commodity> QueryAllCommodity();
+
+        List<Commodity> QueryAllCommodityHS();
+
+        List<Commodity> QueryAllCommodityRL();
 }

@@ -14,5 +14,8 @@
         <result column="emp_img" property="empImg" />
         <result column="emp_state" property="empState" />
     </resultMap>
+    <insert id="addSysemployees" parameterType="SysEmployees">
+         insert into sys_employees values (null,#{empName},#{empLoginname},#{empPassword},#{empPhone},#{empMoney},#{empAddress},#{empImg})
+    </insert>
 
 </mapper>

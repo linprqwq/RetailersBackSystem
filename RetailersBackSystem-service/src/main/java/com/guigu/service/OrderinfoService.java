@@ -19,4 +19,8 @@ public interface OrderinfoService extends IService<Orderinfo> {
     Map uptorderdsh(Orderinfo orderinfo);
 
     Map<String, String> cofirmorder(Orderinfo orderinfo);
+    //未付款时取消订单
+    Map<String, String> qxddorder(Orderinfo orderinfo,boolean boolea);
+
+    Map<String, String> fkorder(Orderinfo orderinfo);
 }

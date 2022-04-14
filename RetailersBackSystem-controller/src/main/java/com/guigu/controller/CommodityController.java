@@ -18,6 +18,18 @@ public class CommodityController {
     @Autowired
     CommodityService commodityService;
 
+
+    //分页查询
+    @GetMapping("/querysp.action")
+    @CrossOrigin
+    public Page<Commodity> querysp(Commodity commodity,
+                                   @RequestParam(value="pageno",defaultValue = "1")Integer pageno,
+                                   @RequestParam(value = "pagesize",defaultValue = "5")Integer pagesize){
+
+
+        return  commodityService.queryAllshop(commodity,pageno,pagesize);
+    }
+
     @GetMapping("queryspid.action")
     @CrossOrigin
     //查询商品id
@@ -39,8 +51,9 @@ public class CommodityController {
 
     @RequestMapping("queryAllcom.action")
     @CrossOrigin
-    //查询所有
+    //查询所有水果
     public List<Commodity>QueryAllCommodity(){
+
         return commodityService.QueryAllCommodity();
     }
     @PostMapping("queryAllCommodity.action")
@@ -50,5 +63,21 @@ public class CommodityController {
                                                    @RequestParam(value = "pageno", defaultValue = "1") Integer pageno,
                                                    @RequestParam(value = "pagesize", defaultValue = "5") Integer pagesize){
         return commodityService.page(new Page<Commodity>(pageno,pagesize));
+    }
+
+
+    @RequestMapping("queryAllcomhs.action")
+    @CrossOrigin
+    //查询所有海鲜
+    public List<Commodity>QueryAllCommodityHS(){
+        return commodityService.QueryAllCommodityHS();
+    }
+
+
+    @RequestMapping("queryAllcomrl.action")
+    @CrossOrigin
+    //查询所有海鲜
+    public List<Commodity>QueryAllCommodityRL(){
+        return commodityService.QueryAllCommodityRL();
     }
 }

@@ -15,4 +15,12 @@
         #{id}
     </foreach>  and uid=#{cart.uid}
     </select>
+
+    <select id="selectcartone" resultType="cart">
+        select * from cart where cid = #{i} and uid=#{uid}
+    </select>
+
+    <delete id="scbyid" parameterType="int">
+        delete from cart where cid = #{i} and uid=#{uid}
+    </delete>
 </mapper>

@@ -68,6 +68,11 @@ public class Commodity {
     private Integer status;
 
     /**
+     *
+     */
+    private Integer isDelete;//是否删除
+
+    /**
      * 创建时间
      */
     @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
@@ -87,4 +92,9 @@ public class Commodity {
     public Commodity(Integer id){
         this.id=this.id;
     }
+
+    //商品类型
+   @TableField(exist = false)
+    private  ShopTypeInfo shopTypeInfo;
+
 }

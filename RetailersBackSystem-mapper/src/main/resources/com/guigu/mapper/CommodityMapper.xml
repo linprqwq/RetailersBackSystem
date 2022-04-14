@@ -17,8 +17,17 @@
         <result column="createtime" property="createtime" />
         <result column="updatetime" property="updatetime" />
     </resultMap>
-
+<!--查询水果类-->
     <select id="QueryAllCommodity" resultType="Commodity">
-        SELECT * FROM commodity
+        SELECT * FROM commodity co LEFT JOIN shop_type_info_copy sh ON co.id=sh.id WHERE co.`shop_type`=1
+    </select>
+    <!--查询海鲜类-->
+    <select id="QueryAllCommodityHS" resultType="Commodity">
+        SELECT * FROM commodity co LEFT JOIN shop_type_info_copy sh ON co.id=sh.id WHERE co.`shop_type`=5
+    </select>
+
+    <!--查询海鲜类-->
+    <select id="QueryAllCommodityRL" resultType="Commodity">
+        SELECT * FROM commodity co LEFT JOIN shop_type_info_copy sh ON co.id=sh.id WHERE co.`shop_type`=6
     </select>
 </mapper>

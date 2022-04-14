@@ -34,7 +34,7 @@ public class  SysEmployees implements Serializable {
 
     private String empLoginname;
 
-    private String empPassword;
+        private String empPassword;
 
     private Integer empPhone;
 

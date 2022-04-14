@@ -1,6 +1,7 @@
 package com.guigu.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.guigu.pojo.PageVo;
 import com.guigu.pojo.SysRoles;
 
 /**
@@ -12,5 +13,6 @@ import com.guigu.pojo.SysRoles;
  * @since 2022-03-28
  */
 public interface SysRolesService extends IService<SysRoles> {
+    PageVo<SysRoles> querysyroles(SysRoles sysRoles,Integer pageno,Integer pagesize);
 
 }

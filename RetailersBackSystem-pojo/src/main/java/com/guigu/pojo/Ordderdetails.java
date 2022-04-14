@@ -87,4 +87,9 @@ public class Ordderdetails {
      * 退款 0.未进行退款 2.待退款 3.退款完成
      */
     private Integer refund;
+
+    /**
+     * 状态
+     */
+    private Integer state;
 }
