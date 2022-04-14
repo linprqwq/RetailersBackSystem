@@ -42,7 +42,6 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         if(userinfo1==null){
             return null;
         }
-        System.out.println(userinfo1+"/*/*/*/**/*//*/*//*/*/*/");
         return userinfo1;
     }
 

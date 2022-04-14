@@ -14,7 +14,7 @@ public class CommodityController {
     @Autowired
     CommodityService commodityService;
 
-    @GetMapping("queryspid.action")
+    @RequestMapping("/queryspid.action")
     @CrossOrigin
     //查询商品id
     public Commodity querycommodityid(Integer id){
