@@ -43,7 +43,6 @@ public class AuthcController {
         List<MenuRole> list = new ArrayList<MenuRole>();
         if(mids!=null) {
             for (String mid : mids) {
-
                 //循环每一个菜单id，组装一个权限表数据
                 MenuRole menuRole = new MenuRole(Integer.parseInt(mid),roleId);
 

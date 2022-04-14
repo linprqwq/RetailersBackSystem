@@ -25,6 +25,8 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
     OrderinfoMapper orderinfoMapper;
     @Autowired
     OrdderdetailsMapper ordderdetailsMapper;
+    @Autowired
+    CustomerbalancelogMapper customerbalancelogMapper;
 
     @Override
     //我的购物车查询
@@ -121,21 +123,54 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
     //提交订单
     @Override
     public Map<String, String> usertijiaodd(int[] list,Orderinfo orderinfo) {
-
-
         Map<String,String> map = new HashMap<>();
-        map.put("code","0");
-        map.put("msg","下单失败");
+        Userinfo userinfo = userinfoMapper.selectById(orderinfo.getUid());
+
+        userinfo.getUmoney();
+        if (userinfo.getUmoney()>=orderinfo.getZprice()){
+
+            //用户余额变动表
+            Customerbalancelog customerbalancelog = new Customerbalancelog();
+            //记录生成时间
+            customerbalancelog.setCtime(new Date());
+            //用户id
+            customerbalancelog.setUid(orderinfo.getUid());
+            //状态 2消费
+            customerbalancelog.setSource(2);
+            //消费金额
+            customerbalancelog.setAmount(userinfo.getUmoney()-orderinfo.getZprice());
+            //用户余额变动表添加
+            customerbalancelogMapper.insert(customerbalancelog);
+            //用户余额变动
+            userinfo.setUmoney(userinfo.getUmoney()-orderinfo.getZprice());
+
+            userinfoMapper.updateById(userinfo);
+            map.put("code","1");
+            map.put("msg","支付成功");
+            //已付款
+            orderinfo.setStatus(3);
+            //支付时间
+            orderinfo.setPaymenttime(new Date());
+            //实付金额
+            orderinfo.setPayment(userinfo.getUmoney()-orderinfo.getZprice());
+        }else{
+            map.put("code","0");
+            map.put("msg","余额不足,请充值");
+            //未付款
+            orderinfo.setStatus(2);
+        }
+
         System.out.println(orderinfo);
         //创建时间
         orderinfo.setCreatetime(new Date());
-        //待评价
-        orderinfo.setEvaluate(2);
+
         //显示
         orderinfo.setState(1);
         //商户id
 
 
+        //付款类型
+        orderinfo.setPaymenttype(1);
         //添加订单表
       orderinfoMapper.insert(orderinfo);
 
@@ -155,9 +190,14 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
             ordderdetails.setProimage(commodity.getProimage());
             //订单详情表商品单价
             ordderdetails.setProsprice(commodity.getProsprice());
+
             //订单详情表商品数量
          Cart cart =    cartMapper.selectcartone(i,orderinfo.getUid());
             ordderdetails.setQuantity(cart.getQuantity());
+            //订单详情表商品总价
+            ordderdetails.setTotalpirce(ordderdetails.getQuantity()*ordderdetails.getProsprice());
+            //订单详情表状态
+            ordderdetails.setState(1);
             //订单详情表创建时间
             ordderdetails.setCreatetime(new Date());
             //退款状态
@@ -167,10 +207,6 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
           if (a>=1){
               //删除购物车表里购买的商品
               boolean b = cartMapper.scbyid(i,orderinfo.getUid());
-              if (b){
-                  map.put("code","1");
-                  map.put("msg","下单成功");
-              }
           }
         }
 

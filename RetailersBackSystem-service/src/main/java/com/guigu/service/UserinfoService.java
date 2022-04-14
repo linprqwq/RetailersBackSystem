@@ -10,10 +10,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
+
 import java.util.Map;
 
 
 public interface UserinfoService extends IService<Userinfo> {
+
+
+    //去修改供应商信息
+    Map  updatesupplier(Integer id, String username, Integer [] ids, MultipartFile img,String  apppath);
+
+
     //用户登录
     Userinfo userlogin(Userinfo userinfo);
     public Map update(Userinfo userinfo);

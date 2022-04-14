@@ -40,7 +40,7 @@ public class Orderinfo {
     /**
      * 实付金额
      */
-    private Integer payment;
+    private Double payment;
 
     /**
      * 付款类型:1.余额 2.支付宝 3.微信
@@ -107,7 +107,7 @@ public class Orderinfo {
     /**
      * 订单总价
      */
-    private  Integer zprice;
+    private  Double zprice;
 
     /**
      * 评价

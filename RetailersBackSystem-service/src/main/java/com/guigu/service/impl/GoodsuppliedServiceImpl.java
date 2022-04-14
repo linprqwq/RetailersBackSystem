@@ -73,7 +73,7 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
         for(Commodity c:commodityList){
             //商品表里面的数据
                 queryWrapper =new QueryWrapper<Commodity>();
-                queryWrapper.eq("g_id",c.getId());
+                queryWrapper.eq("g_id",c.getId());  //如果供应商有了这个数据  就跳过了
         //根据商品表id,查询数据的条数，说明没有供应商品
             if( goodsuppliedMapper.selectList(queryWrapper).size()<1){
                     //没有数据添加到集合中
@@ -84,7 +84,7 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
     }
 
 
-    //分页
+    //(供货商分页的显示)
     @Override
     public Page<Goodsupplied> queryAllSupplier(Goodsupplied goodsupplied, Integer pageno, Integer pagesize) {
 
@@ -102,13 +102,16 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
 
         Page<Goodsupplied> page=this.page(new Page<Goodsupplied>(pageno,pagesize),queryWrapper);
 
-        //循环集合  添加对象
+        //循环集合  添加对象，补全属性
         for(Goodsupplied supplied:page.getRecords()){
                 //设置供应商对象
-            //添加用户
-            supplied.getUserinfo();
+            //添加供应商
+            supplied.setUserinfo(userinfoMapper.selectById(supplied.getPId()));
+            Commodity commodity = commodityMapper.selectById(supplied.getGId());
+            //添加商品分类
+            commodity.setSupplierGoodsCategory(supplierGoodsCategoryMapper.selectById(commodity.getShopType()));
             //添加商品
-            supplied.getCommodity();
+            supplied.setCommodity(commodity);
         }
 
         return  page;
@@ -142,10 +145,11 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
             //设置为正常供应的商品
             goodsupplied.setIsDelete(0);
             //去进行添加
-            if(goodsuppliedMapper.insert(goodsupplied)>0){
+            if(goodsuppliedMapper.insert(goodsupplied)>0)
+            {
                     map.put("msg","申请提交审核成功，等待审核");
                     map.put("x",true);
-            }else {
+            } else {
                 map.put("msg","操作失败");
                 map.put("x",false);
             }
@@ -161,5 +165,29 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
             goodsupplied.setUserinfo(userinfoMapper.selectById(goodsupplied.getPId()));
         }
         return list;
+    }
+
+    @Override
+    public Map checkGoodsupplied(Goodsupplied goodsupplied) {
+        Map map=new HashMap();
+        if(goodsupplied.getIsCheck()==1){
+            boolean b = this.updateById(goodsupplied);
+            map.put("msg","操作失败");
+            map.put("code","0");
+            if(b){
+                map.put("msg","审核通过！！");
+                map.put("code","1");
+            }
+        }else{
+            goodsupplied.setIsDelete(1);
+            boolean b = this.updateById(goodsupplied);
+            map.put("msg","操作失败");
+            map.put("code","0");
+            if(b){
+                map.put("msg","拒绝通过！！");
+                map.put("code","1");
+            }
+        }
+        return map;
     }
 }
