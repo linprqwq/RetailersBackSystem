@@ -3,10 +3,15 @@ package com.guigu.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guigu.pojo.Commodity;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CommodityService extends IService<Commodity> {
+
+    //去添加商品
+    public Map addsp(Commodity commodity, MultipartFile imgs,String appth);
 
     //查询商品id
     Commodity querycommodityid(Integer id);
