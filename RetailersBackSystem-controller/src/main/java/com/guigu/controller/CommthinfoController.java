@@ -1,6 +1,13 @@
 package com.guigu.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.guigu.pojo.Commodity;
+import com.guigu.pojo.Commthinfo;
+import com.guigu.pojo.Orderinfo;
+import com.guigu.service.CommodityService;
+import com.guigu.service.CommthinfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.guigu.pojo.Commthinfo;
 import com.guigu.pojo.Ordderdetails;
 import com.guigu.pojo.Userinfo;
@@ -20,6 +27,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -31,9 +41,18 @@ import java.util.Map;
  */
 @RestController
 public class CommthinfoController {
-
+    @Autowired
+    CommthinfoService commthinfoService;
     @Autowired
     OrdderdetailsService ordderdetailsService;
+    @PostMapping("queryreturnstop.action")
+    @CrossOrigin
+    //查询商户退货
+    public Page<Commthinfo> queryreturnstop(Commthinfo commthinfo, @RequestParam(value = "pageno", defaultValue = "1") int pageno,
+                                           @RequestParam(value = "pagesize", defaultValue = "5") int pagesize){
+        return commthinfoService.queryreturnstop(commthinfo, pageno, pagesize);
+    }
+
 
     @PostMapping("queryordd.action")
     @CrossOrigin
@@ -85,5 +104,14 @@ public class CommthinfoController {
     }
 
 
+        return commthinfoService.queryreturnstop(commthinfo, pageno, pagesize);
+    }
+    @PostMapping("uptcommstate.action")
+    @CrossOrigin
+    //查询商户退货
+    public Map uptcommstate(Commthinfo commthinfo){
+
+        return commthinfoService.uptcommstate(commthinfo);
+    }
 }
 
