@@ -60,52 +60,52 @@ public class CommthinfoController {
       return   ordderdetailsService.queryordd(ordderdetails);
     }
 
-    /**
-     *
-     * @param  commthinfo
-     * @param file  新的上传文件
-     * @param request  请求对象
-     * @return
-     * @throws IOException
-     */
-    @RequestMapping("addgoods.action")
-    @CrossOrigin
-    public Map<String,String> RegisterUser(Commthinfo commthinfo , MultipartFile[] file, HttpServletRequest request) throws IOException {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < file.length; i++) {
-            String path = request.getServletContext().getRealPath("/img"); //路径名
-            String name = file[i].getOriginalFilename();  //文件名
-            File savefile = new File(path,name);
-            file[i].transferTo(savefile);
-
-            list.add("img/"+name);
-        }
-        if (commthinfo.getImg()==null){
-            commthinfo.setImg(list.get(0));
-        } if(commthinfo.getImg2()==null){
-            commthinfo.setImg2(list.get(1));
-        } if(commthinfo.getImg3()==null){
-            commthinfo.setImg3(list.get(2));
-        }
-        //等待审核
-        commthinfo.setAudit(0);
-        //等待商户确认
-        commthinfo.setCommstate(1);
-        //状态
-        commthinfo.setState(0);
-        //退货时间
-        //商户id
-        commthinfo.setSid(1);
-        commthinfo.setThtime(new Date());
-        System.out.println(commthinfo);
-
-
-        return ordderdetailsService.addgoods(commthinfo);
-    }
-
-
-        return commthinfoService.queryreturnstop(commthinfo, pageno, pagesize);
-    }
+//    /**
+//     *
+//     * @param  commthinfo
+//     * @param file  新的上传文件
+//     * @param request  请求对象
+//     * @return
+//     * @throws IOException
+//     */
+//    @RequestMapping("addgoods.action")
+//    @CrossOrigin
+//    public Map<String,String> RegisterUser(Commthinfo commthinfo , MultipartFile[] file, HttpServletRequest request) throws IOException {
+//        List<String> list = new ArrayList<>();
+//        for (int i = 0; i < file.length; i++) {
+//            String path = request.getServletContext().getRealPath("/img"); //路径名
+//            String name = file[i].getOriginalFilename();  //文件名
+//            File savefile = new File(path,name);
+//            file[i].transferTo(savefile);
+//
+//            list.add("img/"+name);
+//        }
+//        if (commthinfo.getImg()==null){
+//            commthinfo.setImg(list.get(0));
+//        } if(commthinfo.getImg2()==null){
+//            commthinfo.setImg2(list.get(1));
+//        } if(commthinfo.getImg3()==null){
+//            commthinfo.setImg3(list.get(2));
+//        }
+//        //等待审核
+//        commthinfo.setAudit(0);
+//        //等待商户确认
+//        commthinfo.setCommstate(1);
+//        //状态
+//        commthinfo.setState(0);
+//        //退货时间
+//        //商户id
+//        commthinfo.setSid(1);
+//        commthinfo.setThtime(new Date());
+//        System.out.println(commthinfo);
+//
+//
+//        return ordderdetailsService.addgoods(commthinfo);
+//    }
+//
+//
+//        return commthinfoService.queryreturnstop(commthinfo, pageno, pagesize);
+//    }
     @PostMapping("uptcommstate.action")
     @CrossOrigin
     //查询商户退货
