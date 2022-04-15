@@ -48,7 +48,7 @@ public class OrdderdetailsServiceImpl extends ServiceImpl<OrdderdetailsMapper, O
     }
 
     @Override
-    public Map<String,String> addgoods(Commthinfo commthinfo) {
+    public Map<String,String> orderthuo(Commthinfo commthinfo) {
         Map<String,String> map = new HashMap<>();
         map.put("code","0");
         map.put("msg","失败");

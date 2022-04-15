@@ -109,8 +109,5 @@ public class Orderinfo {
      */
     private  Double zprice;
 
-    /**
-     * 评价
-     */
-    private Integer evaluate;
+
 }

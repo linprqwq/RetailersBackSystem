@@ -92,4 +92,9 @@ public class Ordderdetails {
      * 状态
      */
     private Integer state;
+
+    /**
+     * 评价: 1.已评价 2.待评价 3.未收货评价不了
+     */
+    private  Integer evaluatea;
 }
