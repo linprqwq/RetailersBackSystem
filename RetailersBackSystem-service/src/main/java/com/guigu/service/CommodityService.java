@@ -3,6 +3,7 @@ package com.guigu.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guigu.pojo.Commodity;
+import com.guigu.pojo.PageVo;
 
 import java.util.List;
 
@@ -21,4 +22,6 @@ public interface CommodityService extends IService<Commodity> {
     List<Commodity> QueryAllCommodityHS();
 
     List<Commodity> QueryAllCommodityRL();
+
+    Page<Commodity> QueryAllcommoditybycond(Commodity commodity, Integer pageno, Integer pagesize);
 }

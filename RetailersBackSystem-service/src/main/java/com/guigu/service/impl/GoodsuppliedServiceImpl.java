@@ -92,9 +92,9 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
 
         //条件查询
         //审核状态
-            if(goodsupplied.getIsCheck()!=null){
-                    queryWrapper.eq("is_check",goodsupplied.getIsCheck());
-            }
+        if(goodsupplied.getIsCheck()!=null){
+            queryWrapper.eq("is_check",goodsupplied.getIsCheck());
+        }
         //删除状态
         if(goodsupplied.getIsDelete()!=null){
                     queryWrapper.eq("is_delete",goodsupplied.getIsDelete());
@@ -189,5 +189,15 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
             }
         }
         return map;
+    }
+
+    @Override
+    public List<Goodsupplied> queryAllGoodSupplied() {
+        List<Goodsupplied> list = this.list();
+        for (Goodsupplied goodsupplied : list) {
+            //设置用户
+            goodsupplied.setUserinfo(userinfoMapper.selectById(goodsupplied.getPId()));
+        }
+        return list;
     }
 }

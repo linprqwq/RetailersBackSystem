@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guigu.pojo.Commodity;
 import com.guigu.pojo.MenuRole;
+import com.guigu.pojo.PageVo;
 import com.guigu.service.CommodityService;
+import com.guigu.service.ShopTypeInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,8 @@ public class CommodityController {
 
     @Autowired
     CommodityService commodityService;
+    @Autowired
+    ShopTypeInfoService shopTypeInfoService;
 
 
     //分页查询
@@ -46,6 +50,9 @@ public class CommodityController {
         List<Commodity> list1=new ArrayList<Commodity>();
         queryWrapper.in("id",ids);
         list1 = commodityService.list(queryWrapper);
+        for (Commodity commodity : list1) {
+            commodity.setShopTypeInfo(shopTypeInfoService.getById(commodity.getShopType()));
+        }
         return list1;
     }
 
@@ -60,9 +67,9 @@ public class CommodityController {
     @CrossOrigin
     //查询所有
     public Page<Commodity> QueryAllCommoditybycond(Commodity commodity,
-                                                   @RequestParam(value = "pageno", defaultValue = "1") Integer pageno,
-                                                   @RequestParam(value = "pagesize", defaultValue = "5") Integer pagesize){
-        return commodityService.page(new Page<Commodity>(pageno,pagesize));
+                                                     @RequestParam(value = "pageno", defaultValue = "1") Integer pageno,
+                                                     @RequestParam(value = "pagesize", defaultValue = "5") Integer pagesize){
+        return commodityService.QueryAllcommoditybycond(commodity,pageno,pagesize);
     }
 
 

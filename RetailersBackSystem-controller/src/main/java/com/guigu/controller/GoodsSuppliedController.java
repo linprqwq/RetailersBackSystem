@@ -38,8 +38,12 @@ public class GoodsSuppliedController {
 
         return goodsuppliedService.queryAllSupplier(goodsupplied,pageno,pagesize);
     }
+    //获取供应商维护表
+    @GetMapping("queryAllGoodSupplied.action")
+    public List<Goodsupplied>  queryAllGoodSupplied(){
 
-
+        return goodsuppliedService.queryAllGoodSupplied();
+    }
 
     //提供商品添加商品到供应商商品表
     @PutMapping("addsupplierSupplyOfGoods.action")
@@ -58,7 +62,6 @@ public class GoodsSuppliedController {
             System.out.println("用户id"+id);
             return  goodsuppliedService.selelctcomodity(commodity,id);
         }
-
 
     //查询用户表里面的数据
     @GetMapping("/queryallSupplier.action")
