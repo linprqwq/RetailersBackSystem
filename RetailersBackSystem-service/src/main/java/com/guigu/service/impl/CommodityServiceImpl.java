@@ -17,8 +17,14 @@ import com.guigu.service.ShopTypeInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -32,6 +38,45 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     ShopTypeInfoMapper shopTypeInfoMapper;
     @Autowired
     ShopTypeInfoService shopTypeInfoService;
+
+
+    //去添加商品
+    @Override
+    public Map addsp(Commodity commodity, MultipartFile imgs, String appth) {
+
+        Map map=new HashMap();
+        map.put("code",0);
+        map.put("msg","添加失败");
+        //去设置默认值
+        commodity.setQuantity(0);
+        commodity.setCreatetime(new Date());
+        commodity.setIsDelete(0);
+        //添加图片
+        if(imgs!=null && imgs.getSize()>0){
+            File file=new File(appth);
+            if(!file.exists()){
+                    //不存在就去创建
+                file.mkdirs();
+            }
+        }
+        //去获取文件名称
+        String fileName = imgs.getOriginalFilename();
+        //去保存文件到路径
+        try {
+            imgs.transferTo(new File(appth, fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+            //去将路径设置到对象
+        commodity.setProzimg("/image/" + fileName);
+
+        boolean b=this.save(commodity);
+        map.put("code", 1);
+        map.put("msg", "添加成功");
+
+        return map;
+    }
+
     @Override
     //查询商品id
     public Commodity querycommodityid( Integer id) {

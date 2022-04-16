@@ -21,5 +21,5 @@ public interface OrdderdetailsService extends IService<Ordderdetails> {
 
     Ordderdetails queryordd(Ordderdetails ordderdetails);
 
-    Map<String,String> addgoods(Commthinfo commthinfo);
+    Map<String,String> orderthuo(Commthinfo commthinfo);
 }

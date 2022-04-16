@@ -123,9 +123,13 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
     //提交订单
     @Override
     public Map<String, String> usertijiaodd(int[] list,Orderinfo orderinfo) {
+        for (int i : list) {
+            System.out.println(i);
+        }
+        System.out.println("______________________________________________分割线");
         Map<String,String> map = new HashMap<>();
         Userinfo userinfo = userinfoMapper.selectById(orderinfo.getUid());
-
+        Double a = (userinfo.getUmoney()-(userinfo.getUmoney()-orderinfo.getZprice()));
         userinfo.getUmoney();
         if (userinfo.getUmoney()>=orderinfo.getZprice()){
 
@@ -138,10 +142,12 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
             //状态 2消费
             customerbalancelog.setSource(2);
             //消费金额
-            customerbalancelog.setAmount(userinfo.getUmoney()-orderinfo.getZprice());
+            customerbalancelog.setAmount(a);
             //用户余额变动表添加
             customerbalancelogMapper.insert(customerbalancelog);
             //用户余额变动
+
+
             userinfo.setUmoney(userinfo.getUmoney()-orderinfo.getZprice());
 
             userinfoMapper.updateById(userinfo);
@@ -152,12 +158,13 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
             //支付时间
             orderinfo.setPaymenttime(new Date());
             //实付金额
-            orderinfo.setPayment(userinfo.getUmoney()-orderinfo.getZprice());
+            orderinfo.setPayment(a);
         }else{
             map.put("code","0");
             map.put("msg","余额不足,请充值");
             //未付款
             orderinfo.setStatus(2);
+
         }
 
         System.out.println(orderinfo);
@@ -203,8 +210,8 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
             //退款状态
             ordderdetails.setRefund(0);
 
-          int a =   ordderdetailsMapper.insert(ordderdetails);
-          if (a>=1){
+          int c =   ordderdetailsMapper.insert(ordderdetails);
+          if (c>=1){
               //删除购物车表里购买的商品
               boolean b = cartMapper.scbyid(i,orderinfo.getUid());
           }

@@ -3,6 +3,8 @@ package com.guigu.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guigu.pojo.Reviews;
 
+import java.util.Map;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,5 @@ import com.guigu.pojo.Reviews;
  */
 public interface ReviewsService extends IService<Reviews> {
 
+    Map<String, String> orderpj(Reviews reviews);
 }

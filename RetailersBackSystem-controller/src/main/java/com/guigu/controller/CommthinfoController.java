@@ -1,16 +1,20 @@
 package com.guigu.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.guigu.pojo.Commodity;
+import com.guigu.pojo.Commthinfo;
+import com.guigu.pojo.Orderinfo;
+import com.guigu.service.CommodityService;
+import com.guigu.service.CommthinfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.guigu.pojo.Commthinfo;
 import com.guigu.pojo.Ordderdetails;
 import com.guigu.pojo.Userinfo;
 import com.guigu.service.OrdderdetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,9 +35,18 @@ import java.util.Map;
  */
 @RestController
 public class CommthinfoController {
-
+    @Autowired
+    CommthinfoService commthinfoService;
     @Autowired
     OrdderdetailsService ordderdetailsService;
+    @PostMapping("queryreturnstop.action")
+    @CrossOrigin
+    //查询商户退货
+    public Page<Commthinfo> queryreturnstop(Commthinfo commthinfo, @RequestParam(value = "pageno", defaultValue = "1") int pageno,
+                                           @RequestParam(value = "pagesize", defaultValue = "5") int pagesize){
+        return commthinfoService.queryreturnstop(commthinfo, pageno, pagesize);
+    }
+
 
     @PostMapping("queryordd.action")
     @CrossOrigin
@@ -49,7 +62,7 @@ public class CommthinfoController {
      * @return
      * @throws IOException
      */
-    @RequestMapping("addgoods.action")
+    @RequestMapping("orderthuo.action")
     @CrossOrigin
     public Map<String,String> RegisterUser(Commthinfo commthinfo , MultipartFile[] file, HttpServletRequest request) throws IOException {
         List<String> list = new ArrayList<>();
@@ -81,7 +94,7 @@ public class CommthinfoController {
         System.out.println(commthinfo);
 
 
-        return ordderdetailsService.addgoods(commthinfo);
+        return ordderdetailsService.orderthuo(commthinfo);
     }
 
 

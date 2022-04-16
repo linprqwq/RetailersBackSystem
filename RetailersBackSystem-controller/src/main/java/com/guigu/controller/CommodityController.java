@@ -10,9 +10,12 @@ import com.guigu.service.CommodityService;
 import com.guigu.service.ShopTypeInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class CommodityController {
@@ -21,6 +24,19 @@ public class CommodityController {
     CommodityService commodityService;
     @Autowired
     ShopTypeInfoService shopTypeInfoService;
+
+
+    //添加商品
+    @PostMapping("addsp.action")
+    @CrossOrigin
+    public  Map add(Commodity commodity,
+                    MultipartFile image,
+                    HttpServletRequest request){
+
+        return  commodityService.addsp(commodity,image,request.getServletContext().getRealPath("/image/"));
+    }
+
+
 
 
     //分页查询
@@ -41,6 +57,8 @@ public class CommodityController {
         System.out.println(id);
         return commodityService.querycommodityid(id);
     }
+
+
     @GetMapping("queryCommids.action")
     @CrossOrigin
     //查询商品id

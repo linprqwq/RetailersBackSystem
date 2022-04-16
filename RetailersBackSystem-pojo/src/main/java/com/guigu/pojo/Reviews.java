@@ -1,5 +1,7 @@
 package com.guigu.pojo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,7 @@ public class Reviews {
     /**
      * id
      */
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
@@ -74,5 +77,11 @@ public class Reviews {
      */
     private Integer cid;
 
+
+    /**
+     * 商品详情id
+     */
+
+    private Integer orddid;
 
 }

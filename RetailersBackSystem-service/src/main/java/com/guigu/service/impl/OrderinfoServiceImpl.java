@@ -199,7 +199,10 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
 
             //更改订单表状态
             orderinfo1.setStatus(3);
+            orderinfo1.setPayment(orderinfo1.getZprice());
+            orderinfo1.setPaymenttime(new Date());
             int i = orderMapper.updateById(orderinfo1);
+
             if (i>=1){
                 map.put("code","1");
                 map.put("msg","支付成功");

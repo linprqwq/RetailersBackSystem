@@ -18,7 +18,7 @@ public interface UserinfoService extends IService<Userinfo> {
 
 
     //去修改供应商信息
-    Map  updatesupplier(Integer id, String username, Integer [] ids, MultipartFile img,String  apppath);
+    Map  updatesupplier(Integer id, String username, Integer [] ids, MultipartFile img,String  appth);
 
 
     //用户登录
