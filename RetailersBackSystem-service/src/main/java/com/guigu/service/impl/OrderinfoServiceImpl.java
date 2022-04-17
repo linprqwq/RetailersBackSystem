@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -115,7 +116,7 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
         }
         return map;
     }
-
+        //确认收货
     @Override
     public Map<String, String> cofirmorder(Orderinfo orderinfo) {
         Map map =new HashMap();
@@ -123,6 +124,16 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
         map.put("msg","失败");
         orderinfo.setStatus(5);
         orderinfo.setColsetime(new Date());
+        //更改详情表评价状态
+        QueryWrapper q = new QueryWrapper();
+        q.eq("orderid",orderinfo.getOrderid());
+        List<Ordderdetails> ordderdetails = ordderdetailsMapper.selectList(q);
+        for (Ordderdetails ordderdetail : ordderdetails) {
+            ordderdetail.setEvaluatea(2);
+            ordderdetailsMapper.updateById(ordderdetail);
+        }
+
+
        int a= orderMapper.updateById(orderinfo);
        if (a>=1){
            map.put("code","1");

@@ -4,12 +4,16 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.guigu.mapper.CommthinfoMapper;
 import com.guigu.mapper.OrdderdetailsMapper;
+import com.guigu.mapper.OrderinfoMapper;
 import com.guigu.pojo.Commthinfo;
 import com.guigu.pojo.Ordderdetails;
+import com.guigu.pojo.Orderinfo;
 import com.guigu.service.OrdderdetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +34,9 @@ public class OrdderdetailsServiceImpl extends ServiceImpl<OrdderdetailsMapper, O
     @Autowired
     CommthinfoMapper commthinfoMapper;
 
+    @Autowired
+    OrderinfoMapper orderinfoMapper;
+
     @Override
     public List<Ordderdetails> queryshorderdetails(Ordderdetails ordderdetails) {
         QueryWrapper<Ordderdetails> queryWrapper=new QueryWrapper<Ordderdetails>();
@@ -48,13 +55,17 @@ public class OrdderdetailsServiceImpl extends ServiceImpl<OrdderdetailsMapper, O
     }
 
     @Override
-    public Map<String,String> orderthuo(Commthinfo commthinfo) {
+    public Map<String,String> orderthuo(Commthinfo commthinfo ,Orderinfo orderinfo) {
         Map<String,String> map = new HashMap<>();
         map.put("code","0");
         map.put("msg","失败");
 
+
         Ordderdetails ordderdetails = ordderdetailsMapper.selectById(commthinfo.getOrddid());
+        //待退款状态
         ordderdetails.setRefund(2);
+        //评价
+        ordderdetails.setEvaluatea(3);
         ordderdetailsMapper.updateById(ordderdetails);
 
         int insert = commthinfoMapper.insert(commthinfo);
