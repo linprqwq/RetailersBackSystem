@@ -31,7 +31,7 @@ public class ShopTypeInfoController {
     //添加分类
     @PostMapping("addsptype.acction")
     public Map addsptype(@RequestBody ShopTypeInfo shopTypeInfo){
-
+        System.out.println(shopTypeInfo);
         return  shopTypeInfoService.addsp(shopTypeInfo);
     }
 

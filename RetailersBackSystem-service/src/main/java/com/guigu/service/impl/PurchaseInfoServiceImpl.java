@@ -25,7 +25,7 @@ public class PurchaseInfoServiceImpl extends ServiceImpl<PurchaseInfoMapper, Pur
 
     @Override
     public Map addPurchaseInfo(List<PurchaseInfo> purchaseList) {
-        Map map = new HashMap();
+       /* Map map = new HashMap();
         map.put("code", 0);
         map.put("msg", "创建失败");
         for (PurchaseInfo purchaseInfo : purchaseList) {
@@ -67,7 +67,7 @@ public class PurchaseInfoServiceImpl extends ServiceImpl<PurchaseInfoMapper, Pur
                 map.put("code",1);
                 map.put("msg","创建订单成功");
             }
-        }
-        return map;
+        }*/
+        return null;
     }
 }
