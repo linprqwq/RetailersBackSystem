@@ -3,7 +3,10 @@ package com.guigu.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guigu.pojo.Commthinfo;
 import com.guigu.pojo.Ordderdetails;
+import com.guigu.pojo.Orderinfo;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -21,5 +24,5 @@ public interface OrdderdetailsService extends IService<Ordderdetails> {
 
     Ordderdetails queryordd(Ordderdetails ordderdetails);
 
-    Map<String,String> orderthuo(Commthinfo commthinfo);
+    Map<String,String> orderthuo(Commthinfo commthinfo, Orderinfo orderinfo);
 }
