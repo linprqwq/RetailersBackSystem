@@ -6,9 +6,7 @@ import com.guigu.pojo.Orderinfo;
 import com.guigu.pojo.Userinfo;
 import com.guigu.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -65,6 +63,19 @@ public class CartController {
         }
         System.out.println(cart);
         return cartService.addgwc(arr,cart);
+    }
+
+    //批量删除
+    @RequestMapping("cartplscid.action")
+    @CrossOrigin
+    public Map<String,String> cartplscid(int [] list){
+        return cartService.cartplscid(list);
+    }
+
+    @RequestMapping("ljgmaddgwc.action")
+    @CrossOrigin
+    public Cart ljgmaddgwc(Cart c){
+        return cartService.ljgmaddgwc(c);
     }
 
 

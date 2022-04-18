@@ -13,6 +13,6 @@
     </select>
 
     <insert id="RegisterUser" parameterType="Userinfo">
-        INSERT INTO userinfo VALUE(NULL,#{username},#{loginname},#{password},#{phone},DEFAULT,NULL,#{imgpath},1,0,NULL,NULL,NULL,NULL)
+        INSERT INTO userinfo VALUE(NULL,#{username},#{loginname},#{password},#{phone},DEFAULT,NULL,#{imgpath},1,0,NULL,NULL,NULL,NULL,null)
     </insert>
 </mapper>

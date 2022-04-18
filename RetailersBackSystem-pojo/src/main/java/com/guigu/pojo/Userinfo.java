@@ -90,6 +90,11 @@ public class Userinfo {
 
     private String businessImg;//营业执照
 
+    /**
+     * 商户地址图片
+     */
+    private String shimag;
+
 
     @TableField(exist = false)
     private List<Cart> carts;
