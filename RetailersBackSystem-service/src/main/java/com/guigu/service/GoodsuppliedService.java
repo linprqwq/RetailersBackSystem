@@ -31,4 +31,8 @@ public interface GoodsuppliedService extends IService<Goodsupplied> {
 
     //去查询当前供应商提供的商品
    List<Goodsupplied> queryallgoodsupp();
+
+    Map checkGoodsupplied(Goodsupplied goodsupplied);
+
+    List<Goodsupplied> queryAllGoodSupplied();
 }

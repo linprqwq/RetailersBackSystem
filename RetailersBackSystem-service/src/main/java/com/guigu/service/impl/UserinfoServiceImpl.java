@@ -35,6 +35,58 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
     @Autowired
     CustomerbalancelogMapper customerbalancelogMapper;
 
+
+    //去修改供应商的信息()
+    @Override
+    public Map updatesupplier(Integer id, String username, Integer [] ids, MultipartFile img,
+                              String  apppath) {
+        Map map=new HashMap();
+        //去根据id,查询用户对象，补全属性
+            Userinfo userinfo=userinfoMapper.selectById(id);
+            userinfo.setUsername(username);
+        //去判断是否上传了图片
+        if (img.getSize() > 0) {
+            //上传图片
+            //  String apppath = ;
+            File file = new File(apppath);
+            if (!file.exists()) {
+                //不存在就去创建
+                file.mkdirs();
+            }
+            //去获取文件名称
+            String fileName = img.getOriginalFilename();
+            //去保存文件到路径
+            try {
+                img.transferTo(new File(apppath, fileName));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //去将路径设置到对象
+            userinfo.setImgpath("/img/" + fileName);
+        }
+
+        //进行修改
+        userinfoMapper.updateById(userinfo);
+
+        //根据用户id，删除该供应商下的所有可提供的商品分类数据
+        QueryWrapper<SupplierGoodsCategory> queryWrapper=new QueryWrapper();
+        queryWrapper.eq("p_id", id);
+        supplierGoodsCategoryMapper.delete(queryWrapper);
+        //循环添加供应商提供的分类表数据
+        for(Integer i : ids){
+            SupplierGoodsCategory temp_obj=new SupplierGoodsCategory();
+            temp_obj.setPId(id);
+            temp_obj.setSortId(i);
+            supplierGoodsCategoryMapper.insert(temp_obj);
+        }
+        map.put("msg","修改成功！");
+        map.put("x",true);
+        return map;
+
+    }
+
+
     @Override
     //用户登录
     public Userinfo userlogin(Userinfo userinfo) {
@@ -42,7 +94,6 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         if(userinfo1==null){
             return null;
         }
-        System.out.println(userinfo1+"/*/*/*/**/*//*/*//*/*/*/");
         return userinfo1;
     }
 

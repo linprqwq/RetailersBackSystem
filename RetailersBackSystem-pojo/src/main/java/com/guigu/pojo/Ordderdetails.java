@@ -87,4 +87,14 @@ public class Ordderdetails {
      * 退款 0.未进行退款 2.待退款 3.退款完成
      */
     private Integer refund;
+
+    /**
+     * 状态
+     */
+    private Integer state;
+
+    /**
+     * 评价: 1.已评价 2.待评价 3.未收货评价不了
+     */
+    private  Integer evaluatea;
 }

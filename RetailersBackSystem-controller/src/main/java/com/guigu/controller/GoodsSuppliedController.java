@@ -30,15 +30,19 @@ public class GoodsSuppliedController {
     @Autowired
     GoodsuppliedService goodsuppliedService;
 
-
-
-    //供应商商品表的分页查询
+    //供应商商品供应表的分页查询
     @GetMapping("queryALlPage.action")
     public Page<Goodsupplied>  queryALlPage(Goodsupplied goodsupplied,
                                         @RequestParam(value="pageno",defaultValue ="1")Integer pageno,
                                         @RequestParam(value ="pagesize",defaultValue ="5")Integer pagesize ){
 
         return goodsuppliedService.queryAllSupplier(goodsupplied,pageno,pagesize);
+    }
+    //获取供应商维护表
+    @GetMapping("queryAllGoodSupplied.action")
+    public List<Goodsupplied>  queryAllGoodSupplied(){
+
+        return goodsuppliedService.queryAllGoodSupplied();
     }
 
     //提供商品添加商品到供应商商品表
@@ -59,13 +63,16 @@ public class GoodsSuppliedController {
             return  goodsuppliedService.selelctcomodity(commodity,id);
         }
 
-
     //查询用户表里面的数据
     @GetMapping("/queryallSupplier.action")
     public List<Goodsupplied> queryallsupplied(){
         return goodsuppliedService.queryallgoodsupp();
     }
-
+    //审核供应商维护商品
+    @PostMapping("checkGoodsupplied.action")
+    public Map checkGoodsupplied(@RequestBody Goodsupplied goodsupplied){
+        return  goodsuppliedService.checkGoodsupplied(goodsupplied);
+    }
 
 }
 

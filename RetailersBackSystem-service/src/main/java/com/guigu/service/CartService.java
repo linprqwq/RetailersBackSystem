@@ -19,7 +19,8 @@ public interface CartService extends IService<Cart> {
     //提交订单查询商品信息
     List<Cart> queryusergwc(int[] list, Cart cart);
     //提交订单
-    Map<String, String> usertijiaodd(int[] list, Cart cart);
+    Map<String, String> usertijiaodd(int[] list, Orderinfo orderinfo);
 
+    //添加购物车
     Map<String, String> addgwc(int[] arr, Cart cart);
 }

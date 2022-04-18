@@ -3,6 +3,9 @@ package com.guigu.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guigu.pojo.PurchaseInfo;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +16,5 @@ import com.guigu.pojo.PurchaseInfo;
  */
 public interface PurchaseInfoService extends IService<PurchaseInfo> {
 
+    Map addPurchaseInfo(List<PurchaseInfo> purchaseList);
 }

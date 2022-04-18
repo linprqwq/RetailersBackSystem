@@ -3,17 +3,22 @@ package com.guigu.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.guigu.mapper.CustomerbalancelogMapper;
 import com.guigu.mapper.OrdderdetailsMapper;
 import com.guigu.mapper.OrderinfoMapper;
+import com.guigu.mapper.UserinfoMapper;
+import com.guigu.pojo.Customerbalancelog;
 import com.guigu.pojo.Ordderdetails;
 import com.guigu.pojo.Orderinfo;
 
+import com.guigu.pojo.Userinfo;
 import com.guigu.service.OrderinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -33,6 +38,10 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
 
     @Autowired
     OrdderdetailsMapper ordderdetailsMapper;
+    @Autowired
+    UserinfoMapper userinfoMapper;
+    @Autowired
+    CustomerbalancelogMapper customerbalancelogMapper;
 
 
     //订单表查询
@@ -107,7 +116,7 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
         }
         return map;
     }
-
+        //确认收货
     @Override
     public Map<String, String> cofirmorder(Orderinfo orderinfo) {
         Map map =new HashMap();
@@ -115,11 +124,101 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
         map.put("msg","失败");
         orderinfo.setStatus(5);
         orderinfo.setColsetime(new Date());
+        //更改详情表评价状态
+        QueryWrapper q = new QueryWrapper();
+        q.eq("orderid",orderinfo.getOrderid());
+        List<Ordderdetails> ordderdetails = ordderdetailsMapper.selectList(q);
+        for (Ordderdetails ordderdetail : ordderdetails) {
+            ordderdetail.setEvaluatea(2);
+            ordderdetailsMapper.updateById(ordderdetail);
+        }
+
+
        int a= orderMapper.updateById(orderinfo);
        if (a>=1){
            map.put("code","1");
            map.put("msg","确认成功");
        }
+        return map;
+    }
+
+    //取消订单
+    @Override
+    public Map<String, String> qxddorder(Orderinfo orderinfo,boolean boolea) {
+        Map map =new HashMap();
+        map.put("code","0");
+        map.put("msg","取消失败");
+        if (boolea){
+            int i = orderMapper.updateById(orderinfo);
+            if (i>=1){
+                map.put("code","1");
+                map.put("msg","取消成功");
+            }
+        }else{
+            //查询当前订单
+            Orderinfo orderinfo1 = orderMapper.selectById(orderinfo.getOrderid());
+            //查询当前订单用户
+            Userinfo userinfo = userinfoMapper.selectById(orderinfo1.getUid());
+            //用户余额添加
+            userinfo.setUmoney(userinfo.getUmoney()+orderinfo1.getZprice());
+            //用户表修改
+            userinfoMapper.updateById(userinfo);
+            //用户余额变动
+            Customerbalancelog customerbalancelog  =new Customerbalancelog();
+            customerbalancelog.setUid(userinfo.getId());
+            customerbalancelog.setCtime(new Date());
+            customerbalancelog.setAmount(orderinfo1.getZprice());
+            customerbalancelog.setSource(4);
+            customerbalancelogMapper.insert(customerbalancelog);
+            map.put("code","1");
+            map.put("msg","取消成功");
+        }
+        return map;
+    }
+
+    //付款
+    @Override
+    public Map<String, String> fkorder(Orderinfo orderinfo) {
+        Map map =new HashMap();
+        map.put("code","0");
+        map.put("msg","当前余额不足,请充值");
+        //查询当前订单用户余额
+        Userinfo userinfo = userinfoMapper.selectById(orderinfo.getUid());
+        //查询当前订单总价格
+        Orderinfo orderinfo1 = orderMapper.selectById(orderinfo.getOrderid());
+
+        //判断用户余额大于订单总价格
+        if (userinfo.getUmoney()>orderinfo1.getZprice()){
+
+            //用户余额更改
+            userinfo.setUmoney(userinfo.getUmoney()-orderinfo1.getZprice());
+            //用户余额变动表添数据
+            Customerbalancelog customerbalancelog = new Customerbalancelog();
+            //记录生成时间
+            customerbalancelog.setCtime(new Date());
+            //用户id
+            customerbalancelog.setUid(orderinfo.getUid());
+            //状态
+            customerbalancelog.setSource(2);
+            //消费金额
+            customerbalancelog.setAmount(orderinfo1.getZprice());
+            //用户余额变动表新增
+            customerbalancelogMapper.insert(customerbalancelog);
+
+            //修改用户表
+            userinfoMapper.updateById(userinfo);
+
+            //更改订单表状态
+            orderinfo1.setStatus(3);
+            orderinfo1.setPayment(orderinfo1.getZprice());
+            orderinfo1.setPaymenttime(new Date());
+            int i = orderMapper.updateById(orderinfo1);
+
+            if (i>=1){
+                map.put("code","1");
+                map.put("msg","支付成功");
+            }
+        }
         return map;
     }
 

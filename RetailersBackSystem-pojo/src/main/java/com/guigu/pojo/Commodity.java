@@ -2,7 +2,9 @@ package com.guigu.pojo;
 
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -59,12 +61,17 @@ public class Commodity {
     /**
      * 商品库存数量
      */
-    private Double quantity;
+    private Integer quantity;
 
     /**
      * 商品状态 1.在售 2.下架
      */
     private Integer status;
+
+    /**
+     *
+     */
+    private Integer isDelete;//是否删除
 
     /**
      * 创建时间
@@ -77,5 +84,18 @@ public class Commodity {
      */
     @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
     private Date updatetime;
+
+    @TableField(exist = false)
+    private Integer num=1;
+
+    @TableField(exist = false)
+    private SupplierGoodsCategory supplierGoodsCategory;//商品类型对象
+    public Commodity(Integer id){
+        this.id=this.id;
+    }
+
+    //商品类型
+   @TableField(exist = false)
+    private  ShopTypeInfo shopTypeInfo;
 
 }
