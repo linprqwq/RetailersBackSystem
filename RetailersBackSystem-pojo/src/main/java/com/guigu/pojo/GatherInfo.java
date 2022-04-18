@@ -3,8 +3,11 @@ package com.guigu.pojo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -19,11 +22,10 @@ import java.time.LocalDateTime;
  * @since 2022-04-18
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class GatherInfo implements Serializable {
 
-    private static final long serialVersionUID=1L;
 
     @TableId(value = "Id", type = IdType.AUTO)
     private Integer Id;
@@ -31,7 +33,8 @@ public class GatherInfo implements Serializable {
     /**
      * 查询号 存放采购单号或退货单号
      */
-    private String tracking Number;
+    private String   trackingNumber;
+
 
     /**
      * 0 采购入库 1 退货入库
@@ -43,6 +46,7 @@ public class GatherInfo implements Serializable {
      * 入库时间
      */
     @TableField("Gtime")
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime Gtime;
 
     /**

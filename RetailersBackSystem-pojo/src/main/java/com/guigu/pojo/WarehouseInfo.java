@@ -2,8 +2,11 @@ package com.guigu.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -17,11 +20,9 @@ import java.io.Serializable;
  * @since 2022-04-18
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class WarehouseInfo implements Serializable {
-
-    private static final long serialVersionUID=1L;
 
     @TableId(value = "Id", type = IdType.AUTO)
     private Integer Id;
@@ -29,6 +30,7 @@ public class WarehouseInfo implements Serializable {
     /**
      * 添加仓库时，需检查仓库名是否有重复，页面要做验证
      */
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
     private String warName;
 
     /**
