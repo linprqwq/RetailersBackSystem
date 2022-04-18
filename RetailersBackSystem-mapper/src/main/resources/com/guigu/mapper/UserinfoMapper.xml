@@ -31,4 +31,5 @@
     <select id="CartCount" parameterType="Integer" resultType="Integer">
         SELECT COUNT(*) FROM cart c INNER JOIN userinfo u ON c.uid=u.id WHERE u.id=#{id}
     </select>
+
 </mapper>

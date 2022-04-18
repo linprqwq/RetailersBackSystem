@@ -261,4 +261,10 @@ public class UserinfoController {
             userinfo.setShState(0);
         return userinfoService.zcsh(userinfo);
     }
+
+    @RequestMapping("addshaddress.action")
+    @CrossOrigin
+    public int addshaddress(Userinfo userinfo){
+        return userinfoService.addshaddress(userinfo);
+    }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace设置为  接口的：成包名+接口名字 -->
+<mapper namespace="com.guigu.mapper.ProvincesMapper">
+        <select id="queryAllSheng" resultType="Provinces" parameterType="map">
+            SELECT * FROM provinces WHERE pid=0;
+        </select>
+
+        <select id="queryChinaByShi" resultType="Provinces" parameterType="map">
+            SELECT * FROM provinces WHERE Pid=(SELECT id FROM provinces WHERE id=#{id})
+        </select>
+
+        <select id="queryChinaByQu" resultType="Provinces" parameterType="map">
+            SELECT * FROM provinces WHERE Pid=(SELECT id FROM provinces WHERE id=#{id})
+        </select>
+</mapper>

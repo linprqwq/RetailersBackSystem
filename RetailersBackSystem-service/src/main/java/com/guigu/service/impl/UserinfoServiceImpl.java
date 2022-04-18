@@ -1,6 +1,7 @@
 package com.guigu.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.guigu.mapper.CustomerbalancelogMapper;
@@ -380,5 +381,19 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         }
         return map;
 
+    }
+
+    @Override
+    public int addshaddress(Userinfo userinfo) {
+        int i=0;
+        UpdateWrapper updateWrapper = new UpdateWrapper();
+        updateWrapper.eq("id",userinfo.getId());
+        updateWrapper.set("shaddress",userinfo.getShaddress());
+        baseMapper.update(userinfo,updateWrapper);
+        if(updateWrapper!=null){
+            i=1;
+            return i;
+        }
+        return i;
     }
 }

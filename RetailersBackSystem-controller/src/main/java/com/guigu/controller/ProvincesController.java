@@ -15,22 +15,25 @@ import java.util.List;
 public class ProvincesController {
     @Autowired
     ProvincesService provincesService;
-    @RequestMapping("queryAllChina.action")
-    @CrossOrigin
-    public List<Provinces> queryAllChina(Provinces provinces){
 
-        return provincesService.queryAllChina(provinces);
+
+
+    @RequestMapping("queryAllSheng.action")
+    @CrossOrigin
+    public List<Provinces> queryAllSheng(Provinces provinces){
+        return provincesService.queryAllSheng(provinces);
     }
-    @RequestMapping("queryChinaByPid.action")
-    @CrossOrigin
-    public List<Provinces> queryChinaByPid(Provinces provinces){
 
-        return provincesService.queryChinaByPid(provinces);
+
+    @RequestMapping("queryChinaByShi.action")
+    @CrossOrigin
+    public List<Provinces> queryChinaByShi(String id){
+        return provincesService.queryChinaByShi(id);
     }
-    @RequestMapping("queryChinaByshi.action")
-    @CrossOrigin
-    public List<Provinces> queryChinaByshi(Provinces provinces){
 
-        return provincesService.queryChinaByshi(provinces);
+    @RequestMapping("queryChinaByQu.action")
+    @CrossOrigin
+    public List<Provinces> queryChinaByQu(String id){
+        return provincesService.queryChinaByQu(id);
     }
 }
