@@ -13,7 +13,7 @@ import org.apache.ibatis.annotations.Param;
  * @since 2022-03-28
  */
 public interface SysEmployeesMapper extends BaseMapper<SysEmployees> {
-    public int addSysemployees(SysEmployees sysEmployees);
+    public int addSysemployeesandroleinfoce(SysEmployees sysEmployees);
     public int deleteemployees(@Param("sys") int id);
     public int updateemplouees(SysEmployees sysEmployees);
 
