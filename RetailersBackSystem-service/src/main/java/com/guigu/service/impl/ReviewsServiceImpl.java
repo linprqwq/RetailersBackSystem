@@ -1,8 +1,11 @@
 package com.guigu.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guigu.mapper.OrdderdetailsMapper;
 import com.guigu.mapper.ReviewsMapper;
+import com.guigu.pojo.Commodity;
 import com.guigu.pojo.Ordderdetails;
 import com.guigu.pojo.Reviews;
 import com.guigu.service.ReviewsService;
@@ -55,5 +58,14 @@ public class ReviewsServiceImpl extends ServiceImpl<ReviewsMapper, Reviews> impl
 
 
         return map;
+    }
+
+    @Override
+    public Page<Reviews> plallbyid(Reviews reviews,Integer pageno,Integer pagesize) {
+        QueryWrapper<Reviews> queryWrapper=new QueryWrapper<Reviews>();
+        queryWrapper.eq("cid",reviews.getCid());
+
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<Reviews> page=this.page(new com.baomidou.mybatisplus.extension.plugins.pagination.Page<Reviews>(pageno,pagesize),queryWrapper);
+        return  page;
     }
 }
