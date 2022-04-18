@@ -14,11 +14,10 @@ import com.guigu.pojo.Orderinfo;
 import com.guigu.pojo.Userinfo;
 import com.guigu.service.OrderinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -209,6 +208,19 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
             }
         }
         return map;
+    }
+
+    @Override
+    public List<String> getIds(String str) {
+//        List<String> list = new ArrayList<String>();
+//        QueryWrapper<Orderinfo> queryWrapper = new QueryWrapper<Orderinfo>();
+//        queryWrapper.likeRight("p_id", str);
+//        List<Orderinfo> tempList = this.list(queryWrapper);
+//        for (Orderinfo obj : tempList) {
+//            list.add(obj.getSid());
+//        }
+//        return list;
+        return null;
     }
 
 

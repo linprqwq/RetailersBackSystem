@@ -119,4 +119,9 @@ public class ShopTypeInfoServiceImpl extends ServiceImpl<ShopTypeInfoMapper, Sho
         return map;
     }
 
+    @Override
+    public List<String> getIds(String str) {
+        return null;
+    }
+
 }

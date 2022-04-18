@@ -44,7 +44,8 @@ public class Goodsupplied {
     @TableField(exist = false) //解决数据中字段未存在
     private  Userinfo userinfo;  //商户详情表
 
-
+    @TableField(exist = false)
+    private ShopInfo shop; //商品对象
     @TableField(exist = false)
     private   Commodity commodity; //商品详情表
 

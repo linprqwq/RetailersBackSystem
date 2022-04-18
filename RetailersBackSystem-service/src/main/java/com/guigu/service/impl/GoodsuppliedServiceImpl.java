@@ -11,6 +11,7 @@ import com.guigu.pojo.SupplierGoodsCategory;
 import com.guigu.pojo.Userinfo;
 import com.guigu.service.CommodityService;
 import com.guigu.service.GoodsuppliedService;
+import com.guigu.service.ShopInfoService;
 import com.sun.prism.impl.Disposer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,8 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
     @Autowired
     CommodityMapper commodityMapper;   //商品表
 
+    @Autowired
+    ShopInfoMapper shopInfoMapper;
     @Autowired
     GoodsuppliedMapper goodsuppliedMapper; // 供应商提供商品
 
@@ -199,5 +202,15 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
             goodsupplied.setUserinfo(userinfoMapper.selectById(goodsupplied.getPId()));
         }
         return list;
+    }
+
+    @Override
+    public Goodsupplied queryById(Integer shopId) {
+        System.out.println(shopId);
+        Goodsupplied supply = this.getById(shopId);
+        System.out.println(supply.getPId());
+        supply.setUserinfo(userinfoMapper.selectById(supply.getPId()));
+        supply.setCommodity(commodityMapper.selectById(supply.getGId()));
+        return supply;
     }
 }

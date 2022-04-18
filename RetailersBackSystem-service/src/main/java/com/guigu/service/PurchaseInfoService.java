@@ -1,5 +1,6 @@
 package com.guigu.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guigu.pojo.PurchaseInfo;
 
@@ -17,4 +18,10 @@ import java.util.Map;
 public interface PurchaseInfoService extends IService<PurchaseInfo> {
 
     Map addPurchaseInfo(List<PurchaseInfo> purchaseList);
+
+    List<String> getIds(String str);
+
+    Page<PurchaseInfo> queryAllPurchase(PurchaseInfo purchase, Integer pageno, Integer pagesize);
+
+    Map changeIsAudit(PurchaseInfo purchase);
 }

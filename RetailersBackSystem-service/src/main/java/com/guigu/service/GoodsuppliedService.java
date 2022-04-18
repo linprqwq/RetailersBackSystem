@@ -35,4 +35,6 @@ public interface GoodsuppliedService extends IService<Goodsupplied> {
     Map checkGoodsupplied(Goodsupplied goodsupplied);
 
     List<Goodsupplied> queryAllGoodSupplied();
+
+    Goodsupplied queryById(Integer shopId);
 }

@@ -30,4 +30,5 @@ public interface  ShopTypeInfoService  extends IService<ShopTypeInfo> {
     Map updatashop(ShopTypeInfo shopTypeInfo);
 
 
+    List<String> getIds(String str);
 }

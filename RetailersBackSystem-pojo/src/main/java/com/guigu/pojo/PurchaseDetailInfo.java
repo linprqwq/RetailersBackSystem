@@ -51,10 +51,15 @@ public class PurchaseDetailInfo implements Serializable {
     private Double totalPrice;
 
     /**
+     * 是否已设计
+     */
+    private Integer isDesign;
+    /**
      * 0:正常,1删除
      */
     @TableField("Is_delete")
     private Integer isDelete;
-
+    @TableField(exist = false)
+    private  Goodsupplied goodsupplied;
 
 }

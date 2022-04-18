@@ -1,5 +1,6 @@
 package com.guigu.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guigu.pojo.PurchaseDetailInfo;
 
@@ -13,4 +14,5 @@ import com.guigu.pojo.PurchaseDetailInfo;
  */
 public interface PurchaseDetailInfoService extends IService<PurchaseDetailInfo> {
 
+    Page<PurchaseDetailInfo> queryPurchaseDetails(PurchaseDetailInfo detail, Integer pageno, Integer pagesize);
 }

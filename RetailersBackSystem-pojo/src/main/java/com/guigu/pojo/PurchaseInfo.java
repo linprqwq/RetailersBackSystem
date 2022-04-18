@@ -3,6 +3,7 @@ package com.guigu.pojo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -10,6 +11,7 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 采购申请表
@@ -40,6 +42,7 @@ public class PurchaseInfo implements Serializable {
     /**
      * 采购时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date ptime;
 
     /**
@@ -67,6 +70,10 @@ public class PurchaseInfo implements Serializable {
      * 什么情况采购
      */
     private String premark;
+    /**
+     * 0未设计，1已设计
+     */
+    private Integer isDesign;
 
     /**
      * 0:正常,1:删除
@@ -74,5 +81,9 @@ public class PurchaseInfo implements Serializable {
     @TableField("Is_delete")
     private Integer isDelete;
 
+    @TableField(exist = false)
+    private List<PurchaseDetailInfo> purchaseDetailInfoList;
 
+    @TableField(exist = false)
+    private Userinfo userinfo;
 }
