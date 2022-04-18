@@ -61,7 +61,7 @@ public class ShopTypeInfoServiceImpl extends ServiceImpl<ShopTypeInfoMapper, Sho
         Map map=new HashMap();
         map.put("code","0");
         map.put("code","添加失败");
-        shopTypeInfo.setIsDelete(1);
+        shopTypeInfo.setIsDelete(0);
         boolean b=this.save(shopTypeInfo);
         if(b){
             map.put("code","1");
@@ -113,7 +113,7 @@ public class ShopTypeInfoServiceImpl extends ServiceImpl<ShopTypeInfoMapper, Sho
         map.put("msg","修改失败");
         boolean b=this.updateById(shopTypeInfo);
         if(b){
-            map.put("code","0");
+            map.put("code","1");
             map.put("msg","修改成功");
         }
         return map;

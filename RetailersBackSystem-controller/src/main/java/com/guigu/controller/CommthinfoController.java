@@ -64,7 +64,8 @@ public class CommthinfoController {
      */
     @RequestMapping("orderthuo.action")
     @CrossOrigin
-    public Map<String,String> RegisterUser(Commthinfo commthinfo , MultipartFile[] file, HttpServletRequest request) throws IOException {
+    public Map<String,String> RegisterUser(Commthinfo commthinfo , MultipartFile[] file, HttpServletRequest request,Orderinfo orderinfo) throws IOException {
+
         List<String> list = new ArrayList<>();
         for (int i = 0; i < file.length; i++) {
             String path = request.getServletContext().getRealPath("/img"); //路径名
@@ -74,13 +75,14 @@ public class CommthinfoController {
 
             list.add("img/"+name);
         }
-        if (commthinfo.getImg()==null){
-            commthinfo.setImg(list.get(0));
-        } if(commthinfo.getImg2()==null){
-            commthinfo.setImg2(list.get(1));
-        } if(commthinfo.getImg3()==null){
-            commthinfo.setImg3(list.get(2));
-        }
+    if (list.size()>1){
+        commthinfo.setImg(list.get(0));
+    } if(list.size()>2){
+        commthinfo.setImg2(list.get(1));
+    } if(list.size()>3){
+        commthinfo.setImg3(list.get(2));
+    }
+
         //等待审核
         commthinfo.setAudit(0);
         //等待商户确认
@@ -91,10 +93,10 @@ public class CommthinfoController {
         //商户id
         commthinfo.setSid(1);
         commthinfo.setThtime(new Date());
+
         System.out.println(commthinfo);
 
-
-        return ordderdetailsService.orderthuo(commthinfo);
+        return ordderdetailsService.orderthuo(commthinfo,orderinfo);
     }
 
 
