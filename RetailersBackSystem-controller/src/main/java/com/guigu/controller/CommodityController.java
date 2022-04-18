@@ -25,6 +25,30 @@ public class CommodityController {
     @Autowired
     ShopTypeInfoService shopTypeInfoService;
 
+    //删除商品 修改商品状态
+    @PutMapping("delid.action")
+    @CrossOrigin
+    public  Map delid(@RequestBody Commodity commodity){
+
+        return  commodityService.delid(commodity);
+    }
+
+    //上架或下架商品
+    @PutMapping("xgstatus.action")
+    @CrossOrigin
+    public Map xgstatus(@RequestBody Commodity commodity){
+
+        return  commodityService.xgstatus(commodity);
+    }
+
+    //编辑商品
+    @PostMapping("editcom.action")
+    @CrossOrigin
+    public Map editcom(Commodity commodity,MultipartFile image,
+                       HttpServletRequest request){
+
+        return  commodityService.editsp(commodity,image,request.getServletContext().getRealPath("/image/"));
+    }
 
     //添加商品
     @PostMapping("addsp.action")
@@ -35,7 +59,6 @@ public class CommodityController {
 
         return  commodityService.addsp(commodity,image,request.getServletContext().getRealPath("/image/"));
     }
-
 
 
 
@@ -50,10 +73,10 @@ public class CommodityController {
         return  commodityService.queryAllshop(commodity,pageno,pagesize);
     }
 
-    @RequestMapping("queryspid.action")
+    @GetMapping("queryspid.action/{id}")
     @CrossOrigin
     //查询商品id
-    public Commodity querycommodityid(Integer id){
+    public Commodity querycommodityid(@PathVariable Integer id){
         System.out.println(id);
         return commodityService.querycommodityid(id);
     }
