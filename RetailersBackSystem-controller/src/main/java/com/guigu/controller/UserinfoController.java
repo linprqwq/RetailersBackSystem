@@ -247,4 +247,18 @@ public class UserinfoController {
 
         return userinfoService.userinforecharge(userinfo);
     }
+    @RequestMapping("zcsh.action")
+    @CrossOrigin
+    public Map zcsh(Userinfo userinfo, MultipartFile[] file, HttpServletRequest request) throws IOException {
+        for (int i = 0; i < file.length; i++) {
+            String path = request.getServletContext().getRealPath("/img"); //路径名
+            String name = file[i].getOriginalFilename();  //文件名
+            File savefile = new File(path,name);
+            file[i].transferTo(savefile);
+            //组装商品图片实体类对象
+            userinfo.setShimag("image/"+name);
+        }
+            userinfo.setShState(0);
+        return userinfoService.zcsh(userinfo);
+    }
 }

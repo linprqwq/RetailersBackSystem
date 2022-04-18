@@ -61,4 +61,6 @@ public interface UserinfoService extends IService<Userinfo> {
     boolean registerUser(Userinfo userinfo);
 
     Map<String, String> userinforecharge(Userinfo userinfo);
+
+    Map zcsh(Userinfo userinfo);
 }
