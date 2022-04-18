@@ -73,10 +73,10 @@ public class CommodityController {
         return  commodityService.queryAllshop(commodity,pageno,pagesize);
     }
 
-    @GetMapping("queryspid.action/{id}")
+    @RequestMapping("queryspid.action")
     @CrossOrigin
     //查询商品id
-    public Commodity querycommodityid(@PathVariable Integer id){
+    public Commodity querycommodityid(Integer id){
         System.out.println(id);
         return commodityService.querycommodityid(id);
     }

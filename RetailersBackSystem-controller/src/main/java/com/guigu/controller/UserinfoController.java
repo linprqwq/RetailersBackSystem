@@ -267,4 +267,11 @@ public class UserinfoController {
     public int addshaddress(Userinfo userinfo){
         return userinfoService.addshaddress(userinfo);
     }
+
+
+    @RequestMapping("querylikesh.action")
+    @CrossOrigin
+    public List<Userinfo> QueryLikeSh(Userinfo userinfo){
+        return userinfoService.QueryLikeSh(userinfo);
+    }
 }

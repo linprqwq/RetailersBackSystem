@@ -33,4 +33,13 @@
         SELECT COUNT(*) FROM cart c INNER JOIN userinfo u ON c.uid=u.id WHERE u.id=#{id}
     </select>
 
+    <select id="QueryLikeSh" resultType="Userinfo">
+        SELECT  * FROM userinfo <include refid="wheresql"></include>
+    </select>
+
+    <sql id="wheresql">
+        <where>
+            <if test="shaddress!=null and shaddress!=''">AND shaddress LIKE CONCAT('%',#{shaddress},'%')</if>
+        </where>
+    </sql>
 </mapper>

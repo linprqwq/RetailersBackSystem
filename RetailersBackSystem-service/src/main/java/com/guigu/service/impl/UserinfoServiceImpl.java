@@ -384,6 +384,11 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
     }
 
     @Override
+    public List<Userinfo> QueryLikeSh(Userinfo userinfo) {
+        return userinfoMapper.QueryLikeSh(userinfo);
+    }
+
+    @Override
     public int addshaddress(Userinfo userinfo) {
         int i=0;
         UpdateWrapper updateWrapper = new UpdateWrapper();

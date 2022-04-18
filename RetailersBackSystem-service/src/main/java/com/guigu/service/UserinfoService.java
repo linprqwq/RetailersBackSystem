@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
-
+import java.util.List;
 import java.util.Map;
 
 
@@ -66,4 +66,7 @@ public interface UserinfoService extends IService<Userinfo> {
     int addshaddress(Userinfo userinfo);
 
     Map zcsh(Userinfo userinfo);
+
+    //商户地址
+    List<Userinfo> QueryLikeSh(Userinfo userinfo);
 }
