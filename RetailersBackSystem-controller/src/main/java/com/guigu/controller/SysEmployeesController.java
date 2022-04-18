@@ -1,6 +1,7 @@
 package com.guigu.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guigu.pojo.PageVo;
 import com.guigu.pojo.SysEmployees;
 import com.guigu.pojo.Sysemployeesimgs;
@@ -78,11 +79,14 @@ public class SysEmployeesController {
 
         return  sysEmployeesService.quertsempliyeesbyid(id);
     }
-   @GetMapping("/queryallsysempd.action")
+    @GetMapping("/queryallsysempd.action")
     @CrossOrigin
-    public PageVo<SysEmployees> queryallsysemp2(SysEmployees sysEmployees,
-                                               @RequestParam(value = "pageno", defaultValue = "1") Integer pageno,
-                                               @RequestParam(value = "pagesize", defaultValue = "5") Integer pagesize) {
+    public Page<SysEmployees> queryallsysemp2(SysEmployees sysEmployees,
+                                @RequestParam(value = "pageno", defaultValue = "1") Integer pageno,
+                                @RequestParam(value = "pagesize", defaultValue = "5") Integer pagesize) {
+
+        System.out.println(sysEmployees);
+
         return sysEmployeesService.querysysemp2(sysEmployees, pageno, pagesize);
 
     }
