@@ -1,5 +1,6 @@
 package com.guigu.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import com.guigu.pojo.PageVo;
@@ -17,7 +18,7 @@ import java.util.Map;
  * @since 2022-03-28
  */
 public interface SysEmployeesService extends IService<SysEmployees> {
-    PageVo<SysEmployees> querysysemp2(SysEmployees sysEmployees, Integer pageno, Integer pagesize);
+    Page<SysEmployees>  querysysemp2(SysEmployees sysEmployees, Integer pageno, Integer pagesize);
     public Map addSysemployees(SysEmployees sysEmployees);
     public Map deleteemployees(int id);
     public SysEmployees quertsempliyeesbyid(int id);

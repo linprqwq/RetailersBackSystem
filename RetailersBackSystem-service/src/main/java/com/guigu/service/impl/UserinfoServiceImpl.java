@@ -367,4 +367,18 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         }
         return map;
     }
+
+    @Override
+    public Map zcsh(Userinfo userinfo) {
+        boolean num = this.updateById(userinfo);
+        Map map =new HashMap();
+        map.put("code","0");
+        map.put("msg","注册失败");
+        if(num){
+            map.put("code","1");
+            map.put("msg","注册成功");
+        }
+        return map;
+
+    }
 }

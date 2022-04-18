@@ -98,4 +98,5 @@ public class Userinfo {
     //供应商维护商品分类集合
     @TableField(exist = false)
     private List<SupplierGoodsCategory> supplierGoodsCategoryList;
+    private String shimag;
 }

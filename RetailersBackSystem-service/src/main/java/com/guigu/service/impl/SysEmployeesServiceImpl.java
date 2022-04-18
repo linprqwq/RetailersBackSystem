@@ -36,18 +36,16 @@ public class SysEmployeesServiceImpl extends ServiceImpl<SysEmployeesMapper, Sys
     SysEmployeesMapper sysEmployeesMapper;
 
     @Override
-    public PageVo<SysEmployees> querysysemp2(SysEmployees sysEmployees, Integer pageno, Integer pagesize) {
-        Page<SysEmployees> page = new Page<SysEmployees>(pageno,pagesize);
+    public Page<SysEmployees> querysysemp2(SysEmployees sysEmployees, Integer pageno, Integer pagesize) {
         //条件查询
         QueryWrapper<SysEmployees> queryWrapper =new QueryWrapper<SysEmployees>();
         if(StringUtils.isNotBlank(sysEmployees.getEmpName())){
             queryWrapper.like("emp_name",sysEmployees.getEmpName());
         }
-        Page<SysEmployees> page1 = this.page(page,queryWrapper);
-        PageVo<SysEmployees> pageVo = new PageVo<SysEmployees>();
-        pageVo.setTotal(page1.getTotal());
-        pageVo.setRows(page1.getRecords());
-        return pageVo;
+        Page<SysEmployees> page = new Page<SysEmployees>(pageno,pagesize);
+        page.setTotal(pageno);
+        page.setSize(pagesize);
+        return sysEmployeesMapper.selectPage(page,queryWrapper);
     }
 
     public Map addSysemployees(SysEmployees sysEmployees){
@@ -55,6 +53,7 @@ public class SysEmployeesServiceImpl extends ServiceImpl<SysEmployeesMapper, Sys
         map.put("msg","添加失败");
 
         if ( sysEmployeesMapper.insert(sysEmployees)>0){
+            System.out.println(sysEmployees);
             map.put("msg","添加成功");
         }
 

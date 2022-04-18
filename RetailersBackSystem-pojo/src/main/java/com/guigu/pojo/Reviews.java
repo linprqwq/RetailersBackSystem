@@ -1,7 +1,9 @@
 package com.guigu.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -60,6 +62,7 @@ public class Reviews {
     /**
      * 评论时间
      */
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
     private Date commenttime;
 
     /**
@@ -84,4 +87,11 @@ public class Reviews {
 
     private Integer orddid;
 
+    /**
+     * 用户id
+     */
+    private  Integer uid;
+
+    @TableField(exist = false)
+    Userinfo userinfo;
 }
