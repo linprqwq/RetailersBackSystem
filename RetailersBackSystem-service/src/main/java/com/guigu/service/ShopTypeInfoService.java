@@ -2,6 +2,7 @@ package com.guigu.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.guigu.pojo.Commodity;
 import com.guigu.pojo.ShopTypeInfo;
 
 import java.util.List;
@@ -31,4 +32,6 @@ public interface  ShopTypeInfoService  extends IService<ShopTypeInfo> {
 
 
     List<String> getIds(String str);
+
+    List<ShopTypeInfo> queryAllComClass();
 }

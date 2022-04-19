@@ -124,4 +124,9 @@ public class ShopTypeInfoServiceImpl extends ServiceImpl<ShopTypeInfoMapper, Sho
         return null;
     }
 
+
+    @Override
+    public List<ShopTypeInfo> queryAllComClass() {
+        return shopTypeInfoMapper.selectList(null);
+    }
 }
