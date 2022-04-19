@@ -64,7 +64,7 @@ public class Commodity {
     private Integer quantity;
 
     /**
-     * 商品状态 1.在售 2.下架
+     * 商品状态 0.未上架 2.上架
      */
     private Integer status;
 

@@ -21,14 +21,19 @@ public class MenuInfoController {
 
     @RequestMapping("querymenuspidandrid.action")
     @CrossOrigin
-    public List<SysMenus> querymenusbypidandrid(){
+    public List<SysMenus> querymenusbypidandrid(Integer eid){
 
         QueryWrapper<EmpRole> queryWrapper= new QueryWrapper<EmpRole>();
-        queryWrapper.eq("eid",1);
+        queryWrapper.eq("eid",eid);
         EmpRole empRole=empRolerService.getOne(queryWrapper);
         //获取所有菜单数据
-        List<SysMenus> list = menuInfoService.querymenusbyrid(0,empRole.getRid());
+        if(empRole!=null){
+            List<SysMenus> list = menuInfoService.querymenusbyrid(0,empRole.getRid());
+            return list;
+        }else{
+            return null;
+        }
 
-        return list;
+
     }
 }
