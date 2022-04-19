@@ -63,7 +63,7 @@ public class Userinfo {
      * 用户头像
      */
     @TableField("img")
-    private String img;
+    private String imgpath;
 
     /**
      * 身份:1.普通用户 2.商户3.供应商

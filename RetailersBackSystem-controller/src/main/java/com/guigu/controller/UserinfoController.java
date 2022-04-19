@@ -68,7 +68,7 @@ public class UserinfoController {
             File savefile = new File(path,name);
             file[i].transferTo(savefile);
             //组装商品图片实体类对象
-            userinfo.setImg("image/"+name);
+            userinfo.setImgpath("image/"+name);
         }
 
 
@@ -128,7 +128,7 @@ public class UserinfoController {
             file[i].transferTo(savefile);
             //组装图片实体类对象
 
-            userinfo.setImg("/img/"+name);
+            userinfo.setImgpath("/img/"+name);
         }
 
         return userinfoService.registerUser(userinfo);
@@ -148,13 +148,13 @@ public class UserinfoController {
             File savefile = new File(path,name);
             file[i].transferTo(savefile);
             //组装商品图片实体类对象
-            userinfo.setImg("/img/"+name);
+            userinfo.setImgpath("/img/"+name);
         }
         //将不变的文件记录
         if(filenames!=null && filenames.length>0) {
             for (String filename : filenames) {
 
-                userinfo.setImg(filename);
+                userinfo.setImgpath(filename);
             }
         }
 

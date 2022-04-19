@@ -41,7 +41,7 @@ public class RegisterController {
             File savefile = new File(path,name);
             file[i].transferTo(savefile);
             //组装商品图片实体类对象
-           userinfo.setImg("image/"+name);
+           userinfo.setImgpath("image/"+name);
             System.out.println(name+"*********");
 
         }

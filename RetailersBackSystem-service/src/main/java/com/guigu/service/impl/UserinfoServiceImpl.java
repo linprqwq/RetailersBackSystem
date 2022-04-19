@@ -64,7 +64,7 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
             }
 
             //去将路径设置到对象
-            userinfo.setImg("/image/" + fileName);
+            userinfo.setImgpath("/image/" + fileName);
         }
 
         //进行修改
@@ -160,7 +160,7 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
             }
 
             //去将路径设置到对象
-            userinfo.setImg("/image/" + fileName);
+            userinfo.setImgpath("/image/" + fileName);
         }
         //去进行修改
         boolean b = this.updateById(userinfo);
