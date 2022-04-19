@@ -389,11 +389,11 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
     }
 
     @Override
-    public int addshaddress(Userinfo userinfo) {
+    public int addaddress(Userinfo userinfo) {
         int i=0;
         UpdateWrapper updateWrapper = new UpdateWrapper();
         updateWrapper.eq("id",userinfo.getId());
-        updateWrapper.set("shaddress",userinfo.getShaddress());
+        updateWrapper.set("address",userinfo.getAddress());
         baseMapper.update(userinfo,updateWrapper);
         if(updateWrapper!=null){
             i=1;

@@ -63,7 +63,7 @@ public interface UserinfoService extends IService<Userinfo> {
     Map<String, String> userinforecharge(Userinfo userinfo);
 
 
-    int addshaddress(Userinfo userinfo);
+    int addaddress(Userinfo userinfo);
 
     Map zcsh(Userinfo userinfo);
 

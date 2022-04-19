@@ -262,10 +262,10 @@ public class UserinfoController {
         return userinfoService.zcsh(userinfo);
     }
 
-    @RequestMapping("addshaddress.action")
+    @RequestMapping("addaddress.action")
     @CrossOrigin
-    public int addshaddress(Userinfo userinfo){
-        return userinfoService.addshaddress(userinfo);
+    public int addaddress(Userinfo userinfo){
+        return userinfoService.addaddress(userinfo);
     }
 
 
