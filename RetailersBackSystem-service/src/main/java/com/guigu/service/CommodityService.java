@@ -30,9 +30,10 @@ public interface CommodityService extends IService<Commodity> {
     Map editsp(Commodity commodity,MultipartFile imgs,String appth);
 
     //查询所有商品并分页
+
     Page<Commodity> queryAllshop(Commodity commodity,Integer pageno,Integer pagesize);
 
-
+    //商品分类
 
 
     //查询所有水果

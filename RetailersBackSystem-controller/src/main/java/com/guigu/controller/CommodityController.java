@@ -129,4 +129,7 @@ public class CommodityController {
     public List<Commodity>QueryAllCommodityRL(){
         return commodityService.QueryAllCommodityRL();
     }
+
+
+
 }
