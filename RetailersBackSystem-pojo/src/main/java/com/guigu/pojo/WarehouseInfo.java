@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 童总
@@ -35,8 +35,8 @@ public class WarehouseInfo implements Serializable {
 
     /**
      * 注意点：
-1:仓库详情表的当前存储量不能超过仓库最大库存
-2:仓库详情的最大值总和不能超过仓库最大库存
+     1:仓库详情表的当前存储量不能超过仓库最大库存
+     2:仓库详情的最大值总和不能超过仓库最大库存
      */
     private String warMaxStock;
 

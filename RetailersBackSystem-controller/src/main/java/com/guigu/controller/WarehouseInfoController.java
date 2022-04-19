@@ -3,6 +3,7 @@ package com.guigu.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guigu.pojo.WarehouseInfo;
+
 import com.guigu.service.WarehouseInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,7 +38,7 @@ public class WarehouseInfoController {
     @RequestMapping("queryallck.action")
     @CrossOrigin
     public Page<WarehouseInfo>  queryallck(WarehouseInfo warehouseInfo, @RequestParam(value = "pageno",defaultValue = "1")Integer pageno,
-    @RequestParam(value="pagesize",defaultValue = "5")Integer pagesize){
+                                           @RequestParam(value="pagesize",defaultValue = "5")Integer pagesize){
         return warehouseInfoService.queryallck(warehouseInfo,pageno,pagesize);
     }
 
@@ -52,7 +53,7 @@ public class WarehouseInfoController {
     @RequestMapping("tjck.action")
     @CrossOrigin
     public Map<String,String> tjck(WarehouseInfo warehouseInfo,int [] arr){
-            return warehouseInfoService.tjck(warehouseInfo,arr);
+        return warehouseInfoService.tjck(warehouseInfo,arr);
     }
 }
 
