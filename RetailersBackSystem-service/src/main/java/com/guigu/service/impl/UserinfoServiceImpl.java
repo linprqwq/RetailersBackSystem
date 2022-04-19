@@ -377,7 +377,7 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         map.put("msg","注册失败");
         if(num){
             map.put("code","1");
-            map.put("msg","注册成功");
+            map.put("msg","注册成功,等待审核");
         }
         return map;
 
