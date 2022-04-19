@@ -81,6 +81,14 @@ public class CommodityController {
         return commodityService.querycommodityid(id);
     }
 
+    @GetMapping("selectsid.action")
+    @CrossOrigin
+    //查询商品id
+    public Commodity selectsid(Integer id){
+        System.out.println(id);
+        return commodityService.querycommodityid(id);
+    }
+
 
 
     @GetMapping("queryCommids.action")
