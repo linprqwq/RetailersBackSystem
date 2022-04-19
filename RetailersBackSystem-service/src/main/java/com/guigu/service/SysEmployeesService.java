@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 import com.guigu.pojo.PageVo;
 import com.guigu.pojo.SysEmployees;
+import com.guigu.pojo.SysRoles;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,6 +25,7 @@ public interface SysEmployeesService extends IService<SysEmployees> {
     public Map deleteemployees(int id);
     public SysEmployees quertsempliyeesbyid(int id);
     public Map updateemplouees(SysEmployees sysEmployees);
+    public List<SysRoles> querysysempliyeesrolebyid(SysRoles sysRoles);
 
 
 }

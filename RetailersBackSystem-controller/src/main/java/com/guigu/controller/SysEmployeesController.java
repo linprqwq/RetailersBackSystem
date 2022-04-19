@@ -4,6 +4,7 @@ package com.guigu.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guigu.pojo.PageVo;
 import com.guigu.pojo.SysEmployees;
+import com.guigu.pojo.SysRoles;
 import com.guigu.pojo.Sysemployeesimgs;
 import com.guigu.service.SysEmployeesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -89,6 +91,11 @@ public class SysEmployeesController {
 
         return sysEmployeesService.querysysemp2(sysEmployees, pageno, pagesize);
 
+    }
+   @PostMapping("queryrolesbyidname.action")
+    @CrossOrigin
+    public List<SysRoles> queryrolesbyidname(SysRoles sysRoles){
+        return sysEmployeesService.querysysempliyeesrolebyid(sysRoles);
     }
 }
 

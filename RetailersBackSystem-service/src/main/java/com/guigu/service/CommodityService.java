@@ -32,6 +32,8 @@ public interface CommodityService extends IService<Commodity> {
     Page<Commodity> queryAllshop(Commodity commodity,Integer pageno,Integer pagesize);
 
 
+
+
     //查询所有水果
     List<Commodity> QueryAllCommodity();
 

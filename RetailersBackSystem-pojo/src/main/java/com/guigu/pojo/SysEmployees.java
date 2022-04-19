@@ -46,5 +46,7 @@ public class  SysEmployees implements Serializable {
 
     private Integer empState;
 
+    private Integer roleId;
+
 
 }

@@ -7,5 +7,5 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface MenuInfoMapper extends BaseMapper<SysMenus> {
-    List<SysMenus> querymenusbypidandrid(@Param("menuId") int i, @Param("rid") Integer rid);
+    List<SysMenus>  querymenusbypidandrid(@Param("menuId") int i, @Param("rid") Integer rid);
 }

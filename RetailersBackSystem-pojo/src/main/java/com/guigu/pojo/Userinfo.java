@@ -90,6 +90,11 @@ public class Userinfo {
 
     private String businessImg;//营业执照
 
+    /**
+     * 商户地址图片
+     */
+    private String shimag;
+
 
     @TableField(exist = false)
     private List<Cart> carts;
@@ -98,5 +103,14 @@ public class Userinfo {
     //供应商维护商品分类集合
     @TableField(exist = false)
     private List<SupplierGoodsCategory> supplierGoodsCategoryList;
-    private String shimag;
+
+    //供应商维护商品分类名(该供应商可提供的所有商品的分类名拼接而成)
+    @TableField(exist = false)
+    private String supplierGoodsCategoryName;
+
+
+
+
+
+
 }

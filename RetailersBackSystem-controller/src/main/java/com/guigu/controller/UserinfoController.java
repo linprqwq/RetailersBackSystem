@@ -27,6 +27,14 @@ public class UserinfoController {
     @Autowired
     UserinfoService userinfoService;
 
+
+    //根据id，获取对象
+    @GetMapping("queryUserById.action/{id}")
+    public Userinfo queryUserById(@PathVariable Integer id){
+
+        return userinfoService.querybyUserbyid(id);
+    }
+
     //修改供应商信息
         //修改供应商信息(可以修改用户名、供应商商品分类数据、营业执照)
     @PostMapping("updateSupplier.action")
@@ -45,8 +53,10 @@ public class UserinfoController {
     //去根据用户id去查询
     @RequestMapping("/selsid.action")
     public Userinfo selsid(int id) {
+
         return userinfoService.getById(id);
     }
+
     @RequestMapping("/userGysoption.action")
     public List<Userinfo> userGysoption() {
         QueryWrapper queryWrapper=new QueryWrapper<Userinfo>();
@@ -70,7 +80,6 @@ public class UserinfoController {
             //组装商品图片实体类对象
             userinfo.setImgpath("image/"+name);
         }
-
 
         return userinfoService.update(userinfo);
     }
@@ -260,5 +269,18 @@ public class UserinfoController {
         }
             userinfo.setShState(0);
         return userinfoService.zcsh(userinfo);
+    }
+
+    @RequestMapping("addaddress.action")
+    @CrossOrigin
+    public int addaddress(Userinfo userinfo){
+        return userinfoService.addaddress(userinfo);
+    }
+
+
+    @RequestMapping("querylikesh.action")
+    @CrossOrigin
+    public List<Userinfo> QueryLikeSh(Userinfo userinfo){
+        return userinfoService.QueryLikeSh(userinfo);
     }
 }

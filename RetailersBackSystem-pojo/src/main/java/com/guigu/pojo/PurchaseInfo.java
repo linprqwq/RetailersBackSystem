@@ -81,9 +81,15 @@ public class PurchaseInfo implements Serializable {
     @TableField("Is_delete")
     private Integer isDelete;
 
+
+    /*采购详情表*/
     @TableField(exist = false)
     private List<PurchaseDetailInfo> purchaseDetailInfoList;
 
+    /*用户表查询供应商*/
     @TableField(exist = false)
     private Userinfo userinfo;
+
+
+
 }

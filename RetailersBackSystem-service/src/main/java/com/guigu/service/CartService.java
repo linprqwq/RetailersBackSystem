@@ -23,4 +23,8 @@ public interface CartService extends IService<Cart> {
 
     //添加购物车
     Map<String, String> addgwc(int[] arr, Cart cart);
+
+    Map<String, String> cartplscid(int[] list);
+
+    Cart ljgmaddgwc(Cart c);
 }

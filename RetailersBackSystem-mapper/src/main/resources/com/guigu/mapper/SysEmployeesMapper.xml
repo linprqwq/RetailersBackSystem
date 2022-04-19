@@ -15,7 +15,7 @@
         <result column="emp_state" property="empState" />
     </resultMap>
     <insert id="addSysemployeesandroleinfoce" parameterType="SysEmployees">
-         insert into sys_employees values (null,#{empName},#{empLoginname},#{empPassword},#{empPhone},#{empMoney},#{empAddress},#{empImg})
+         insert into sys_employees values (null,#{empName},#{empLoginname},#{empPassword},#{empPhone},#{empMoney},#{empAddress},#{empImg},#{roleid})
     </insert>
 
 </mapper>

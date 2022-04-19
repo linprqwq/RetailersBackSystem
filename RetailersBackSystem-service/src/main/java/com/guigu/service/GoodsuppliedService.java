@@ -2,9 +2,7 @@ package com.guigu.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.guigu.pojo.Commodity;
-import com.guigu.pojo.Goodsupplied;
-import com.guigu.pojo.SupplierGoodsCategory;
+import com.guigu.pojo.*;
 
 import java.util.List;
 import java.util.Map;
@@ -13,6 +11,8 @@ import java.util.Map;
 //供应商提供商品
 public interface GoodsuppliedService extends IService<Goodsupplied> {
 
+    //处理总店采购申请（供应商确认发货）
+    public Map supplierfh(PurchaseInfo purchaseInfo);
 
     //根据用户，去查询供应商目前可以添加的供应商维护商品平商品表的商品
     List<Commodity>  selelctcomodity(Commodity commodity,Integer  id );

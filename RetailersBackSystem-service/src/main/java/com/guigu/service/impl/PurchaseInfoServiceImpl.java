@@ -109,6 +109,7 @@ public class PurchaseInfoServiceImpl extends ServiceImpl<PurchaseInfoMapper, Pur
         if (StringUtils.isNotBlank(purchase.getBuyNumber())){
             queryWrapper.like("buy_number",purchase.getBuyNumber());
         }
+        System.out.println(purchase.getSupplyId());
         //供应商id
         if(purchase.getSupplyId()!=null){
             queryWrapper.eq("supply_id",purchase.getSupplyId());

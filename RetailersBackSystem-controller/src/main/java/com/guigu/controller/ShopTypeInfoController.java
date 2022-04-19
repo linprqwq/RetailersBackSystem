@@ -2,6 +2,7 @@ package com.guigu.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.guigu.pojo.Commodity;
 import com.guigu.pojo.ShopTypeInfo;
 import com.guigu.service.ShopTypeInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,5 +64,14 @@ public class ShopTypeInfoController {
     @GetMapping("queryallshoptype.action")
     public List<ShopTypeInfo> queryallshoptype(){
         return shopTypeInfoService.queryallshoptype();
+    }
+
+
+
+    @RequestMapping("queryallcomclass.action")
+    @CrossOrigin
+    //查询商品分类
+    public List<ShopTypeInfo>queryAllComClass(){
+        return  shopTypeInfoService.queryAllComClass();
     }
 }

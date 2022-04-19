@@ -4,6 +4,7 @@ package com.guigu.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guigu.pojo.Commodity;
 import com.guigu.pojo.Goodsupplied;
+import com.guigu.pojo.PurchaseInfo;
 import com.guigu.service.GoodsuppliedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,6 +30,12 @@ public class GoodsSuppliedController {
     //自动注入
     @Autowired
     GoodsuppliedService goodsuppliedService;
+
+    //处理总店采购申请【供应商确认发货】
+    @PostMapping("supplierfh.action")
+    public Map supplierfh(@RequestBody PurchaseInfo purchaseInfo){
+        return  goodsuppliedService.supplierfh(purchaseInfo);
+    }
 
     //供应商商品供应表的分页查询
     @GetMapping("queryALlPage.action")
@@ -68,6 +75,7 @@ public class GoodsSuppliedController {
     public List<Goodsupplied> queryallsupplied(){
         return goodsuppliedService.queryallgoodsupp();
     }
+
     //审核供应商维护商品
     @PostMapping("checkGoodsupplied.action")
     public Map checkGoodsupplied(@RequestBody Goodsupplied goodsupplied){

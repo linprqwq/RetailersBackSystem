@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
-
+import java.util.List;
 import java.util.Map;
 
 
@@ -20,6 +20,8 @@ public interface UserinfoService extends IService<Userinfo> {
     //去修改供应商信息
     Map  updatesupplier(Integer id, String username, Integer [] ids, MultipartFile img,String  appth);
 
+
+    Userinfo querybyUserbyid(Integer id);
 
     //用户登录
     Userinfo userlogin(Userinfo userinfo);
@@ -62,5 +64,11 @@ public interface UserinfoService extends IService<Userinfo> {
 
     Map<String, String> userinforecharge(Userinfo userinfo);
 
+
+    int addaddress(Userinfo userinfo);
+
     Map zcsh(Userinfo userinfo);
+
+    //商户地址
+    List<Userinfo> QueryLikeSh(Userinfo userinfo);
 }

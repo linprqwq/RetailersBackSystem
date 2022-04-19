@@ -19,30 +19,19 @@ import java.util.List;
 public class ProvincesServiceImpl extends ServiceImpl<ProvincesMapper, Provinces> implements ProvincesService {
     @Autowired
     ProvincesMapper provincesMapper;
+
     @Override
-    public List<Provinces> queryAllChina(Provinces provinces) {
-        List<Provinces> list1=new ArrayList<Provinces>();
-        QueryWrapper<Provinces> queryWrapper =new QueryWrapper<Provinces>();
-       queryWrapper.eq("pid",provinces.getPid());
-        list1=this.list(queryWrapper);
-        return list1;
+    public List<Provinces> queryAllSheng(Provinces provinces) {
+        return provincesMapper.queryAllSheng(provinces);
     }
 
     @Override
-    public List<Provinces> queryChinaByPid(Provinces provinces) {
-        List<Provinces> list1=new ArrayList<Provinces>();
-        QueryWrapper<Provinces> queryWrapper =new QueryWrapper<Provinces>();
-        queryWrapper.eq("pid",provinces.getPid());
-        list1=this.list(queryWrapper);
-        return list1;
+    public List<Provinces> queryChinaByShi(String id) {
+        return provincesMapper.queryChinaByShi(id);
     }
 
     @Override
-    public List<Provinces> queryChinaByshi(Provinces provinces) {
-        List<Provinces> list1=new ArrayList<Provinces>();
-        QueryWrapper<Provinces> queryWrapper =new QueryWrapper<Provinces>();
-        queryWrapper.eq("pid",provinces.getPid());
-        list1=this.list(queryWrapper);
-        return list1;
+    public List<Provinces> queryChinaByQu(String id) {
+        return provincesMapper.queryChinaByQu(id);
     }
 }

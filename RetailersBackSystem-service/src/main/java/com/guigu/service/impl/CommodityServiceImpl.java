@@ -172,6 +172,8 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         return page;
     }
 
+
+
     //查询所有商品
     public List<Commodity> QueryAllCommodity(){
 

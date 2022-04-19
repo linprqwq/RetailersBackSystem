@@ -7,9 +7,9 @@ import com.guigu.pojo.Provinces;
 import java.util.List;
 
 public interface ProvincesService extends IService<Provinces> {
-    List<Provinces> queryAllChina(Provinces provinces);
+    List<Provinces> queryAllSheng(Provinces provinces);
 
-    List<Provinces> queryChinaByPid(Provinces provinces);
+    List<Provinces> queryChinaByShi(String  id);
 
-    List<Provinces> queryChinaByshi(Provinces provinces);
+    List<Provinces> queryChinaByQu(String  id);
 }

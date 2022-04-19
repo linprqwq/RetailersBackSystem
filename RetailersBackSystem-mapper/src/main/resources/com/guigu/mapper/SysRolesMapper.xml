@@ -8,5 +8,8 @@
         <result column="role_name" property="roleName" />
         <result column="remark" property="remark" />
     </resultMap>
+    <select id="querysysrole" resultMap="BaseResultMap">
+        SELECT * FROM sys_roles;
+    </select>
 
 </mapper>

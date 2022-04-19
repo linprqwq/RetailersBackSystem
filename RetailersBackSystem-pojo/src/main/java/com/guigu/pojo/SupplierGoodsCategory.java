@@ -1,6 +1,7 @@
 package com.guigu.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +27,9 @@ public class SupplierGoodsCategory {
 
     //分类id
     private Integer sortId;
+
+    @TableField(exist = false)
+    private String name;//商品分类名
 
 
 }

@@ -16,6 +16,7 @@
         <result column="identity" property="identity"></result>
         <result column="ustate" property="ustate"></result>
         <result column="shaddress" property="shaddress"></result>
+        <result column="shimag" property="shimag"></result>
         <association property="carts" javaType="Cart">
                 <id column="cartid" property="cartid"></id>
             <result column="uid" property="uid"></result>
@@ -31,4 +32,14 @@
     <select id="CartCount" parameterType="Integer" resultType="Integer">
         SELECT COUNT(*) FROM cart c INNER JOIN userinfo u ON c.uid=u.id WHERE u.id=#{id}
     </select>
+
+    <select id="QueryLikeSh" resultType="Userinfo">
+        SELECT  * FROM userinfo <include refid="wheresql"></include>
+    </select>
+
+    <sql id="wheresql">
+        <where>
+            <if test="shaddress!=null and shaddress!=''">AND shaddress LIKE CONCAT('%',#{shaddress},'%')</if>
+        </where>
+    </sql>
 </mapper>

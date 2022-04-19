@@ -250,4 +250,51 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
         }
         return map;
     }
+
+    @Override
+    public Map<String, String> cartplscid(int[] list) {
+        System.out.println(list);
+        Map<String,String> map = new HashMap<>();
+        map.put("code","0");
+        map.put("msg","删除失败");
+        for (int i : list) {
+          boolean a =   this.removeById(i);
+          if (a){
+              map.put("code","1");
+              map.put("msg","成功删除");
+          }
+        }
+
+        return map;
+    }
+
+    @Override
+    public Cart ljgmaddgwc(Cart cart) {
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("uid",cart.getUid());
+        queryWrapper.eq("cid",cart.getCid());
+        Cart cart1 = cartMapper.selectOne(queryWrapper);
+        if (cart1!=null){
+            cart1.setQuantity(cart1.getQuantity()+1);
+            cartMapper.updateById(cart1);
+
+        }else{
+            cart.setCid(cart.getCid());
+            cart.setQuantity(1);
+            int a =  cartMapper.insert(cart);
+            if (a>=1){
+                System.out.println(cart);
+            }
+        }
+        if (cart1!=null){
+            Commodity commodity =    commodityMapper.selectById(cart.getCid());
+            cart1.setCommodity(commodity);
+            return cart1;
+
+        }else{
+            Commodity commodity =    commodityMapper.selectById(cart.getCid());
+            cart.setCommodity(commodity);
+            return cart;
+        }
+    }
 }
