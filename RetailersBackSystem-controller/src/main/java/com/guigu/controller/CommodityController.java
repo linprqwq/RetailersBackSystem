@@ -82,6 +82,7 @@ public class CommodityController {
     }
 
 
+
     @GetMapping("queryCommids.action")
     @CrossOrigin
     //查询商品id

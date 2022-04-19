@@ -5,10 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.util.StringUtil;
 import com.guigu.mapper.*;
-import com.guigu.pojo.Commodity;
-import com.guigu.pojo.Goodsupplied;
-import com.guigu.pojo.SupplierGoodsCategory;
-import com.guigu.pojo.Userinfo;
+import com.guigu.pojo.*;
 import com.guigu.service.CommodityService;
 import com.guigu.service.GoodsuppliedService;
 import com.guigu.service.ShopInfoService;
@@ -39,6 +36,29 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
 
     @Autowired
     SupplierGoodsCategoryMapper supplierGoodsCategoryMapper; //供应商品分类
+
+    @Autowired
+    PurchaseDetailInfoMapper purchaseDetailInfoMapper;// 采购详情表
+
+    @Autowired
+    PurchaseInfoMapper purchaseInfoMapper; //采购申请表
+
+
+    //采购单去申请 然后去发货
+    @Override
+    public Map supplierfh(PurchaseInfo purchaseInfo) {
+
+        Map<String,Object> map=new HashMap<>();
+
+        if(purchaseInfoMapper.updateById(purchaseInfo)>0){
+            map.put("msg","确认发货成功");
+            map.put("x",true);
+        }else {
+            map.put("msg","发货失败");
+            map.put("x",false);
+        }
+        return map;
+    }
 
     //查询可供应的商品
     @Override
