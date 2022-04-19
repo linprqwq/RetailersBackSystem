@@ -42,7 +42,7 @@ public class PurchaseInfoServiceImpl extends ServiceImpl<PurchaseInfoMapper, Pur
     MyIdAdd myIdAdd;
     @Override
     public Map addPurchaseInfo(List<PurchaseInfo> purchaseList) {
-       /* Map map = new HashMap();
+        Map map = new HashMap();
         map.put("code", 0);
         map.put("msg", "创建失败");
         for (PurchaseInfo purchaseInfo : purchaseList) {
@@ -84,8 +84,8 @@ public class PurchaseInfoServiceImpl extends ServiceImpl<PurchaseInfoMapper, Pur
                 map.put("code",1);
                 map.put("msg","创建订单成功");
             }
-        }*/
-        return null;
+        }
+        return map;
     }
 
     @Override
@@ -141,12 +141,22 @@ public class PurchaseInfoServiceImpl extends ServiceImpl<PurchaseInfoMapper, Pur
     @Override
     public Map changeIsAudit(PurchaseInfo purchase) {
         Map map=new HashMap();
-        map.put("code",0);
-        map.put("msg","审核失败");
-        boolean b = this.updateById(purchase);
-        if (b){
-            map.put("code",1);
-            map.put("msg","审核通过");
+        if(purchase.getIsAudit()==1){
+            map.put("code",0);
+            map.put("msg","审核失败");
+            boolean b = this.updateById(purchase);
+            if (b){
+                map.put("code",1);
+                map.put("msg","审核通过");
+            }
+        }else{
+            map.put("code",0);
+            map.put("msg","审核失败");
+            boolean b = this.updateById(purchase);
+            if (b){
+                map.put("code",1);
+                map.put("msg","审核未通过");
+            }
         }
         return map;
     }
