@@ -7,9 +7,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import com.guigu.mapper.SysEmployeesMapper;
 
+import com.guigu.mapper.SysRolesMapper;
 import com.guigu.mapper.SysemployeesimgsMapper;
 import com.guigu.pojo.PageVo;
 import com.guigu.pojo.SysEmployees;
+import com.guigu.pojo.SysRoles;
 import com.guigu.pojo.Sysemployeesimgs;
 import com.guigu.service.SysEmployeesService;
 import com.guigu.service.SysemployeesimgsService;
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,6 +37,8 @@ public class SysEmployeesServiceImpl extends ServiceImpl<SysEmployeesMapper, Sys
         implements SysEmployeesService {
     @Autowired
     SysEmployeesMapper sysEmployeesMapper;
+    @Autowired
+    SysRolesMapper sysRolesMapper;
 
     @Override
     public Page<SysEmployees> querysysemp2(SysEmployees sysEmployees, Integer pageno, Integer pagesize) {
@@ -90,6 +95,11 @@ public class SysEmployeesServiceImpl extends ServiceImpl<SysEmployeesMapper, Sys
             map.put("msg","修改成功");
         }
         return map;
+    }
+
+    @Override
+    public List<SysRoles> querysysempliyeesrolebyid(SysRoles sysRoles) {
+        return sysRolesMapper.querysysrole(sysRoles);
     }
 
 }

@@ -21,6 +21,7 @@ public class EmployeeController {
     @CrossOrigin
     public SysEmployees sysemplogin(SysEmployees sysEmployees,HttpServletRequest request){
         QueryWrapper<SysEmployees> queryWrapper=new QueryWrapper<>();
+        System.out.println(sysEmployees);
         queryWrapper.eq("emp_loginname",sysEmployees.getEmpLoginname());
         queryWrapper.eq("emp_password",sysEmployees.getEmpPassword());
         SysEmployees sysEmployees1=emploService.getOne(queryWrapper);
