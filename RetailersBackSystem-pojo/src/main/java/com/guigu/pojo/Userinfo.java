@@ -104,5 +104,13 @@ public class Userinfo {
     @TableField(exist = false)
     private List<SupplierGoodsCategory> supplierGoodsCategoryList;
 
+    //供应商维护商品分类名(该供应商可提供的所有商品的分类名拼接而成)
+    @TableField(exist = false)
+    private String supplierGoodsCategoryName;
+
+
+
+
+
 
 }

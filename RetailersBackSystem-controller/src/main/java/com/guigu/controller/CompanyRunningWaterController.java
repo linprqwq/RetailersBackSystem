@@ -3,6 +3,7 @@ package com.guigu.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guigu.pojo.Commthinfo;
 import com.guigu.pojo.CompanyRunningWater;
+import com.guigu.pojo.Shyys;
 import com.guigu.service.CompanyRunningWaterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,7 +21,7 @@ public class CompanyRunningWaterController {
     @PostMapping("qeruyshys.action")
     @CrossOrigin
     //查询商户退货
-    public List<CompanyRunningWater> qeruyshys(CompanyRunningWater companyRunningWater){
-        return companyRunningWaterService.qeruyshys(companyRunningWater);
+    public List<Shyys> qeruyshys(int uid){
+        return companyRunningWaterService.qeruyshys(uid);
     }
 }

@@ -22,6 +22,7 @@ import java.util.Map;
 @RequestMapping("/purchaseInfo/")
 @RestController
 public class PurchaseInfoController {
+
     @Autowired
     PurchaseInfoService purchaseInfoService;
     //添加采购单

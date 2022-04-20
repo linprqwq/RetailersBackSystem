@@ -27,7 +27,6 @@ public interface CommodityService extends IService<Commodity> {
     Commodity querycommodityid(Integer id);
 
     //去编辑商品的信息
-    Map editsp(Commodity commodity,MultipartFile imgs,String appth);
 
     //查询所有商品并分页
     Page<Commodity> queryAllshop(Commodity commodity,Integer pageno,Integer pagesize);
@@ -44,4 +43,7 @@ public interface CommodityService extends IService<Commodity> {
     List<Commodity> QueryAllCommodityRL();
 
     Page<Commodity> QueryAllcommoditybycond(Commodity commodity, Integer pageno, Integer pagesize);
+
+    Map updatecommodity(Commodity commodity);
+
 }

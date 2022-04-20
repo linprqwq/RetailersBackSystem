@@ -24,8 +24,13 @@ public class AuthcController {
     @GetMapping("querymenuforleft.action/{roleId}")
     @CrossOrigin
     public List<SysMenus> showauthc(@PathVariable Integer roleId) throws ServletException, IOException {
-             System.out.println(roleId);
         return sysMenusService.querymenusleft(roleId);
+    }
+    @GetMapping("querymenuformenuroleid.action/{roleId}")
+    @CrossOrigin
+    public List<MenuRole> querymenuformenuroleid(@PathVariable Integer roleId) throws ServletException, IOException {
+        List<MenuRole> querymenuformenuroleid = sysMenusService.querymenuformenuroleid(roleId);
+        return querymenuformenuroleid;
     }
     @RequestMapping("setauthc.action")
     @CrossOrigin

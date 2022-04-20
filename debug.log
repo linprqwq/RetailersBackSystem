@@ -1,9 +1,22 @@
-2022-04-18 17:00:25  [ http-bio-9090-exec-3:3221907 ] - [ DEBUG ]  ==> Parameters: 
-2022-04-18 17:00:25  [ http-bio-9090-exec-3:3221963 ] - [ DEBUG ]  <==      Total: 18
-2022-04-18 17:00:25  [ http-bio-9090-exec-3:3221964 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46e96b36]
-2022-04-18 17:00:25  [ http-bio-9090-exec-4:3222052 ] - [ DEBUG ]  skip not validate connection.
-2022-04-18 17:00:25  [ http-bio-9090-exec-4:3222053 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@f530337] will not be managed by Spring
-2022-04-18 17:00:25  [ http-bio-9090-exec-4:3222054 ] - [ DEBUG ]  ==>  Preparing: SELECT * FROM commodity co LEFT JOIN shop_type_info_copy sh ON co.id=sh.id WHERE co.`shop_type`=1 AND STATUS=1 
-2022-04-18 17:00:25  [ http-bio-9090-exec-4:3222054 ] - [ DEBUG ]  ==> Parameters: 
-2022-04-18 17:00:25  [ http-bio-9090-exec-4:3222109 ] - [ DEBUG ]  <==      Total: 18
-2022-04-18 17:00:25  [ http-bio-9090-exec-4:3222109 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@785f13e3]
+2022-04-19 15:49:07  [ http-bio-9090-exec-4:1500845 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@4472879b] will not be managed by Spring
+2022-04-19 15:49:07  [ http-bio-9090-exec-6:1500845 ] - [ DEBUG ]  Creating a new SqlSession
+2022-04-19 15:49:07  [ http-bio-9090-exec-4:1500846 ] - [ DEBUG ]  ==>  Preparing: SELECT MONTH(rdate) AS mm,SUM(rmoney) AS smoney FROM company_running_water WHERE uid=? and rtype=3 GROUP BY mm;
+2022-04-19 15:49:07  [ http-bio-9090-exec-6:1500846 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@431f80e9] was not registered for synchronization because synchronization is not active
+2022-04-19 15:49:07  [ http-bio-9090-exec-4:1500846 ] - [ DEBUG ]  ==> Parameters: 1(Integer)
+2022-04-19 15:49:07  [ http-bio-9090-exec-6:1500846 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@1573f75a] will not be managed by Spring
+2022-04-19 15:49:07  [ http-bio-9090-exec-6:1500847 ] - [ DEBUG ]  ==>  Preparing: SELECT MONTH(rdate) AS mm,SUM(rmoney) AS smoney FROM company_running_water WHERE uid=? and rtype=3 GROUP BY mm;
+2022-04-19 15:49:07  [ http-bio-9090-exec-6:1500847 ] - [ DEBUG ]  ==> Parameters: 1(Integer)
+2022-04-19 15:49:07  [ http-bio-9090-exec-4:1500878 ] - [ DEBUG ]  <==      Total: 1
+2022-04-19 15:49:07  [ http-bio-9090-exec-4:1500878 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@200ce1c5]
+2022-04-19 15:49:07  [ http-bio-9090-exec-6:1500885 ] - [ DEBUG ]  <==      Total: 1
+2022-04-19 15:49:07  [ http-bio-9090-exec-6:1500886 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@431f80e9]
+2022-04-19 11:07:54  [ http-bio-9090-exec-5:2495669 ] - [ DEBUG ]  ==> Parameters: 13(Integer)
+2022-04-19 11:07:54  [ http-bio-9090-exec-5:2495735 ] - [ DEBUG ]  <==      Total: 1
+2022-04-19 11:07:54  [ http-bio-9090-exec-5:2495736 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@72726c3c]
+2022-04-19 11:07:54  [ http-bio-9090-exec-5:2495737 ] - [ DEBUG ]  Creating a new SqlSession
+2022-04-19 11:07:54  [ http-bio-9090-exec-5:2495737 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@15dc8136] was not registered for synchronization because synchronization is not active
+2022-04-19 11:07:54  [ http-bio-9090-exec-5:2495737 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@676332a6] will not be managed by Spring
+2022-04-19 11:07:54  [ http-bio-9090-exec-5:2495737 ] - [ DEBUG ]  ==>  Preparing: SELECT id,shop_type,proname,prosubtitle,prozimg,proimage,prodetails,prosprice,quantity,status,is_delete,createtime,updatetime FROM commodity WHERE id=?
+2022-04-19 11:07:54  [ http-bio-9090-exec-5:2495737 ] - [ DEBUG ]  ==> Parameters: 1(String)
+2022-04-19 11:07:54  [ http-bio-9090-exec-5:2495794 ] - [ DEBUG ]  <==      Total: 1
+2022-04-19 11:07:54  [ http-bio-9090-exec-5:2495794 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@15dc8136]

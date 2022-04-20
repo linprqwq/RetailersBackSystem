@@ -21,6 +21,8 @@ public interface UserinfoService extends IService<Userinfo> {
     Map  updatesupplier(Integer id, String username, Integer [] ids, MultipartFile img,String  appth);
 
 
+    Userinfo querybyUserbyid(Integer id);
+
     //用户登录
     Userinfo userlogin(Userinfo userinfo);
     public Map update(Userinfo userinfo);

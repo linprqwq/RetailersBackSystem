@@ -12,6 +12,7 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -33,8 +34,7 @@ public class GatherInfo implements Serializable {
     /**
      * 查询号 存放采购单号或退货单号
      */
-    private String   trackingNumber;
-
+    private String trackingNumber;
 
     /**
      * 0 采购入库 1 退货入库
@@ -47,7 +47,7 @@ public class GatherInfo implements Serializable {
      */
     @TableField("Gtime")
     @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss", timezone = "GMT+8")
-    private LocalDateTime Gtime;
+    private Date Gtime;
 
     /**
      * 审核 0 等待审核 1通过审核 2 未通过

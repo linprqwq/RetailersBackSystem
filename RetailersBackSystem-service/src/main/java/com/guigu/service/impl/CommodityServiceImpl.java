@@ -37,6 +37,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     ShopTypeInfoService shopTypeInfoService;
 
 
+
     //去添加商品
     @Override
     public Map addsp(Commodity commodity, MultipartFile imgs, String appth) {
@@ -79,18 +80,18 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     public Map xgstatus(Commodity commodity) {
         Map map=new HashMap();
         map.put("code",0);
-        if(commodity.getStatus()==1){
+        if(commodity.getStatus()==0){
             //下架
                 map.put("msg","下架失败");
                 commodity.setQuantity(0);
                 boolean b=this.updateById(commodity);
                 if(b){
-                    map.put("code","1");
+                    map.put("code",1);
                     map.put("msg","下架成功");
                 }
         }else{
             //上架检查商品商品库存是否存在商品数量
-            map.put("code","上架失败");
+                map.put("code","上架失败");
                 boolean b=this.updateById(commodity);
                     if(b){
                         map.put("code",1);
@@ -122,38 +123,36 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         return commodityMapper.selectById(id);
     }
     //根据id查找到商品后 去编辑商品
-    @Override
-    public Map editsp(Commodity commodity, MultipartFile imgs, String appth) {
-       /*
-            Map map=new HashMap();
-            map.put("code",0);
-            map.put("msg","修改成功");
-            boolean b=this.updateById(commodity);
-            //图片修改
-            if(b){
-                if(imgs!=null && imgs.getSize()>0){
-                    File file=new File(appth);
-                    if(!file.exists()){
-                        //不存在就去创建
-                        file.mkdirs();
-                    }
-                }
-                //去获取文件名称
-                String fileName = imgs.getOriginalFilename();
-                //去保存文件到路径
-                try {
-                    imgs.transferTo(new File(appth, fileName));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                //去将路径设置到对象
-                commodity.setProzimg("/image/" + fileName);
-                map.put("code", 1);
-                map.put("msg", "编辑成功");
-            }
-*/
-        return null;
-    }
+//    @Override
+//    public Map editsp(Commodity commodity, MultipartFile imgs, String appth) {
+//            Map map=new HashMap();
+//            map.put("code",0);
+//            map.put("msg","修改成功");
+//            boolean b=this.updateById(commodity);
+//            //图片修改
+//            if(b){
+//                if(imgs!=null && imgs.getSize()>0){
+//                    File file=new File(appth);
+//                    if(!file.exists()){
+//                        //不存在就去创建
+//                        file.mkdirs();
+//                    }
+//                }
+//                //去获取文件名称
+//                String fileName = imgs.getOriginalFilename();
+//                //去保存文件到路径
+//                try {
+//                    imgs.transferTo(new File(appth, fileName));
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                //去将路径设置到对象
+//                commodity.setProzimg("/image/" + fileName);
+//                map.put("code", 1);
+//                map.put("msg", "编辑成功");
+//            }
+//        return map;
+//    }
 
     //查询所有商品分页
     @Override
@@ -173,6 +172,8 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         }
         return page;
     }
+
+
 
     //查询所有商品
     public List<Commodity> QueryAllCommodity(){
@@ -203,4 +204,19 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         }
         return  page;
     }
+
+    @Override
+    public Map updatecommodity(Commodity commodity) {
+        Map map=new HashMap();
+        map.put("code",0);
+        map.put("msg","修改失败");
+        boolean num=this.updateById(commodity);
+        if(num){
+            map.put("code",1);
+            map.put("msg","修改成功");
+        }
+
+        return  map;
+    }
+
 }

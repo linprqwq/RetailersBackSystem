@@ -55,5 +55,18 @@ public class WarehouseInfoController {
     public Map<String,String> tjck(WarehouseInfo warehouseInfo,int [] arr){
         return warehouseInfoService.tjck(warehouseInfo,arr);
     }
+
+    @RequestMapping("querywarehouseInfobyid.action")
+    @CrossOrigin
+    public WarehouseInfo querywarehouseInfobyid(WarehouseInfo warehouseInfo){
+        return warehouseInfoService.querywarehouseInfobyid(warehouseInfo);
+    }
+
+    @RequestMapping("updatewarehbyid.action")
+    @CrossOrigin
+    public Map<String,String> updatewarehbyid(WarehouseInfo warehouseInfo,int [] list){
+
+        return warehouseInfoService.updatewarehbyid(warehouseInfo,list);
+    }
 }
 

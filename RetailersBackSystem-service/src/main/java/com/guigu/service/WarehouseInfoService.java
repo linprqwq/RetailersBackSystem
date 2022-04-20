@@ -21,4 +21,8 @@ public interface WarehouseInfoService extends IService<WarehouseInfo> {
     Map<String, String> cxwhouse(WarehouseInfo warehouseInfo);
 
     Map<String, String> tjck(WarehouseInfo warehouseInfo, int[] arr);
+
+    WarehouseInfo querywarehouseInfobyid(WarehouseInfo warehouseInfo);
+
+    Map<String, String> updatewarehbyid(WarehouseInfo warehouseInfo, int[] list);
 }

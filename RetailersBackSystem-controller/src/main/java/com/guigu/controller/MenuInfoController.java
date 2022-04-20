@@ -27,8 +27,11 @@ public class MenuInfoController {
         queryWrapper.eq("eid",eid);
         EmpRole empRole=empRolerService.getOne(queryWrapper);
         //获取所有菜单数据
-        List<SysMenus> list = menuInfoService.querymenusbyrid(0,empRole.getRid());
-
-        return list;
+        if(empRole!=null){
+            List<SysMenus> list = menuInfoService.querymenusbyrid(0,empRole.getRid());
+            return list;
+        }else{
+            return null;
+        }
     }
 }

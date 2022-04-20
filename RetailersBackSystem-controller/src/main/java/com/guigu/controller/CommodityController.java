@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.guigu.pojo.Commodity;
 import com.guigu.pojo.MenuRole;
 import com.guigu.pojo.PageVo;
+import com.guigu.pojo.ShopInfo;
 import com.guigu.service.CommodityService;
 import com.guigu.service.ShopTypeInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +31,7 @@ public class CommodityController {
     //删除商品 修改商品状态
     @PutMapping("delid.action")
     @CrossOrigin
-    public  Map delid(@RequestBody Commodity commodity){
+    public Map delid(@RequestBody Commodity commodity){
 
         return  commodityService.delid(commodity);
     }
@@ -44,10 +47,27 @@ public class CommodityController {
     //编辑商品
     @PostMapping("editcom.action")
     @CrossOrigin
-    public Map editcom(Commodity commodity,MultipartFile image,
-                       HttpServletRequest request){
+    public Map editcom(Commodity commodity,MultipartFile [] files,String[] filenames,
+                       HttpServletRequest request) throws IOException {
 
-        return  commodityService.editsp(commodity,image,request.getServletContext().getRealPath("/image/"));
+        //将新的文件保存在服务器 并存入保存对象
+        for (int i = 0; i < files.length; i++) {
+            String path = request.getServletContext().getRealPath("image"); //路径名
+            String name = files[i].getOriginalFilename();  //文件名
+            File savefile = new File(path,name);
+            files[i].transferTo(savefile);
+            //组装商品图片实体类对象
+            commodity.setProimage("image/"+name);
+        }
+        //将不变的文件记录
+        if(filenames!=null && filenames.length>0) {
+            for (String filename : filenames) {
+
+                commodity.setProzimg(filename);
+            }
+        }
+
+        return  commodityService.updatecommodity(commodity);
     }
 
     //添加商品
@@ -80,6 +100,15 @@ public class CommodityController {
         System.out.println(id);
         return commodityService.querycommodityid(id);
     }
+
+    @GetMapping("selectsid.action")
+    @CrossOrigin
+    //查询商品id
+    public Commodity selectsid(Integer id){
+        System.out.println(id);
+        return commodityService.querycommodityid(id);
+    }
+
 
 
     @GetMapping("queryCommids.action")
@@ -128,4 +157,7 @@ public class CommodityController {
     public List<Commodity>QueryAllCommodityRL(){
         return commodityService.QueryAllCommodityRL();
     }
+
+
+
 }
