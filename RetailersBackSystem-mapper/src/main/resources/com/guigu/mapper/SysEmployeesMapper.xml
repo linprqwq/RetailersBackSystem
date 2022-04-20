@@ -17,5 +17,8 @@
     <insert id="addSysemployeesandroleinfoce" parameterType="SysEmployees">
          insert into sys_employees values (null,#{empName},#{empLoginname},#{empPassword},#{empPhone},#{empMoney},#{empAddress},#{empImg},#{roleid})
     </insert>
+    <select id="querysysemployeespid" resultMap="BaseResultMap">
+        SELECT id FROM sys_employees WHERE emp_loginname=#{empLoginname} AND emp_password=#{empPassword};
+    </select>
 
 </mapper>

@@ -5,20 +5,18 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import com.guigu.mapper.SysEmployeesMapper;
+import com.guigu.mapper.*;
 
-import com.guigu.mapper.SysRolesMapper;
-import com.guigu.mapper.SysemployeesimgsMapper;
-import com.guigu.pojo.PageVo;
-import com.guigu.pojo.SysEmployees;
-import com.guigu.pojo.SysRoles;
-import com.guigu.pojo.Sysemployeesimgs;
+import com.guigu.pojo.*;
 import com.guigu.service.SysEmployeesService;
-import com.guigu.service.SysemployeesimgsService;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +37,8 @@ public class SysEmployeesServiceImpl extends ServiceImpl<SysEmployeesMapper, Sys
     SysEmployeesMapper sysEmployeesMapper;
     @Autowired
     SysRolesMapper sysRolesMapper;
+    @Autowired
+   EmpRoleMapper empRoleMapper;
 
     @Override
     public Page<SysEmployees> querysysemp2(SysEmployees sysEmployees, Integer pageno, Integer pagesize) {
@@ -53,8 +53,28 @@ public class SysEmployeesServiceImpl extends ServiceImpl<SysEmployeesMapper, Sys
         return sysEmployeesMapper.selectPage(page,queryWrapper);
     }
 
-    public Map addSysemployees(SysEmployees sysEmployees){
-    Map map = new HashMap();
+    public Map<String,String> addSysemployees(Integer [] rids, SysEmployees sysEmployees, MultipartFile file, HttpServletRequest request )throws IOException{
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("msg","添加失败");
+        if(file!=null){
+            String path = request.getServletContext().getRealPath("/img"); //路径名
+            String name = file.getOriginalFilename();  //文件名
+            File savefile = new File(path,name);
+            file.transferTo(savefile);
+            Sysemployeesimgs sysemployeesimgs=new Sysemployeesimgs();
+            sysEmployees.setEmpImg("img/"+name);}
+        boolean result = this.save(sysEmployees);
+        if (result) {
+            EmpRole empRole=new EmpRole();
+            for (Integer ridss : rids) {
+                empRole.setEid(sysEmployees.getId());
+                empRole.setRid(ridss);
+                empRoleMapper.insert(empRole);
+            }
+            map.put("msg","添加成功");
+        }
+        return map;
+   /* Map map = new HashMap();
         map.put("msg","添加失败");
 
         if ( sysEmployeesMapper.insert(sysEmployees)>0){
@@ -62,7 +82,7 @@ public class SysEmployeesServiceImpl extends ServiceImpl<SysEmployeesMapper, Sys
             map.put("msg","添加成功");
         }
 
-        return map;
+        return map;*/
 
     }
     public Map deleteemployees(int id){

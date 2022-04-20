@@ -16,5 +16,6 @@ public interface SysEmployeesMapper extends BaseMapper<SysEmployees> {
     public int addSysemployeesandroleinfoce(SysEmployees sysEmployees);
     public int deleteemployees(@Param("sys") int id);
     public int updateemplouees(SysEmployees sysEmployees);
+    public int querysysemployeespid(String empLoginname, String empPassword);
 
 }

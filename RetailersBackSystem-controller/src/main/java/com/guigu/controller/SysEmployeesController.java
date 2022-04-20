@@ -35,17 +35,17 @@ public class SysEmployeesController {
 
     @PostMapping("/addsysemployees.action")
     @CrossOrigin
-    public Map addsysemployees(SysEmployees sysEmployees, MultipartFile file, HttpServletRequest request ) throws IOException {
-      if(file!=null){
+    public Map<String ,String> addsysemployees(Integer [] rids,SysEmployees sysEmployees, MultipartFile file, HttpServletRequest request ) throws IOException {
+    /*  if(file!=null){
           String path = request.getServletContext().getRealPath("/img"); //路径名
           String name = file.getOriginalFilename();  //文件名
           File savefile = new File(path,name);
           file.transferTo(savefile);
           Sysemployeesimgs sysemployeesimgs=new Sysemployeesimgs();
           sysEmployees.setEmpImg("img/"+name);
-      }
+      }*/
 
-        return sysEmployeesService.addSysemployees(sysEmployees);
+        return sysEmployeesService.addSysemployees(rids,sysEmployees,file,request);
     }
 
     @PostMapping("/delesysemployees.action/{id}")
