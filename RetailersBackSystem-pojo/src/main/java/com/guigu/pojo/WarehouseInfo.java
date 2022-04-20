@@ -1,6 +1,7 @@
 package com.guigu.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -50,5 +52,16 @@ public class WarehouseInfo implements Serializable {
      */
     private Integer isDelete;
 
+    /**
+     * 查询仓库分类
+     */
+    @TableField(exist = false)
+    private List<WarehouseClassification> warefenlei;
 
+    /**
+     * 仓库分类名
+     */
+
+    @TableField(exist = false)
+    private  String shoptypename;
 }
