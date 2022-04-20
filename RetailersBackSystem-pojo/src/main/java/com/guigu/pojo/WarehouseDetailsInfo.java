@@ -1,6 +1,7 @@
 package com.guigu.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 童总
@@ -22,7 +23,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WarehouseDetailsInfo implements Serializable {
-
 
 
     @TableId(value = "Id", type = IdType.AUTO)
@@ -38,6 +38,9 @@ public class WarehouseDetailsInfo implements Serializable {
      */
     private Integer shopId;
 
+    /**
+     * 供应商id
+     */
     private Integer uId;
 
     /**
@@ -57,7 +60,7 @@ public class WarehouseDetailsInfo implements Serializable {
 
     /**
      * 默认为0
-当出库选择仓库内的商品时，显示该条数据
+     * 当出库选择仓库内的商品时，显示该条数据
      */
     private Integer lockStock;
 
@@ -66,5 +69,15 @@ public class WarehouseDetailsInfo implements Serializable {
      */
     private Integer isCheck;
 
+    /**
+     * 商品
+     */
+    @TableField(exist = false)
+    private Commodity commodity;
 
+    /**
+     * 供应商信息
+     */
+    @TableField(exist = false)
+    private Userinfo userinfo;
 }
