@@ -33,7 +33,5 @@ public class MenuInfoController {
         }else{
             return null;
         }
-
-
     }
 }

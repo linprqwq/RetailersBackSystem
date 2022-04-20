@@ -351,13 +351,23 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
 
     @Override
     public Map updstateuser(Userinfo userinfo) {
-        boolean num = this.updateById(userinfo);
         Map map = new HashMap();
-        map.put("code", "0");
-        map.put("msg", "冻结失败");
-        if (num) {
-            map.put("code", "1");
-            map.put("msg", "冻结成功");
+        if(userinfo.getUstate()==1){
+            boolean num = this.updateById(userinfo);
+            map.put("code", "0");
+            map.put("msg", "冻结失败");
+            if (num) {
+                map.put("code", "1");
+                map.put("msg", "冻结成功");
+            }
+        }else{
+            boolean num = this.updateById(userinfo);
+            map.put("code", "0");
+            map.put("msg", "解冻失败");
+            if (num) {
+                map.put("code", "1");
+                map.put("msg", "解冻成功");
+            }
         }
         return map;
     }

@@ -111,7 +111,7 @@ public class SysMenusServiceImpl extends ServiceImpl<SysMenusMapper, SysMenus> i
             queryWrapper.eq("PARENT_ID", sysMenus.getId());
             List<SysMenus> list2 = this.list(queryWrapper); //获取所有二级的
             sysMenus.setChildMenu(list2);
-            if(list2.size()>0){
+//            if(list2.size()>0){
                 //有子菜单，循环二级菜单
                 for(SysMenus sysMenus2 : list2){
                     //检查是否有子菜单
@@ -119,7 +119,7 @@ public class SysMenusServiceImpl extends ServiceImpl<SysMenusMapper, SysMenus> i
                     queryWrapper.eq("PARENT_ID", sysMenus2.getId());
                     List<SysMenus> list3 = this.list(queryWrapper); //获取所有三级的
                     sysMenus2.setChildMenu(list3);
-                    if(list3.size()>0){
+//                    if(list3.size()>0){
                         //有子菜单，循环三级菜单
                         for(SysMenus sysMenus3 : list3){
                             for (MenuRole menuRole : sysMenuRoleList) {
@@ -129,27 +129,32 @@ public class SysMenusServiceImpl extends ServiceImpl<SysMenusMapper, SysMenus> i
                                 }
                             }
                         }
-                    }else {
+//                    }else {
                         //没有子菜单，说明是二级菜单
-                        for (MenuRole menuRole : sysMenuRoleList) {
-                            if (sysMenus2.getId() == menuRole.getMid()) {
-                                sysMenus2.setIscheck(true);
-                                break;
-                            }
-                        }
-                    }
+//                        for (MenuRole menuRole : sysMenuRoleList) {
+//                            if (sysMenus2.getId() == menuRole.getMid()) {
+//                                sysMenus2.setIscheck(true);
+//                                break;
+//                            }
+//                        }
+//                    }
                 }
-            }else{
+//            }else{
                 //没有子菜单，说明是一级菜单
-                for (MenuRole menuRole : sysMenuRoleList) {
-                    if (sysMenus.getId() == menuRole.getMid()) {
-                        sysMenus.setIscheck(true);
-                        break;
-                    }
-                }
-            }
+//                for (MenuRole menuRole : sysMenuRoleList) {
+//                    if (sysMenus.getId() == menuRole.getMid()) {
+//                        sysMenus.setIscheck(true);
+//                        break;
+//                    }
+//                }
+//            }
         }
-        System.out.println("结果"+list);
         return list;
+    }
+
+    @Override
+    public List<MenuRole> querymenuformenuroleid(Integer roleId) {
+
+        return menuRolerMapper.querymenuforRoleId(roleId);
     }
 }
