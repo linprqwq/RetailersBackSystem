@@ -45,6 +45,7 @@ public class GoodsSuppliedController {
 
         return goodsuppliedService.queryAllSupplier(goodsupplied,pageno,pagesize);
     }
+
     //获取供应商维护表
     @GetMapping("queryAllGoodSupplied.action")
     public List<Goodsupplied>  queryAllGoodSupplied(){
@@ -62,12 +63,15 @@ public class GoodsSuppliedController {
 
     //根据当前用户，查询供应商目前可以添加到供应商维护商品表里面的商品
         @GetMapping("/selelctcomodity.action")
-        public List<Commodity> selelctcomodity(Commodity commodity,
-                                               @RequestParam(value = "id")Integer id){
+        public com.guigu.service.utils.Page  selelctcomodity(Commodity commodity,
+                                                          @RequestParam(value = "id")Integer id,
+                                                          @RequestParam(value = "pageno",defaultValue = "1")Integer pageno,
+                                                          @RequestParam(value = "pagesize",defaultValue = "5")Integer pagesize)
+        {
 
             System.out.println("商品"+commodity);
             System.out.println("用户id"+id);
-            return  goodsuppliedService.selelctcomodity(commodity,id);
+            return  goodsuppliedService.selelctcomodity(commodity,id,pageno,pagesize);
         }
 
     //查询用户表里面的数据

@@ -37,6 +37,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     ShopTypeInfoService shopTypeInfoService;
 
 
+
     //去添加商品
     @Override
     public Map addsp(Commodity commodity, MultipartFile imgs, String appth) {
