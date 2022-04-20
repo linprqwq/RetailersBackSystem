@@ -159,6 +159,8 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
             Userinfo userinfo = userinfoMapper.selectById(orderinfo1.getUid());
             //用户余额添加
             userinfo.setUmoney(userinfo.getUmoney()+orderinfo1.getZprice());
+            orderinfo1.setStatus(1);
+            orderMapper.updateById(orderinfo1);
             //用户表修改
             userinfoMapper.updateById(userinfo);
             //用户余额变动

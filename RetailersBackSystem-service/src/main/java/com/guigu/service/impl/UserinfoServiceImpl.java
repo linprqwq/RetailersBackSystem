@@ -38,14 +38,17 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
     ShopTypeInfoMapper shopTypeInfoMapper;
 
 
-    //去修改供应商的信息()
+    //去修改供应商的信息
     @Override
     public Map updatesupplier(Integer id, String username, Integer[] ids, MultipartFile img,
                               String apppath) {
         Map map = new HashMap();
         //去根据id,查询用户对象，补全属性
         Userinfo userinfo = userinfoMapper.selectById(id);
+        System.out.println("商品"+userinfo);
+        //修改供应商名
         userinfo.setUsername(username);
+        System.out.println("商品名"+username);
         //去判断是否上传了图片
         if (img.getSize() > 0) {
             //上传图片
@@ -69,6 +72,7 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
 
         //进行修改
         userinfoMapper.updateById(userinfo);
+        System.out.println("修改值是"+userinfo);
 
         //根据用户id，删除该供应商下的所有可提供的商品分类数据
         QueryWrapper<SupplierGoodsCategory> queryWrapper = new QueryWrapper();

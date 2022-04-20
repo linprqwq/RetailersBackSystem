@@ -35,11 +35,25 @@ public class UserinfoController {
         return userinfoService.querybyUserbyid(id);
     }
 
+    @RequestMapping("/updatesh.action")
+    @CrossOrigin
+    public Map updatesh(Userinfo userinfo, MultipartFile[] file, HttpServletRequest request) throws IOException {
+        for (int i = 0; i < file.length; i++) {
+            String path = request.getServletContext().getRealPath("/img"); //路径名
+            String name = file[i].getOriginalFilename();  //文件名
+            File savefile = new File(path,name);
+            file[i].transferTo(savefile);
+            //组装商品图片实体类对象
+            userinfo.setImgpath("image/"+name);
+        }
+        return userinfoService.update(userinfo);
+    }
+
     //修改供应商信息
         //修改供应商信息(可以修改用户名、供应商商品分类数据、营业执照)
     @PostMapping("updateSupplier.action")
-    public Map updateSupplier(Integer id,String username,Integer[] ids,MultipartFile img,HttpServletRequest request){
-        return userinfoService.updatesupplier(id,username,ids,img,request.getServletContext().getRealPath("/img/"));
+    public Map updateSupplier(Integer id,String username,Integer[] ids,MultipartFile  img,HttpServletRequest request){
+        return userinfoService.updatesupplier(id,username,ids,img,request.getServletContext().getRealPath("image/"));
     }
 
     @RequestMapping("/login.action")
@@ -69,20 +83,7 @@ public class UserinfoController {
         return userinfoService.getById(id);
     }
 
-    @RequestMapping("/updatesh.action")
-    @CrossOrigin
-    public Map updatesh(Userinfo userinfo, MultipartFile[] file, HttpServletRequest request) throws IOException {
-        for (int i = 0; i < file.length; i++) {
-            String path = request.getServletContext().getRealPath("/img"); //路径名
-            String name = file[i].getOriginalFilename();  //文件名
-            File savefile = new File(path,name);
-            file[i].transferTo(savefile);
-            //组装商品图片实体类对象
-            userinfo.setImgpath("image/"+name);
-        }
 
-        return userinfoService.update(userinfo);
-    }
 
     @RequestMapping("/queryallUser.action")
     @CrossOrigin

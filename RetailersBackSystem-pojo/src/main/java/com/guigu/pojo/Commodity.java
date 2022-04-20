@@ -96,6 +96,6 @@ public class Commodity {
 
     //商品类型
    @TableField(exist = false)
-    private  ShopTypeInfo shopTypeInfo;
+    private  ShopTypeInfo ShopTypeInfo;
 
 }
