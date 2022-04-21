@@ -46,4 +46,5 @@ public interface CommodityService extends IService<Commodity> {
 
     Map updatecommodity(Commodity commodity);
 
+    Page<Commodity> queryIdIsClass(Integer pageno, Integer pagesize, Commodity commodity);
 }
