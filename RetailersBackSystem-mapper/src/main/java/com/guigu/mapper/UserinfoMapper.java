@@ -15,4 +15,6 @@ public interface UserinfoMapper extends BaseMapper<Userinfo> {
 
     //商户地址
     List<Userinfo> QueryLikeSh(Userinfo userinfo);
+
+    Userinfo QueryshID(Userinfo userinfo);
 }

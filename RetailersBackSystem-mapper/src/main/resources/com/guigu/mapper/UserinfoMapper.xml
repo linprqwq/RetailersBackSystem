@@ -37,6 +37,10 @@
         SELECT  * FROM userinfo <include refid="wheresql"></include>
     </select>
 
+    <select id="QueryshID" resultType="Userinfo">
+        select * from userinfo where shaddress=#{shaddress}
+    </select>
+
     <sql id="wheresql">
         <where>
             <if test="shaddress!=null and shaddress!=''">AND shaddress LIKE CONCAT('%',#{shaddress},'%')</if>

@@ -438,6 +438,11 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
     }
 
     @Override
+    public Userinfo QueryshID(Userinfo userinfo) {
+        return userinfoMapper.QueryshID(userinfo);
+    }
+
+    @Override
     public int addaddress(Userinfo userinfo) {
         int i = 0;
         UpdateWrapper updateWrapper = new UpdateWrapper();
@@ -450,4 +455,6 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         }
         return i;
     }
+
+
 }

@@ -284,4 +284,11 @@ public class UserinfoController {
     public List<Userinfo> QueryLikeSh(Userinfo userinfo){
         return userinfoService.QueryLikeSh(userinfo);
     }
+
+
+    @RequestMapping("queryshid.action")
+    @CrossOrigin
+    public Userinfo QueryshID(Userinfo userinfo){
+        return userinfoService.QueryshID(userinfo);
+    }
 }

@@ -71,4 +71,8 @@ public interface UserinfoService extends IService<Userinfo> {
 
     //商户地址
     List<Userinfo> QueryLikeSh(Userinfo userinfo);
+
+
+    //商户id
+    Userinfo QueryshID(Userinfo userinfo);
 }
