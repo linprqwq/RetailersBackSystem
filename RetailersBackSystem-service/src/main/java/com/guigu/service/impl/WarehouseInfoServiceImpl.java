@@ -158,4 +158,43 @@ public class WarehouseInfoServiceImpl extends ServiceImpl<WarehouseInfoMapper, W
 
         return map;
     }
+
+    @Override
+    public Map cksh(WarehouseInfo warehouseInfo) {
+        boolean num = this.updateById(warehouseInfo);
+        Map map =new HashMap();
+        map.put("code","0");
+        map.put("msg","操作失败");
+        if(num){
+            map.put("code","1");
+            map.put("msg","操作成功");
+        }
+        return map;
+    }
+
+    @Override
+    public Page<WarehouseInfo> queryallshck(WarehouseInfo warehouseInfo, Integer pageno, Integer pagesize) {
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("is_check",0);
+        if (StringUtils.isNotEmpty(warehouseInfo.getWarName())){
+            queryWrapper.like("war_name",warehouseInfo.getWarName());
+        }
+        Page<WarehouseInfo> page =   this.page(new Page<WarehouseInfo>(pageno,pagesize), queryWrapper);
+        for (WarehouseInfo warehouseInfo1 : page.getRecords()) {
+            QueryWrapper queryWrapper1 = new QueryWrapper();
+            queryWrapper1.eq("p_id",warehouseInfo1.getId());
+            List<WarehouseClassification> list  =      warehouseClassificationMapper.selectList(queryWrapper1);
+            warehouseInfo1.setWarefenlei(list);
+            String shoptypename = "";
+            for (WarehouseClassification warehouseClassification : list) {
+
+                ShopTypeInfo shopTypeInfo = shopTypeInfoMapper.selectById(warehouseClassification.getShopClassId());
+                shoptypename+=shopTypeInfo.getName()+",";
+
+            }
+            warehouseInfo1.setShoptypename(StringUtils.substringBeforeLast(shoptypename,","));
+            System.out.println(StringUtils.substringBeforeLast(shoptypename,","));
+        }
+        return  page;
+    }
 }

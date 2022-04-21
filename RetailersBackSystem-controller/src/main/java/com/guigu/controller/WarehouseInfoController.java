@@ -69,5 +69,16 @@ public class WarehouseInfoController {
 
         return warehouseInfoService.updatewarehbyid(warehouseInfo, list);
     }
+    @RequestMapping("queryallshck.action")
+    @CrossOrigin
+    public Page<WarehouseInfo>  queryallshck(WarehouseInfo warehouseInfo, @RequestParam(value = "pageno",defaultValue = "1")Integer pageno,
+                                           @RequestParam(value="pagesize",defaultValue = "5")Integer pagesize){
+        return warehouseInfoService.queryallshck(warehouseInfo,pageno,pagesize);
+    }
+    @RequestMapping("cksh.action")
+    @CrossOrigin
+    public Map cksh(WarehouseInfo warehouseInfo){
+        return warehouseInfoService.cksh(warehouseInfo);
+    }
 }
 

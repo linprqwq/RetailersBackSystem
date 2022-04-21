@@ -44,7 +44,7 @@ public class UserinfoController {
             File savefile = new File(path,name);
             file[i].transferTo(savefile);
             //组装商品图片实体类对象
-            userinfo.setImgpath("image/"+name);
+            userinfo.setShimag("../image/"+name);
         }
         return userinfoService.update(userinfo);
     }
