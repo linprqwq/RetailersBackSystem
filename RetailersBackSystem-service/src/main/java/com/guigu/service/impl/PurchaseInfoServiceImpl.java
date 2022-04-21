@@ -40,6 +40,31 @@ public class PurchaseInfoServiceImpl extends ServiceImpl<PurchaseInfoMapper, Pur
     UserinfoMapper userinfoMapper;
     @Autowired
     MyIdAdd myIdAdd;
+
+
+    //去查询供应订单
+    @Override
+    public  Page<PurchaseInfo> selectgyorder(PurchaseInfo purchaseInfo,Integer pageno,Integer pagesize) {
+       QueryWrapper<PurchaseInfo> queryWrapper=new QueryWrapper<PurchaseInfo>();
+       //查询条件
+       queryWrapper.eq("is_shipments",1);
+       queryWrapper.eq("Is_audit",1);
+       queryWrapper.eq("Is_delete",0);
+        //供应商id
+        if(purchaseInfo.getSupplyId()!=null){
+            queryWrapper.eq("supply_id",purchaseInfo.getSupplyId());
+        }
+
+       Page<PurchaseInfo> page=this.page(new Page<PurchaseInfo>(pageno,pagesize),queryWrapper);
+
+        for (PurchaseInfo p : page.getRecords()) {
+            //配置供应商对象
+            p.setUserinfo(userinfoMapper.selectById(p.getSupplyId()));
+        }
+
+        return page;
+    }
+
     @Override
     public Map addPurchaseInfo(List<PurchaseInfo> purchaseList) {
         Map map = new HashMap();

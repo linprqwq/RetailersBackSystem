@@ -17,6 +17,10 @@ import java.util.Map;
  */
 public interface PurchaseInfoService extends IService<PurchaseInfo> {
 
+
+    //查询供应订单
+    Page<PurchaseInfo> selectgyorder(PurchaseInfo purchaseInfo,Integer pageno,Integer pagesize);
+
     Map addPurchaseInfo(List<PurchaseInfo> purchaseList);
 
     List<String> getIds(String str);

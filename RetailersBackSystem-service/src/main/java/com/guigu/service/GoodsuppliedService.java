@@ -15,7 +15,7 @@ public interface GoodsuppliedService extends IService<Goodsupplied> {
     public Map supplierfh(PurchaseInfo purchaseInfo);
 
     //根据用户，去查询供应商目前可以添加的供应商维护商品平商品表的商品
-    com.guigu.service.utils.Page <Commodity> selelctcomodity(Commodity commodity, Integer  id, Integer pageno, Integer pagesize );
+    com.guigu.service.utils.Page<Commodity> selelctcomodity(Commodity commodity, Integer  id, Integer pageno, Integer pagesize );
 
     //分页查询
     Page<Commodity> fecom(Commodity commodity, Integer  id, Integer pageno, Integer pagesize );
@@ -25,6 +25,10 @@ public interface GoodsuppliedService extends IService<Goodsupplied> {
 
     //去查询供应商维护分页操作
     Page<Goodsupplied> queryAllSupplier(Goodsupplied goodsupplied,Integer pageno,Integer pagesize);
+
+
+    //去根据待供应商商品表 去查询商品 商品类型
+    Goodsupplied querybysid(Integer id);
 
     //修改供应商里面的信息
     Map  xgsupplier(Goodsupplied goodsupplied);

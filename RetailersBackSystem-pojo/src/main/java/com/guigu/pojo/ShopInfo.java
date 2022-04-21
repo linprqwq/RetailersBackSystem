@@ -39,7 +39,7 @@ public class ShopInfo {
     private Integer isUp;
 
     //是否上架
-    private Integer iGather;
+    private Integer isGather;
 
     //是否配置
     private Integer isDelete;

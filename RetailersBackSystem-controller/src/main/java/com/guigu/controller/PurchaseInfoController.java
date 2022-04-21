@@ -42,5 +42,15 @@ public class PurchaseInfoController {
                                                @RequestParam(value = "pagesize", defaultValue = "5") Integer pagesize) {
         return purchaseInfoService.queryAllPurchase(purchase,pageno,pagesize);
     }
+
+    @GetMapping("selectgyorder.action")
+    //分页条件查询采购订单
+    public  Page<PurchaseInfo> selectgyorder(PurchaseInfo purchaseInfo,
+                                    @RequestParam(value = "pageno",defaultValue = "1")Integer pageno,
+                                    @RequestParam(value = "pagesize",defaultValue = "5")Integer pagesize)
+    {
+
+        return  purchaseInfoService.selectgyorder(purchaseInfo,pageno,pagesize);
+    }
 }
 

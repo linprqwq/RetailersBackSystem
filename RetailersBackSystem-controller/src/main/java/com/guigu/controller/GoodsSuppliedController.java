@@ -74,6 +74,18 @@ public class GoodsSuppliedController {
             return  goodsuppliedService.selelctcomodity(commodity,id,pageno,pagesize);
         }
 
+    //去根据待供应商商品表 去查询商品 商品类型
+    @GetMapping("querybysid.action/{id}")
+    public Goodsupplied querybyid(@PathVariable Integer id){
+        return goodsuppliedService.querybysid(id);
+    }
+
+    //供应商修改供应商品的价格
+    @PutMapping("xgsupplier.action")
+    public Map xgsupplier(@RequestBody Goodsupplied goodsupplied){
+        return  goodsuppliedService.xgsupplier(goodsupplied);
+    }
+
     //查询用户表里面的数据
     @GetMapping("/queryallSupplier.action")
     public List<Goodsupplied> queryallsupplied(){

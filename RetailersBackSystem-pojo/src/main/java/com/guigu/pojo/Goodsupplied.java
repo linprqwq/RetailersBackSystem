@@ -47,6 +47,8 @@ public class Goodsupplied {
     @TableField(exist = false)
     private ShopInfo shop; //商品对象
     @TableField(exist = false)
+    private ShopTypeInfo shopTypeInfo; //商品对象
+    @TableField(exist = false)
     private   Commodity commodity; //商品详情表
 
 

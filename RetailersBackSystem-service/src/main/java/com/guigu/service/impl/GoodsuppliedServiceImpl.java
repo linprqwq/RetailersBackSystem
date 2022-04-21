@@ -122,32 +122,69 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
     //(供货商分页的显示)
     @Override
     public Page<Goodsupplied> queryAllSupplier(Goodsupplied goodsupplied, Integer pageno, Integer pagesize) {
-
+        System.out.println(goodsupplied);
         QueryWrapper<Goodsupplied> queryWrapper = new QueryWrapper<Goodsupplied>();
         //审核状态
-        queryWrapper.eq("is_check", 1);
-        //供应状态
-        queryWrapper.eq("is_delete", 0);
+//        queryWrapper.eq("is_check", 1);
+//        //供应状态
+//        queryWrapper.eq("is_delete", 0);
+        if(goodsupplied.getIsCheck()!=null){
+            queryWrapper.eq("is_check",goodsupplied.getIsCheck());
+        }
+        if(goodsupplied.getIsDelete()!=null){
+            queryWrapper.eq("is_delete",goodsupplied.getIsDelete());
+        }
 
         if (goodsupplied.getGId() != null) {
             queryWrapper.eq(
                     "g_id", goodsupplied.getGId());
+        }
+        if (goodsupplied.getPId() != null) {
+            queryWrapper.eq(
+                    "p_id", goodsupplied.getPId());
         }
 
         Page<Goodsupplied> page = this.page(new Page<Goodsupplied>(pageno, pagesize), queryWrapper);
 
         for (Goodsupplied goods : page.getRecords()) {
             //去设置用户
-            goodsupplied.setUserinfo(userinfoMapper.selectById(goods.getPId()));
+            Commodity commodity = commodityMapper.selectById(goods.getGId());
+            goods.setCommodity(commodity);
+            goods.setShopTypeInfo(shopTypeInfoMapper.selectById(commodity.getShopType()));
+            goods.setUserinfo(userinfoMapper.selectById(goods.getPId()));
         }
 
+
         return page;
+    }
+
+
+    //去根据待供应商商品表 去查询商品 商品类型
+    @Override
+    public Goodsupplied querybysid(Integer id) {
+            Goodsupplied g=this.getById(id);
+            if(g!=null){
+                Commodity c=commodityMapper.selectById(g.getGId());
+                g.setCommodity(c);
+                g.setShopTypeInfo(shopTypeInfoMapper.selectById(c.getShopType()));
+            }
+        return g;
     }
 
     //去修改供应商状态
     @Override
     public Map xgsupplier(Goodsupplied goodsupplied) {
-        return null;
+        Map map=new HashMap();
+        map.put("code","0");
+        map.put("msg","修改失败");
+            if(goodsupplied.getSupplierPrice()!=null){
+            boolean b=this.updateById(goodsupplied);
+            if(b){
+                map.put("code","1");
+                map.put("msg","修改成功");
+            }
+            }
+        return map;
     }
 
     //去根据供应商里面的id查询商品和供应商
