@@ -133,6 +133,7 @@ public class CommodityController {
 
         return commodityService.QueryAllCommodity();
     }
+
     @PostMapping("queryAllCommodity.action")
     @CrossOrigin
     //查询所有
@@ -166,7 +167,5 @@ public class CommodityController {
         System.out.println(commodity);
         return commodityService.queryIdIsClass(pageno,pagesize,commodity);
     }
-
-
 
 }

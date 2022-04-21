@@ -46,5 +46,9 @@ public interface CommodityService extends IService<Commodity> {
 
     Map updatecommodity(Commodity commodity);
 
+
+//    //获取id 类型寻找 一类的物品
+//    List<Commodity> queryIdIsClass(Integer shoptype);
+
     Page<Commodity> queryIdIsClass(Integer pageno, Integer pagesize, Commodity commodity);
 }

@@ -42,7 +42,7 @@
     </select>
 
     <select id="QueryshIDd" resultType="Userinfo">
-        select * from userinfo where address=#{address} and id=#{id}
+        select id from userinfo where shaddress=#{shaddress}
     </select>
 
     <sql id="wheresql">

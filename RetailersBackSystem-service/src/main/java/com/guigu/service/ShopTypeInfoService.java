@@ -34,4 +34,5 @@ public interface  ShopTypeInfoService  extends IService<ShopTypeInfo> {
     List<String> getIds(String str);
 
     List<ShopTypeInfo> queryAllComClass();
+
 }

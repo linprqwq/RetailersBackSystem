@@ -30,4 +30,9 @@
     <select id="QueryAllCommodityRL" resultType="Commodity">
         SELECT * FROM commodity co LEFT JOIN shop_type_info_copy sh ON co.id=sh.id WHERE co.`shop_type`=6 AND STATUS=1
     </select>
+
+
+<!--    <select id="queryIdIsClass"  resultType="Integer">-->
+<!--        SELECT * FROM commodity WHERE shop_type=#{shop_type} AND STATUS=1-->
+<!--    </select>-->
 </mapper>

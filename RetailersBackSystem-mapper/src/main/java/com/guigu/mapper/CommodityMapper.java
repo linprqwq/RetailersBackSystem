@@ -2,6 +2,7 @@ package com.guigu.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.guigu.pojo.Commodity;
+import com.guigu.pojo.ShopTypeInfo;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface CommodityMapper extends BaseMapper<Commodity> {
         List<Commodity> QueryAllCommodityHS();
 
         List<Commodity> QueryAllCommodityRL();
+
+//        List<Commodity> queryIdIsClass(Integer shoptype);
 }
