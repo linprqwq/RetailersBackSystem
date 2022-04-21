@@ -32,10 +32,6 @@ public class Commthinfo implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    /**
-     * 流水号
-     */
-    private Integer nuberid;
 
     /**
      * 订单详情id

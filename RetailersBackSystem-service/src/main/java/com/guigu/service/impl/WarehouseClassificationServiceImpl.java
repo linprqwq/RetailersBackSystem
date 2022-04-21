@@ -6,6 +6,8 @@ import com.guigu.pojo.WarehouseClassification;
 import com.guigu.service.WarehouseClassificationService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -17,4 +19,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class WarehouseClassificationServiceImpl extends ServiceImpl<WarehouseClassificationMapper, WarehouseClassification> implements WarehouseClassificationService {
 
+    @Override
+    public List queryallcksp(int id) {
+
+        return null;
+    }
 }

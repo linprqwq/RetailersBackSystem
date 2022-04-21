@@ -22,7 +22,11 @@ public interface WarehouseInfoService extends IService<WarehouseInfo> {
 
     Map<String, String> tjck(WarehouseInfo warehouseInfo, int[] arr);
 
+    Page<WarehouseInfo> queryallshck(WarehouseInfo warehouseInfo, Integer pageno, Integer pagesize);
+
     WarehouseInfo querywarehouseInfobyid(WarehouseInfo warehouseInfo);
 
     Map<String, String> updatewarehbyid(WarehouseInfo warehouseInfo, int[] list);
+
+    Map cksh(WarehouseInfo warehouseInfo);
 }
