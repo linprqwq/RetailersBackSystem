@@ -291,4 +291,10 @@ public class UserinfoController {
     public Userinfo QueryshID(Userinfo userinfo){
         return userinfoService.QueryshID(userinfo);
     }
+
+    @RequestMapping("queryshidd.action")
+    @CrossOrigin
+    public Userinfo QueryshIDd(Userinfo userinfo){
+        return userinfoService.QueryshIDd(userinfo);
+    }
 }

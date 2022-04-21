@@ -439,7 +439,12 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
 
     @Override
     public Userinfo QueryshID(Userinfo userinfo) {
-        return userinfoMapper.QueryshID(userinfo);
+        return userinfoMapper.QueryshIDd(userinfo);
+    }
+
+    @Override
+    public Userinfo QueryshIDd(Userinfo userinfo) {
+        return userinfoMapper.QueryshIDd(userinfo);
     }
 
     @Override

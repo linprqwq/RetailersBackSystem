@@ -75,4 +75,6 @@ public interface UserinfoService extends IService<Userinfo> {
 
     //商户id
     Userinfo QueryshID(Userinfo userinfo);
+
+    Userinfo QueryshIDd(Userinfo userinfo);
 }

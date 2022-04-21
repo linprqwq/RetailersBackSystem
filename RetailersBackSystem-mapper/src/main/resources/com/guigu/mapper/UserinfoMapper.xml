@@ -41,6 +41,10 @@
         select * from userinfo where shaddress=#{shaddress}
     </select>
 
+    <select id="QueryshIDd" resultType="Userinfo">
+        select * from userinfo where address=#{address}
+    </select>
+
     <sql id="wheresql">
         <where>
             <if test="shaddress!=null and shaddress!=''">AND shaddress LIKE CONCAT('%',#{shaddress},'%')</if>
