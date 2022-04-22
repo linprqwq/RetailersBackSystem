@@ -39,6 +39,7 @@ public class CommthinfoController {
     CommthinfoService commthinfoService;
     @Autowired
     OrdderdetailsService ordderdetailsService;
+
     @PostMapping("queryreturnstop.action")
     @CrossOrigin
     //查询商户退货
@@ -90,8 +91,8 @@ public class CommthinfoController {
         //状态
         commthinfo.setState(0);
         //退货时间
-        //商户id
-        commthinfo.setSid(1);
+
+
         commthinfo.setThtime(new Date());
 
         System.out.println(commthinfo);

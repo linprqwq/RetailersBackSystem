@@ -59,7 +59,9 @@ public class OrdderdetailsServiceImpl extends ServiceImpl<OrdderdetailsMapper, O
         Map<String,String> map = new HashMap<>();
         map.put("code","0");
         map.put("msg","失败");
-
+        //商户id
+       Orderinfo orderinfo1 =  orderinfoMapper.selectById(orderinfo.getOrderid());
+        commthinfo.setSid(orderinfo1.getSid());
 
         Ordderdetails ordderdetails = ordderdetailsMapper.selectById(commthinfo.getOrddid());
         //待退款状态

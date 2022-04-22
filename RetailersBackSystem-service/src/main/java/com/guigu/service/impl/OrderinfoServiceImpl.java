@@ -7,11 +7,8 @@ import com.guigu.mapper.CustomerbalancelogMapper;
 import com.guigu.mapper.OrdderdetailsMapper;
 import com.guigu.mapper.OrderinfoMapper;
 import com.guigu.mapper.UserinfoMapper;
-import com.guigu.pojo.Customerbalancelog;
-import com.guigu.pojo.Ordderdetails;
-import com.guigu.pojo.Orderinfo;
+import com.guigu.pojo.*;
 
-import com.guigu.pojo.Userinfo;
 import com.guigu.service.OrderinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
@@ -170,6 +167,16 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
             customerbalancelog.setAmount(orderinfo1.getZprice());
             customerbalancelog.setSource(4);
             customerbalancelogMapper.insert(customerbalancelog);
+
+            //用户余额变动
+//            CompanyRunningWater water = new CompanyRunningWater();
+//            water.setUid(userinfo.getId());
+//            water.setOid(orderinfo.getOrderid());
+//            water.setRmoney(orderinfo1.getZprice());
+//            water.setRdate(new Date());
+//            water.setRtype(2);
+//            water.setIsDelete(0);
+
             map.put("code","1");
             map.put("msg","取消成功");
         }
@@ -204,6 +211,15 @@ public class OrderinfoServiceImpl extends ServiceImpl<OrderinfoMapper, Orderinfo
             customerbalancelog.setAmount(orderinfo1.getZprice());
             //用户余额变动表新增
             customerbalancelogMapper.insert(customerbalancelog);
+
+            //用户余额变动表新增
+//            CompanyRunningWater water = new CompanyRunningWater();
+//            water.setUid(orderinfo.getUid());
+//            water.setOid(orderinfo.getOrderid());
+//            water.setRmoney(orderinfo1.getZprice());
+//            water.setRdate(new Date());
+//            water.setRtype(1);
+//            water.setIsDelete(0);
 
             //修改用户表
             userinfoMapper.updateById(userinfo);
