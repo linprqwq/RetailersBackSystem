@@ -33,7 +33,8 @@ public interface GoodsuppliedService extends IService<Goodsupplied> {
     //修改供应商里面的信息
     Map  xgsupplier(Goodsupplied goodsupplied);
 
-
+    //供应商的提供状态
+    Map  updatadelte(Goodsupplied  goodsupplied);
 
     //在供应商表里面去添加商品
     Map add(Goodsupplied goodsupplied);

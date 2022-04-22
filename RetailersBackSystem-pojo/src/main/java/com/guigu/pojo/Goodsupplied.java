@@ -51,6 +51,9 @@ public class Goodsupplied {
     @TableField(exist = false)
     private   Commodity commodity; //商品详情表
 
+    @TableField(exist = false)
+    private Boolean isDeleteBoolean; //商品对象
+
 
 
 }
