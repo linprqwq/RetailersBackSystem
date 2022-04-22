@@ -160,8 +160,6 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
             //实付金额
             orderinfo.setPayment(a);
         }else{
-            map.put("code","0");
-            map.put("msg","余额不足,请充值");
             //未付款
             orderinfo.setStatus(2);
 
@@ -211,10 +209,11 @@ public class CartServiceImpl extends ServiceImpl<CartMapper, Cart> implements Ca
             ordderdetails.setRefund(0);
 
           int c =   ordderdetailsMapper.insert(ordderdetails);
-          if (c>=1){
+
               //删除购物车表里购买的商品
+              map.put("code","0");
+              map.put("msg","余额不足,请充值");
               boolean b = cartMapper.scbyid(i,orderinfo.getUid());
-          }
         }
 
         return map;
