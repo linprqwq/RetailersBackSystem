@@ -67,8 +67,9 @@ public class UserinfoController {
     //去根据用户id去查询
     @RequestMapping("/selsid.action")
     public Userinfo selsid(int id) {
+     Userinfo userinfo= userinfoService.getById(id);
 
-        return userinfoService.getById(id);
+        return userinfo;
     }
 
     @RequestMapping("/userGysoption.action")

@@ -108,9 +108,9 @@ public class Userinfo {
     @TableField(exist = false)
     private String supplierGoodsCategoryName;
 
+    private String ssqid;
 
-
-
-
+    @TableField(exist = false)
+    private Ssq ssq;
 
 }

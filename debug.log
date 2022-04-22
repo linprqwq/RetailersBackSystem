@@ -1,3 +1,3 @@
-2022-04-21 15:26:54  [ http-bio-9090-exec-9:98004 ] - [ DEBUG ]  ==> Parameters: 52(Integer)
-2022-04-21 15:26:54  [ http-bio-9090-exec-9:98055 ] - [ DEBUG ]  <==      Total: 1
-2022-04-21 15:26:54  [ http-bio-9090-exec-9:98055 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@29338182]
+2022-04-22 09:50:10  [ http-bio-9090-exec-3:2123610 ] - [ DEBUG ]  ==> Parameters: 7(Integer)
+2022-04-22 09:50:10  [ http-bio-9090-exec-3:2123635 ] - [ DEBUG ]  <==      Total: 1
+2022-04-22 09:50:10  [ http-bio-9090-exec-3:2123635 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7af1a407]
