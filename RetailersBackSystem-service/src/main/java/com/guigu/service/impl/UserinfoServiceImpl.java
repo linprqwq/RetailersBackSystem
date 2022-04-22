@@ -50,24 +50,26 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         userinfo.setUsername(username);
         System.out.println("商品名"+username);
         //去判断是否上传了图片
-        if (img.getSize() > 0) {
-            //上传图片
-            //  String apppath = ;
-            File file = new File(apppath);
-            if (!file.exists()) {
-                //不存在就去创建
-                file.mkdirs();
+        if(img!=null){
+            if (img.getSize() > 0) {
+                //上传图片
+                //  String apppath = ;
+                File file = new File(apppath);   //去保存的图片路径
+                if (!file.exists()) {
+                    //不存在就去创建
+                    file.mkdirs();
+                }
+                //去获取文件名称
+                String fileName = img.getOriginalFilename();
+                //去保存文件到路径
+                try {
+                    img.transferTo(new File(apppath, fileName));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //去将路径设置到对象
+                userinfo.setImgpath("image/" + fileName);
             }
-            //去获取文件名称
-            String fileName = img.getOriginalFilename();
-            //去保存文件到路径
-            try {
-                img.transferTo(new File(apppath, fileName));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            //去将路径设置到对象
-            userinfo.setImgpath("image/" + fileName);
         }
 
         //进行修改
@@ -78,6 +80,7 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         QueryWrapper<SupplierGoodsCategory> queryWrapper = new QueryWrapper();
         queryWrapper.eq("p_id", id);
         supplierGoodsCategoryMapper.delete(queryWrapper);
+
         //循环添加供应商提供的分类表数据
         for (Integer i : ids) {
             SupplierGoodsCategory temp_obj = new SupplierGoodsCategory();

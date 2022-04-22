@@ -31,6 +31,12 @@ public class GoodsSuppliedController {
     @Autowired
     GoodsuppliedService goodsuppliedService;
 
+    //供应商供应状态
+    @PutMapping("updatadelte.action")
+    public  Map updatadelte(@RequestBody Goodsupplied goodsupplied){
+
+        return goodsuppliedService.updatadelte(goodsupplied);
+    }
     //处理总店采购申请【供应商确认发货】
     @PostMapping("supplierfh.action")
     public Map supplierfh(@RequestBody PurchaseInfo purchaseInfo){

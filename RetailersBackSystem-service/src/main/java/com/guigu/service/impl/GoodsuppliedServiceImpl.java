@@ -10,6 +10,7 @@ import com.guigu.service.CommodityService;
 import com.guigu.service.GoodsuppliedService;
 import com.guigu.service.ShopInfoService;
 import com.sun.prism.impl.Disposer;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -128,11 +129,11 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
 //        queryWrapper.eq("is_check", 1);
 //        //供应状态
 //        queryWrapper.eq("is_delete", 0);
-        if(goodsupplied.getIsCheck()!=null){
-            queryWrapper.eq("is_check",goodsupplied.getIsCheck());
+        if (goodsupplied.getIsCheck() != null) {
+            queryWrapper.eq("is_check", goodsupplied.getIsCheck());
         }
-        if(goodsupplied.getIsDelete()!=null){
-            queryWrapper.eq("is_delete",goodsupplied.getIsDelete());
+        if (goodsupplied.getIsDelete() != null) {
+            queryWrapper.eq("is_delete", goodsupplied.getIsDelete());
         }
 
         if (goodsupplied.getGId() != null) {
@@ -162,28 +163,62 @@ public class GoodsuppliedServiceImpl extends ServiceImpl<GoodsuppliedMapper, Goo
     //去根据待供应商商品表 去查询商品 商品类型
     @Override
     public Goodsupplied querybysid(Integer id) {
-            Goodsupplied g=this.getById(id);
-            if(g!=null){
-                Commodity c=commodityMapper.selectById(g.getGId());
-                g.setCommodity(c);
-                g.setShopTypeInfo(shopTypeInfoMapper.selectById(c.getShopType()));
-            }
+        Goodsupplied g = this.getById(id);
+        if (g != null) {
+            Commodity c = commodityMapper.selectById(g.getGId());
+            g.setCommodity(c);
+            g.setShopTypeInfo(shopTypeInfoMapper.selectById(c.getShopType()));
+        }
         return g;
     }
 
     //去修改供应商状态
     @Override
     public Map xgsupplier(Goodsupplied goodsupplied) {
-        Map map=new HashMap();
-        map.put("code","0");
-        map.put("msg","修改失败");
-            if(goodsupplied.getSupplierPrice()!=null){
-            boolean b=this.updateById(goodsupplied);
-            if(b){
-                map.put("code","1");
-                map.put("msg","修改成功");
+        Map map = new HashMap();
+        map.put("code", "0");
+        map.put("msg", "修改失败");
+        if (goodsupplied.getSupplierPrice() != null) {
+            boolean b = this.updateById(goodsupplied);
+            if (b) {
+                map.put("code", "1");
+                map.put("msg", "修改成功");
             }
+        }
+        return map;
+    }
+
+
+    //供应商的提供状态  可供应 取消供应
+    @Override
+    public Map updatadelte(Goodsupplied goodsupplied) {
+        Map map = new HashMap();
+//        if (goodsuppliedMapper.updateById(goodsupplied) > 0) {
+//            if (goodsupplied.getIsDelete() == 0) {
+//                map.put("msg", "商品正在供应");
+//                map.put("x", true);
+//            } else {
+//                map.put("msg", "取消供应商品");
+//                map.put("x", false);
+//            }
+//        }
+        if(goodsupplied.getIsDelete()==0){
+            int i = goodsuppliedMapper.updateById(goodsupplied);
+            map.put("msg", "操作失败");
+            map.put("x", false);
+            if(i>0){
+                map.put("x",true);
+                map.put("msg","商品正在供应");
             }
+        }else{
+            int i = goodsuppliedMapper.updateById(goodsupplied);
+            map.put("msg", "操作失败");
+            map.put("x", false);
+            if(i>0){
+                map.put("x",true);
+                map.put("msg","取消供应商品");
+            }
+        }
         return map;
     }
 
