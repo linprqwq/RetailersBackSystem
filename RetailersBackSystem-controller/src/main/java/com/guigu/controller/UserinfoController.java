@@ -2,6 +2,7 @@ package com.guigu.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.guigu.pojo.PageVo;
+import com.guigu.pojo.Ssq;
 import com.guigu.pojo.Userinfo;
 import com.guigu.service.UserinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +63,13 @@ public class UserinfoController {
     @RequestMapping("/selsid.action")
     public Userinfo selsid(int id) {
      Userinfo userinfo= userinfoService.getById(id);
-
+        String a=userinfo.getSsqid();
+        Ssq ssq=new Ssq();
+        ssq.setSheng(a.substring(0,6));
+        ssq.setShi(a.substring(7,13));
+        ssq.setQu(a.substring(14,20));
+        System.out.println(ssq.getSheng());
+        userinfo.setSsq(ssq);
         return userinfo;
     }
 

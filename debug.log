@@ -1,3 +1,12 @@
-2022-04-22 09:50:10  [ http-bio-9090-exec-3:2123610 ] - [ DEBUG ]  ==> Parameters: 7(Integer)
-2022-04-22 09:50:10  [ http-bio-9090-exec-3:2123635 ] - [ DEBUG ]  <==      Total: 1
-2022-04-22 09:50:10  [ http-bio-9090-exec-3:2123635 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7af1a407]
+2022-04-22 11:57:44  [ http-bio-9090-exec-5:2341442 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@3b81a123] will not be managed by Spring
+2022-04-22 11:57:44  [ http-bio-9090-exec-5:2341443 ] - [ DEBUG ]  ==>  Preparing: SELECT ID,p_id,g_id,Supplied_price AS supplierPrice,is_config,is_check,is_delete FROM goods_supplied WHERE (g_id = ?) 
+2022-04-22 11:57:44  [ http-bio-9090-exec-5:2341443 ] - [ DEBUG ]  ==> Parameters: 6(Integer)
+2022-04-22 11:57:44  [ http-bio-9090-exec-5:2341478 ] - [ DEBUG ]  <==      Total: 1
+2022-04-22 11:57:44  [ http-bio-9090-exec-5:2341478 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5fd60cec]
+2022-04-22 11:57:44  [ http-bio-9090-exec-5:2341479 ] - [ DEBUG ]  Creating a new SqlSession
+2022-04-22 11:57:44  [ http-bio-9090-exec-5:2341479 ] - [ DEBUG ]  SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5025725a] was not registered for synchronization because synchronization is not active
+2022-04-22 11:57:44  [ http-bio-9090-exec-5:2341479 ] - [ DEBUG ]  JDBC Connection [com.mysql.jdbc.JDBC4Connection@3b81a123] will not be managed by Spring
+2022-04-22 11:57:44  [ http-bio-9090-exec-5:2341479 ] - [ DEBUG ]  ==>  Preparing: SELECT id,name,is_delete FROM shop_type_info_copy WHERE id=? 
+2022-04-22 11:57:44  [ http-bio-9090-exec-5:2341479 ] - [ DEBUG ]  ==> Parameters: 6(Integer)
+2022-04-22 11:57:44  [ http-bio-9090-exec-5:2341516 ] - [ DEBUG ]  <==      Total: 1
+2022-04-22 11:57:44  [ http-bio-9090-exec-5:2341516 ] - [ DEBUG ]  Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5025725a]
