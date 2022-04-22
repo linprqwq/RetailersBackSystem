@@ -162,7 +162,7 @@ public class CommodityController {
     @RequestMapping("queryIdIsClass.action")
     @CrossOrigin
     public Page<Commodity> queryIdIsClass(@RequestParam(value = "pageno",defaultValue = "1")Integer pageno,
-                                          @RequestParam(value = "pagesize",defaultValue = "5")Integer pagesize,
+                                          @RequestParam(value = "pagesize",defaultValue = "10")Integer pagesize,
                                           Commodity commodity){
         System.out.println(commodity);
         return commodityService.queryIdIsClass(pageno,pagesize,commodity);

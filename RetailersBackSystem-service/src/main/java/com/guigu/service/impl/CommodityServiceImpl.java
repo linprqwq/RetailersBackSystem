@@ -225,7 +225,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         QueryWrapper q  = new QueryWrapper();
         q.eq("shop_type",commodity.getShopType());
         if (StringUtils.isNotEmpty(commodity.getProname())){
-            q.eq("proname",commodity.getProname());
+            q.like("proname",commodity.getProname());
         }
         Page<Commodity> page = this.page(new Page<Commodity>(pageno,pagesize),q);
         return page;
