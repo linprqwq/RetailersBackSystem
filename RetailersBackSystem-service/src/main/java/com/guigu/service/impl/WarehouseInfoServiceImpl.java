@@ -148,8 +148,8 @@ public class WarehouseInfoServiceImpl extends ServiceImpl<WarehouseInfoMapper, W
                     warehouseClassification.setShopClassId(i1);
                     int insert = warehouseClassificationMapper.insert(warehouseClassification);
                     if (insert >= 1) {
-                        map.put("code", "0");
-                        map.put("msg", "修改失败");
+                        map.put("code", "1");
+                        map.put("msg", "修改成功");
                     }
                 }
             }
