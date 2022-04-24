@@ -63,6 +63,12 @@ public class UserinfoController {
     @RequestMapping("/selsid.action")
     public Userinfo selsid(int id) {
      Userinfo userinfo= userinfoService.getById(id);
+        return userinfo;
+    }
+    //去根据用户id去查询
+    @RequestMapping("/shzlwh.action")
+    public Userinfo shzlwh(int id) {
+        Userinfo userinfo= userinfoService.getById(id);
         String a=userinfo.getSsqid();
         Ssq ssq=new Ssq();
         ssq.setSheng(a.substring(0,6));
@@ -72,7 +78,6 @@ public class UserinfoController {
         userinfo.setSsq(ssq);
         return userinfo;
     }
-
     @RequestMapping("/userGysoption.action")
     public List<Userinfo> userGysoption() {
         QueryWrapper queryWrapper=new QueryWrapper<Userinfo>();
